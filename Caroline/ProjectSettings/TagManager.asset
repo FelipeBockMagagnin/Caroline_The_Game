@@ -7,8 +7,11 @@ TagManager:
   - pedra
   - folha
   - inimigo
-  - Tiro
   - morte
+  - Saci
+  - Dialogo
+  - Fog
+  - Menina
   layers:
   - Default
   - TransparentFX
@@ -19,10 +22,10 @@ TagManager:
   - 
   - 
   - Chao
-  - folha
-  - 
-  - 
-  - 
+  - inimigo
+  - Menina
+  - inimigocolisor
+  - saci
   - 
   - 
   - 
