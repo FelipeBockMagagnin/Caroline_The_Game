@@ -54,14 +54,14 @@ public class InimigosColidir : MonoBehaviour
         {
             transform.Translate(speed * Time.deltaTime, 0, 0);
             Vector3 scale = transform.localScale;
-            scale.x = 0.3f;
+            scale.x = 0.7f;
             transform.localScale = scale;
         }
         else
         {
             Vector3 scale = transform.localScale;
             transform.Translate(-speed * Time.deltaTime, 0, 0);
-            scale.x = -0.3f;
+            scale.x = -0.7f;
             transform.localScale = scale;
         }
     }

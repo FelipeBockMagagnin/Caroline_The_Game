@@ -32,6 +32,8 @@ public class Menina : MonoBehaviour {
 	float raio = 0.2f;
 
     public bool MeninaColidiu = false;
+
+    public bool emdialogo;
     
 
 	
@@ -61,13 +63,17 @@ public class Menina : MonoBehaviour {
         //Paralização do personagem após impacto
         if (time != 0){
             PodeAndar = false;
-            anim.SetBool("Idle", true);
-            anim.SetBool("Andando", false);
-            anim.SetBool("Pulo", false);
             luz.enabled = true;
         } else {
             PodeAndar = true;
             luz.enabled = false;
+        }
+
+        if (emdialogo)
+        {
+            anim.SetBool("Idle", true);
+            anim.SetBool("Andando", false);
+            anim.SetBool("Pulo", false);
         }
 
         //garantir que não haja bugs na paralização do personagem
@@ -85,7 +91,7 @@ public class Menina : MonoBehaviour {
         nochao =  Physics2D.OverlapCircle(check.position, raio, OqueEChao); //Checa se esta no chão
 
 
-        if (PodeAndar == true)
+        if (PodeAndar && !emdialogo)
         {
             if (Input.GetKey(KeyCode.RightArrow) && !face)
             {
@@ -117,17 +123,23 @@ public class Menina : MonoBehaviour {
 
         }
     }
-		
-	void FixedUpdate() { 
-		if (rb.velocity.y < 0) { //Modificação de Gravidade no pulo
-			rb.gravityScale = fallMultiplier;
-		} else if (rb.velocity.y > 0 && !Input.GetKey (KeyCode.UpArrow)) {
-			rb.gravityScale = lowjumpmultiplayer;
-		} else {
-			rb.gravityScale = 1f;
-		}
 
-        if (PodeAndar == true)
+    void FixedUpdate()
+    {
+        if (rb.velocity.y < 0)
+        { //Modificação de Gravidade no pulo
+            rb.gravityScale = fallMultiplier;
+        }
+        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow))
+        {
+            rb.gravityScale = lowjumpmultiplayer;
+        }
+        else
+        {
+            rb.gravityScale = 1f;
+        }
+
+        if (PodeAndar && !emdialogo)
         {
             //Movimentação horizontal
             if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
@@ -154,17 +166,12 @@ public class Menina : MonoBehaviour {
             }
         }
 
-		//Script de pulo, inplementando força
-		if (Jumprequest) {
-			rb.AddForce (Vector2.up * VelocidadePulo, ForceMode2D.Impulse);
-			Jumprequest = false;
-		}
-
-        //Respawn
-        if (meninaT.transform.position.y < -10)
+        //Script de pulo, inplementando força
+        if (Jumprequest)
         {
-            Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
-        }        
+            rb.AddForce(Vector2.up * VelocidadePulo, ForceMode2D.Impulse);
+            Jumprequest = false;
+        }
     }
 
 	//inverter a escala do personagem fazendo ele girar esq/dir

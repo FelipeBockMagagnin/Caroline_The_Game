@@ -14,11 +14,11 @@ public class DialogueManager : MonoBehaviour {
     public Animator animator;
 
     public bool emDialogo;
-
+    public GameObject menina;
 
     public int conjutosDeFrases;
 
-
+    public bool destroytrigger;
 
     public Queue<string> sentences;
 
@@ -29,6 +29,7 @@ public class DialogueManager : MonoBehaviour {
 
     public void StartDialogue(Dialogue dialogue)
     {
+        menina.GetComponent<Menina>().emdialogo = true;
         emDialogo = true; 
         animator.SetBool("IsOpen", true); //Anim de dialogo
         nameText.text = dialogue.name; //Display o nome no lugar dele
@@ -47,6 +48,8 @@ public class DialogueManager : MonoBehaviour {
 
     private void Update()
     {
+       
+
         if (Input.GetKeyDown(KeyCode.E) & emDialogo)
         {
             DisplayNextSentence();
@@ -88,8 +91,8 @@ public class DialogueManager : MonoBehaviour {
         emDialogo = false;
         animator.SetBool("IsOpen", false);
         conjutosDeFrases++;
-
-
+        menina.GetComponent<Menina>().emdialogo = false;
+        destroytrigger = true;
     }
     
 

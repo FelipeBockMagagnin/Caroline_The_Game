@@ -5,13 +5,11 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour {
 
     //iniciar dialogo
+       public Dialogue dialogue;
 
+    public GameObject dialoguemanager;
 
- 
-
-
-
-    public Dialogue dialogue;
+    public bool destroydialogue = false;
 
 
 
@@ -25,6 +23,13 @@ public class DialogueTrigger : MonoBehaviour {
     private void Update()
     {
 
+       
+
+        if (dialoguemanager.GetComponent<DialogueManager>().destroytrigger == true)
+        {
+            dialoguemanager.GetComponent<DialogueManager>().destroytrigger = false;
+            Destroy(gameObject);
+        }
       
 
 
@@ -39,4 +44,7 @@ public class DialogueTrigger : MonoBehaviour {
             TriggerDialogue();
         }
     }
+   
+
+
 }
