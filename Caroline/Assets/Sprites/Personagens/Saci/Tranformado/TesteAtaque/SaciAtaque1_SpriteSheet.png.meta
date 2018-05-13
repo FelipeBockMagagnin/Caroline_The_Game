@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: 0bac1b4cff7fe9b489c56fbf7018d234
+timeCreated: 1526087300
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: SaciAtaque1_SpriteSheet_0
+    21300002: SaciAtaque1_SpriteSheet_1
+    21300004: SaciAtaque1_SpriteSheet_2
+    21300006: SaciAtaque1_SpriteSheet_3
+    21300008: SaciAtaque1_SpriteSheet_4
+    21300010: SaciAtaque1_SpriteSheet_5
+    21300012: SaciAtaque1_SpriteSheet_6
+    21300014: SaciAtaque1_SpriteSheet_7
+    21300016: SaciAtaque1_SpriteSheet_8
+    21300018: SaciAtaque1_SpriteSheet_9
+    21300020: SaciAtaque1_SpriteSheet_10
+    21300022: SaciAtaque1_SpriteSheet_11
+    21300024: SaciAtaque1_SpriteSheet_12
+    21300026: SaciAtaque1_SpriteSheet_13
+    21300028: SaciAtaque1_SpriteSheet_14
+    21300030: SaciAtaque1_SpriteSheet_15
+    21300032: SaciAtaque1_SpriteSheet_16
+    21300034: SaciAtaque1_SpriteSheet_17
+    21300036: SaciAtaque1_SpriteSheet_18
+    21300038: SaciAtaque1_SpriteSheet_19
+    21300040: SaciAtaque1_SpriteSheet_20
+    21300042: SaciAtaque1_SpriteSheet_21
+    21300044: SaciAtaque1_SpriteSheet_22
+    21300046: SaciAtaque1_SpriteSheet_23
+    21300048: SaciAtaque1_SpriteSheet_24
+    21300050: SaciAtaque1_SpriteSheet_25
+    21300052: SaciAtaque1_SpriteSheet_26
+    21300054: SaciAtaque1_SpriteSheet_27
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 687
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 466
+        width: 13
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 3158
+        y: 0
+        width: 431
+        height: 839
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 3810
+        y: 0
+        width: 360
+        height: 839
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 0
+        width: 242
+        height: 839
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 0
+        width: 251
+        height: 839
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 1261
+        y: 0
+        width: 432
+        height: 839
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 1787
+        y: 448
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 1851
+        y: 0
+        width: 457
+        height: 839
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 2418
+        y: 0
+        width: 509
+        height: 839
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 4259
+        y: 0
+        width: 475
+        height: 839
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 5015
+        y: 0
+        width: 323
+        height: 839
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 5687
+        y: 22
+        width: 259
+        height: 817
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 1787
+        y: 434
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 1787
+        y: 422
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 408
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 381
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 367
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 344
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 1787
+        y: 243
+        width: 8
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 259
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 253
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 226
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_23
+      rect:
+        serializedVersion: 2
+        x: 1787
+        y: 218
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 1787
+        y: 180
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 1787
+        y: 76
+        width: 7
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 22
+        width: 77
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SaciAtaque1_SpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 31
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

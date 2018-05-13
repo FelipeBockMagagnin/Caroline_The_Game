@@ -9,6 +9,7 @@ public class Saci : MonoBehaviour {
     public bool PodeAtacar = true;
     public float time;
     Animator anim;
+    bool embatalha;
     
     private void Start()
     {
@@ -35,7 +36,9 @@ public class Saci : MonoBehaviour {
         }
         else
         {
-            anim.SetBool("ModoDemon", true);
+            
+                anim.SetBool("ModoDemon", false);
+            
             luz.enabled = false;
             PodeAtacar = true;
         }
@@ -45,13 +48,14 @@ public class Saci : MonoBehaviour {
     {
         if (collision.CompareTag("inimigo") && PodeAtacar)
         {
+            anim.SetBool("ModoDemon", true);
             PodeAtacar = false;
-            anim.SetBool("ModoDemon", false);
+            
             Destroy(collision.gameObject,0.05f);               
             time = 2;
+
             if (collision.transform.position.x <= transform.position.x)
             {
-
                 Vector3 scale = transform.localScale;
                 scale.x = 0.7f;
                 transform.localScale = scale;
@@ -59,7 +63,6 @@ public class Saci : MonoBehaviour {
             if (collision.transform.position.x > transform.position.x)
             {
                 Vector3 scale = transform.localScale;
-
                 scale.x = -0.7f;
                 transform.localScale = scale;
             }

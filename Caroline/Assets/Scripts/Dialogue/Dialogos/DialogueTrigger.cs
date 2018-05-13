@@ -5,35 +5,13 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour {
 
     //iniciar dialogo
-       public Dialogue dialogue;
-
-    public GameObject dialoguemanager;
-
-    public bool destroydialogue = false;
-
-
+    public Dialogue dialogue;
+    public GameObject dialoguemanager;   
 
     //Trigger = startDialogue
     public void TriggerDialogue()
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
-    }
-
-
-    private void Update()
-    {
-
-       
-
-        if (dialoguemanager.GetComponent<DialogueManager>().destroytrigger == true)
-        {
-            dialoguemanager.GetComponent<DialogueManager>().destroytrigger = false;
-            Destroy(gameObject);
-        }
-      
-
-
-      
     }
 
     //Start no Dialogo se colidir com Saci
@@ -42,9 +20,13 @@ public class DialogueTrigger : MonoBehaviour {
         if (collision.CompareTag("Menina"))
         {
             TriggerDialogue();
+                Destroy(gameObject);
+               
+            
         }
     }
-   
+    
+
 
 
 }

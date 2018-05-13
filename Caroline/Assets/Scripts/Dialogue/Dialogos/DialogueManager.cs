@@ -16,12 +16,9 @@ public class DialogueManager : MonoBehaviour {
     public bool emDialogo;
     public GameObject menina;
 
-    public int conjutosDeFrases;
-
-    public bool destroytrigger;
+    public int conjutosDeFrases;   
 
     public Queue<string> sentences;
-
 
 	void Start () {
         sentences = new Queue<string>();
@@ -40,27 +37,16 @@ public class DialogueManager : MonoBehaviour {
             sentences.Enqueue(sentence);
         }
 
-        DisplayNextSentence(); 
-
-        
-
+        DisplayNextSentence();
     }
 
     private void Update()
     {
-       
-
         if (Input.GetKeyDown(KeyCode.E) & emDialogo)
         {
             DisplayNextSentence();
         }
-        
-
-
-
     }
-
-
 
     public void DisplayNextSentence()               //aplica a var sentence o valor da proxima frase na lista
     {
@@ -68,12 +54,10 @@ public class DialogueManager : MonoBehaviour {
         {
             EndDialogue();                          //Se o numero de frases em espera for igual a zero stop
             return;
-        }
-    
+        }    
        string sentence = sentences.Dequeue();       
         StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
-        
+        StartCoroutine(TypeSentence(sentence));        
     }
 
     IEnumerator TypeSentence (string sentence)
@@ -86,16 +70,11 @@ public class DialogueManager : MonoBehaviour {
         }
     }
 
-        void EndDialogue()
-    {
+    public void EndDialogue()
+    {       
         emDialogo = false;
         animator.SetBool("IsOpen", false);
         conjutosDeFrases++;
-        menina.GetComponent<Menina>().emdialogo = false;
-        destroytrigger = true;
+        menina.GetComponent<Menina>().emdialogo = false;   
     }
-    
-
-
-
 }

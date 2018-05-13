@@ -64,6 +64,9 @@ public class Menina : MonoBehaviour {
         if (time != 0){
             PodeAndar = false;
             luz.enabled = true;
+            anim.SetBool("Idle", true);
+            anim.SetBool("Andando", false);
+            anim.SetBool("Pulo", false);
         } else {
             PodeAndar = true;
             luz.enabled = false;
