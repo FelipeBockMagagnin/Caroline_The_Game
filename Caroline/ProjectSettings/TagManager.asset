@@ -5,13 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - pedra
-  - folha
   - inimigo
   - morte
   - Saci
   - Dialogo
   - Fog
   - Menina
+  - municao
   layers:
   - Default
   - TransparentFX
@@ -26,7 +26,7 @@ TagManager:
   - Menina
   - inimigocolisor
   - saci
-  - 
+  - municao
   - 
   - 
   - 

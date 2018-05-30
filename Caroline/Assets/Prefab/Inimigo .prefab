@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1496164612074650}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 123.5, y: -1.7781136, z: 0}
+  m_LocalPosition: {x: 49.08, y: -2.23, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children:
   - {fileID: 4933368865855232}
@@ -117,7 +117,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.75, y: 4.32}
+  m_Size: {x: 6.83, y: 4.32}
   m_EdgeRadius: 0
 --- !u!61 &61908257979214042
 BoxCollider2D:
@@ -142,7 +142,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.08, y: 1.87}
+  m_Size: {x: 5.72, y: 1.87}
   m_EdgeRadius: 0
 --- !u!95 &95770725782926278
 Animator:
@@ -161,6 +161,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114488480025508598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,9 +173,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f3cd5c25ff9504c9e71fb31faf4edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SaciT: {fileID: 0}
-  speed: 0
   meninaColidiu: 0
+  esperar: 1
+  luz: {fileID: 0}
+  SaciT: {fileID: 0}
+  menina: {fileID: 0}
 --- !u!212 &212051783807819762
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -188,6 +191,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

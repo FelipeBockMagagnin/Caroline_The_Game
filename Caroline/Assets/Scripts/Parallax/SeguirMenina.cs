@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SeguirMenina : MonoBehaviour {
 
-	public Transform menina;
-	public float Somavetor;
+	public Transform    menina;         //guarda localização da menina
+	public float        Somavetor;      //guarda vetor a somar na posição
 
 	void Update () {
 		Vector2 ola = transform.position;

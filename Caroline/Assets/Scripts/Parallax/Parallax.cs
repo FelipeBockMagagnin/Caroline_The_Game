@@ -12,13 +12,12 @@ public class Parallax : MonoBehaviour {
 	void Update () {
         //acessa a var que indica se a menina pode movimentar-se
         bool podeandar = Menina.GetComponent<Menina>().PodeAndar;
-        bool emdialogo = Menina.GetComponent<Menina>().emdialogo;
 		Vector2 offset = new Vector2 (velParallax * Time.deltaTime, 0);
 
 
 
         //Somente se a menina puder andar acontece o parallax
-        if (podeandar == true && !emdialogo)
+        if (podeandar == true)
         {
             if (Input.GetKey(KeyCode.RightArrow))
             {

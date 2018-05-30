@@ -1,15 +1,13 @@
 fileFormatVersion: 2
 guid: a1111663f21ca5a438b8c0611ab07c47
-timeCreated: 1521641668
-licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Conjunto plataformas 1_0
-    21300002: Conjunto plataformas 1_2
-    21300004: Conjunto plataformas 1_3
-    21300006: Conjunto plataformas 1_4
+    21300000: Conjunto plataformas 1_1
+    21300002: Conjunto plataformas 1_3
+    21300004: Conjunto plataformas 1_6
+    21300006: Conjunto plataformas 1_7
   externalObjects: {}
-  serializedVersion: 4
+  serializedVersion: 5
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -49,19 +47,22 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
+  singleChannelComponent: 0
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   platformSettings:
-  - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -70,8 +71,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Standalone
-    maxTextureSize: 2048
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -84,63 +86,93 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Conjunto plataformas 1_0
+      name: Conjunto plataformas 1_1
       rect:
         serializedVersion: 2
-        x: 44
-        y: 303
-        width: 260
-        height: 599
+        x: 303
+        y: 496
+        width: 599
+        height: 260
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
-    - serializedVersion: 2
-      name: Conjunto plataformas 1_2
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 21
-        width: 166
-        height: 1002
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
+      bones: []
+      spriteID: b9b6a4e8ac8713949984f79da555cdce
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Conjunto plataformas 1_3
       rect:
         serializedVersion: 2
-        x: 495
-        y: 175
-        width: 141
-        height: 796
+        x: 21
+        y: 311
+        width: 1002
+        height: 169
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 118fa28aa26dacf46ad4f64eea6af346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Conjunto plataformas 1_4
+      name: Conjunto plataformas 1_6
       rect:
         serializedVersion: 2
-        x: 655
-        y: 62
-        width: 138
-        height: 1002
+        x: 175
+        y: 164
+        width: 796
+        height: 141
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: f18892cd469933e41ab8314568d18133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conjunto plataformas 1_7
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 7
+        width: 1002
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3f33ebaaee35c94384350601516a10c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
+    bones: []
+    spriteID: 1c505f791f6fba5448758759be9f8e20
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

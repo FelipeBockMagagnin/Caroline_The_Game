@@ -1,0 +1,347 @@
+fileFormatVersion: 2
+guid: 43baf5fe8be114842aa9d28e4585335a
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: EmpurrandoSpriteSheet_0
+    21300002: EmpurrandoSpriteSheet_1
+    21300004: EmpurrandoSpriteSheet_2
+    21300006: EmpurrandoSpriteSheet_3
+    21300008: EmpurrandoSpriteSheet_5
+    21300010: EmpurrandoSpriteSheet_6
+    21300012: EmpurrandoSpriteSheet_7
+    21300014: EmpurrandoSpriteSheet_9
+    21300016: EmpurrandoSpriteSheet_10
+    21300018: EmpurrandoSpriteSheet_14
+    21300020: EmpurrandoSpriteSheet_15
+    21300022: EmpurrandoSpriteSheet_16
+  externalObjects: {}
+  serializedVersion: 5
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EmpurrandoSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 0
+        width: 750
+        height: 901
+      alignment: 9
+      pivot: {x: 0.20692204, y: 0.55355704}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 729ecc49cd4de0f47b32872922b52768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmpurrandoSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 0
+        width: 750
+        height: 901
+      alignment: 9
+      pivot: {x: 0.13168116, y: 0.553557}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86d603a13fe612640b6f98b2a95168c2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmpurrandoSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 2891
+        y: 0
+        width: 750
+        height: 901
+      alignment: 9
+      pivot: {x: 0.1316812, y: 0.5496039}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc17a8f7b381879469e22c1661189ea5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmpurrandoSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 3946
+        y: 0
+        width: 750
+        height: 901
+      alignment: 9
+      pivot: {x: 0.19454361, y: 0.5469029}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f897012be076974a846eb9f1d97e65a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmpurrandoSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 4940
+        y: 0
+        width: 750
+        height: 901
+      alignment: 9
+      pivot: {x: 0.35752475, y: 0.54690284}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b148ba478fbe22444bc1277e2e5292f0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmpurrandoSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 12713
+        y: 0
+        width: 531
+        height: 901
+      alignment: 9
+      pivot: {x: 0.38511506, y: 0.559624}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35aaab3cea461334e95079b82aca8814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmpurrandoSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 5690
+        y: 0
+        width: 750
+        height: 901
+      alignment: 9
+      pivot: {x: 0.84834963, y: 0.553557}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e092a078db4dfb4397bb439ce8d2d51
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmpurrandoSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 10162
+        y: 0
+        width: 750
+        height: 901
+      alignment: 9
+      pivot: {x: 0.65327084, y: 0.5547245}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 137bad4b4889c22459f332e1d5e450f7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmpurrandoSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 11522
+        y: 0
+        width: 750
+        height: 901
+      alignment: 9
+      pivot: {x: 0.34991798, y: 0.559624}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf06c7ea8cabce84dbca21f363c6aad3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmpurrandoSpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 6645
+        y: 0
+        width: 750
+        height: 901
+      alignment: 9
+      pivot: {x: 1, y: 0.5596242}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ab753d028874a04da604d59703765be
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmpurrandoSpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 7750
+        y: 0
+        width: 750
+        height: 901
+      alignment: 9
+      pivot: {x: 0.97, y: 0.5596241}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd2a57df5dfd4445a7c160c80624887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmpurrandoSpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 8833
+        y: 0
+        width: 750
+        height: 901
+      alignment: 9
+      pivot: {x: 0.95, y: 0.554138}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a820a5bc3de6deb42907cdfdb30cb37e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: e07666222e101ba4d958a0dca279d13c
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

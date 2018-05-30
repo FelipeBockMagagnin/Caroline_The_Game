@@ -2,9 +2,9 @@
 
 public class CameraFollow : MonoBehaviour {
 
-	public Transform OqueSeguir;
-	public float moveSpeed = 0.125f;
-	public Vector3 offset;
+	public Transform    OqueSeguir;     //guarda a posição do objeto a seguir
+	public float        moveSpeed;      //speed que segue
+	public Vector3      offset;         //posicionamento
 
 	void FixedUpdate(){
 		Vector3 posicaoNormal = OqueSeguir.position + offset;
