@@ -12,17 +12,19 @@ public class Vitoria : MonoBehaviour {
 	void Update () {
         childs = transform.childCount;
 
+
         //finalizar batalha
         if(childs == 0)
         {
+            childs--;
             float tempodeJogo2;
             tempodeJogo2 = tempodeJogo;
             Youwin.SetActive(true);
             tempo.text = tempodeJogo2.ToString();
+            
         }
         //caso não finalizado
-        else
-        {
+        if(childs >=0){
             tempodeJogo = tempodeJogo + Time.deltaTime;
         }
     }

@@ -10,6 +10,7 @@ public class Menina : MonoBehaviour {
     public bool         Empurrou = false;           //define o inicio do ato de empurrar
            bool         apertouEspaco = false;      //saber se errou
     public GameObject   uiEmpurrar;                 //demonstração do tempo
+    public bool         puxar = false;              //define inicio do puxar
 
 
     //MOVIMENTAÇÃO
@@ -75,30 +76,7 @@ public class Menina : MonoBehaviour {
             time = 0;
         }
 
-        //Paralização do personagem após impacto
-        if (time != 0){
-            PodeAndar = false;
-            anim.SetBool("Idle", false);
-            anim.SetBool("Andando", false);
-            anim.SetBool("Pulo", false);
-
-            //empurrar
-            if (Empurrou)
-            {
-                anim.SetBool("Empurrar", true);
-                anim.SetBool("Idle", false);
-                anim.SetBool("Pulo", false);
-                anim.SetBool("Andando", false);
-                Empurrou = false;
-                uiEmpurrar.SetActive(true);               
-            }
-        }
-        else
-        {
-            anim.SetBool("Empurrar", false);
-            PodeAndar = true;
-            apertouEspaco = false;
-        }       
+       
 
         //Controla animação quando parada
         if (emdialogo)
@@ -177,8 +155,47 @@ public class Menina : MonoBehaviour {
     //Pulo precisa ficar em update por precisar checar cada frame
     private void Update()
     {
+        //Paralização do personagem após impacto
+        if (time != 0)
+        {
+            PodeAndar = false;
+            anim.SetBool("Idle", false);
+            anim.SetBool("Andando", false);
+            anim.SetBool("Pulo", false);            
+        }
+        else
+        {
+            anim.SetBool("Puxando", false);
+            anim.SetBool("Empurrar", false);
+            PodeAndar = true;
+            apertouEspaco = false;
+        }
+
+        //empurrar
+            if (Empurrou)
+            {
+                uiEmpurrar.SetActive(true);
+                anim.SetBool("Empurrar", true);
+                anim.SetBool("Idle", false);
+                anim.SetBool("Pulo", false);
+                anim.SetBool("Andando", false);
+                Empurrou = false;
+                puxar = false;
+            }
+
+            if (puxar)
+            {
+                uiEmpurrar.SetActive(true);
+                anim.SetBool("Puxando", true);
+                anim.SetBool("Idle", false);
+                anim.SetBool("Pulo", false);
+                anim.SetBool("Andando", false);
+                puxar = false;
+                Empurrou = false;             
+            }
+
         //carregar força da pedra se tiver munição
-        if (Input.GetKey(KeyCode.LeftAlt) && PodeAndar && quantidadeMunicao>=1)
+        if (Input.GetKey(KeyCode.Z) && PodeAndar && quantidadeMunicao>=1)
         {
             uiAtirar.SetActive(true);
             if (forcaTiro <= 1)
@@ -188,7 +205,7 @@ public class Menina : MonoBehaviour {
         }
 
         //atirar pedra
-        if (Input.GetKeyUp(KeyCode.LeftAlt) && PodeAndar && quantidadeMunicao >=1)
+        if (Input.GetKeyUp(KeyCode.Z) && PodeAndar && quantidadeMunicao >=1)
         {
             aAtirarpedra.Play();
             Vector3 instanciador12 = instanciadorPedra.transform.position;
@@ -202,16 +219,16 @@ public class Menina : MonoBehaviour {
         //empurrar
         if (time >= 0.8f && time <= 1f)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && !apertouEspaco)
+            if (Input.GetKeyDown(KeyCode.X) && !apertouEspaco)
             {
                 aAcertarlevantar.Play();
                 time = 0.2f;
                 rb.velocity = new Vector2(0, 0);
             }
         }
-        else
+        else if (time <= 1.4f && time >= 1 || time >= 0.2 && time <= 0.8)
         {
-            if(Input.GetKeyDown(KeyCode.Space) && !PodeAndar)
+            if(Input.GetKeyDown(KeyCode.X))
             {
                 aErrarlevantar.Play();
                 apertouEspaco = true;

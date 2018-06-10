@@ -116,7 +116,7 @@ public class InimigosColidir : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         //Se colidir com menina paraliza e recua
-        if (collision.CompareTag("Menina") && Input.GetKey(KeyCode.Space) && (collision.GetComponent<Menina>().PodeAndar == true) && !Input.GetKey(KeyCode.LeftAlt))
+        if (collision.CompareTag("Menina") && Input.GetKey(KeyCode.X) && (collision.GetComponent<Menina>().PodeAndar == true) && !Input.GetKey(KeyCode.Z))
         {
 
             //SIM
@@ -125,7 +125,7 @@ public class InimigosColidir : MonoBehaviour
             {               
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(5,7), 1);                  //inimigo p/ dir s/ voar
                 collision.GetComponent<Menina>().time = 1.5f;
-                collision.GetComponent<Menina>().Empurrou = true;
+                collision.GetComponent<Menina>().puxar = true;
                 time = Random.Range(3, 5);
                 StartCoroutine(SIM());
             }
@@ -134,15 +134,11 @@ public class InimigosColidir : MonoBehaviour
             //menina direita de saci e esquerda do inimigo 
             if (collision.transform.position.x < transform.position.x && collision.transform.position.x > SaciT.transform.position.x)
             {               
-                GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(5, 7), 5);             //inimigo p/ dir
-                
+                GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(5, 7), 5);             //inimigo p/ dir                
                 collision.GetComponent<Menina>().time = 1.5f;
                 collision.GetComponent<Menina>().Empurrou = true;
                 time = Random.Range(3, 5);
                 StartCoroutine(SMI());
-
-
-
             }
             
             //IMS
@@ -153,11 +149,7 @@ public class InimigosColidir : MonoBehaviour
                 collision.GetComponent<Menina>().time = 1.5f;
                 collision.GetComponent<Menina>().Empurrou = true;
                 time = Random.Range(3, 5);
-
                 StartCoroutine(IMS());
-                
-
-
             }
 
             //MIS
@@ -166,12 +158,9 @@ public class InimigosColidir : MonoBehaviour
             {           
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-5, -7), 1);              //inimigo p/ esq s/ voar
                 collision.GetComponent<Menina>().time = 1.5f;
-                collision.GetComponent<Menina>().Empurrou = true;
+                collision.GetComponent<Menina>().puxar = true;
                 time = Random.Range(3, 5);
                 StartCoroutine(MIS());
-
-
-
             }
         }          
     }
@@ -181,6 +170,7 @@ public class InimigosColidir : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Saci"))
         {
+            Destroy(collision.gameObject);
             Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
         }
     }

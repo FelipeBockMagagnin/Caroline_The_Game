@@ -1,0 +1,410 @@
+fileFormatVersion: 2
+guid: 697e3b2e3b6d52b4987e678425a8167a
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Plantinhas_Animadas_0
+    21300002: Plantinhas_Animadas_2
+    21300004: Plantinhas_Animadas_5
+    21300006: Plantinhas_Animadas_6
+    21300008: Plantinhas_Animadas_1
+    21300010: Plantinhas_Animadas_3
+    21300012: Plantinhas_Animadas_4
+    21300014: Plantinhas_Animadas_7
+    21300016: Plantinhas_Animadas_8
+    21300018: Plantinhas_Animadas_9
+    21300020: Plantinhas_Animadas_10
+    21300022: Plantinhas_Animadas_11
+    21300024: Plantinhas_Animadas_12
+    21300026: Plantinhas_Animadas_13
+    21300028: Plantinhas_Animadas_14
+  externalObjects: {}
+  serializedVersion: 5
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Plantinhas_Animadas_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 9
+        width: 144
+        height: 241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd88b337667cbca4294ea45aeeec96ba
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plantinhas_Animadas_2
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 11
+        width: 155
+        height: 229
+      alignment: 9
+      pivot: {x: 0.45775738, y: 0.4885631}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb07b440e4706524695b8eba725a1d3b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plantinhas_Animadas_5
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 0
+        width: 87
+        height: 245
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 868e84bb27e530c4b8c9f6bc2f619a65
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plantinhas_Animadas_6
+      rect:
+        serializedVersion: 2
+        x: 1557
+        y: 9
+        width: 114
+        height: 238
+      alignment: 9
+      pivot: {x: 0.35856012, y: 0.4701667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e73aa0e4cfabba648abb07d1fba7628d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plantinhas_Animadas_1
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 4
+        width: 168
+        height: 222
+      alignment: 9
+      pivot: {x: 0.57912356, y: 0.54191417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44df18c1b8ec5dd4088242ad09e9e14a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plantinhas_Animadas_3
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 10
+        width: 138
+        height: 228
+      alignment: 9
+      pivot: {x: 0.46897027, y: 0.50000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c27f4de69ee1ce04ab9180174da69b6a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plantinhas_Animadas_4
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 10
+        width: 173
+        height: 212
+      alignment: 9
+      pivot: {x: 0.41847327, y: 0.5380163}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47eed678fcb7b874cacaf8cae3ded159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plantinhas_Animadas_7
+      rect:
+        serializedVersion: 2
+        x: 1804
+        y: 0
+        width: 178
+        height: 206
+      alignment: 9
+      pivot: {x: 0.25905994, y: 0.58922446}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed79fc2461452ca4bb5d462c2b67fc2c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plantinhas_Animadas_8
+      rect:
+        serializedVersion: 2
+        x: 2056
+        y: 0
+        width: 116
+        height: 213
+      alignment: 9
+      pivot: {x: 0.27624092, y: 0.56622386}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2fce76d95d596a43ae2cc611324b190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plantinhas_Animadas_9
+      rect:
+        serializedVersion: 2
+        x: 2307
+        y: 3
+        width: 103
+        height: 236
+      alignment: 9
+      pivot: {x: 0.32646105, y: 0.5129805}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 895e1350b1ba776489b8181d1ce14d5c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plantinhas_Animadas_10
+      rect:
+        serializedVersion: 2
+        x: 2547
+        y: 3
+        width: 80
+        height: 230
+      alignment: 9
+      pivot: {x: 0.3851227, y: 0.526638}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 126fe7a7531c44a4a85c4e048826a5da
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plantinhas_Animadas_11
+      rect:
+        serializedVersion: 2
+        x: 2812
+        y: 5
+        width: 53
+        height: 191
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4358c05c29cc9994ab0648345949b87c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plantinhas_Animadas_12
+      rect:
+        serializedVersion: 2
+        x: 3064
+        y: 8
+        width: 72
+        height: 174
+      alignment: 9
+      pivot: {x: 0.41490683, y: 0.48239443}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f18babc64b9e0e64a8088c64caf3f643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plantinhas_Animadas_13
+      rect:
+        serializedVersion: 2
+        x: 3312
+        y: 8
+        width: 55
+        height: 170
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3dd4c2c0e96dbc4b95b882e1c2d21bb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plantinhas_Animadas_14
+      rect:
+        serializedVersion: 2
+        x: 3561
+        y: 0
+        width: 55
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31bc05ad415836c49b5ee19912c8f418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 9abfc439dbb381740868c1acc744bec1
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
