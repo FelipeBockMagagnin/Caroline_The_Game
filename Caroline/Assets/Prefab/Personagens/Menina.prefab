@@ -26,6 +26,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1236100191215298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4498031385309330}
+  - component: {fileID: 61523485922198762}
+  m_Layer: 14
+  m_Name: Detectar Climb
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1389278126587484
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,7 +71,7 @@ GameObject:
   - component: {fileID: 50564748904304294}
   - component: {fileID: 70132137391097284}
   - component: {fileID: 61450951932343228}
-  - component: {fileID: 108316557660011560}
+  - component: {fileID: 114708145655378262}
   m_Layer: 10
   m_Name: Menina
   m_TagString: Menina
@@ -76,6 +92,19 @@ Transform:
   m_Father: {fileID: 4601572301191628}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4498031385309330
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1236100191215298}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4601572301191628}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4601572301191628
 Transform:
   m_ObjectHideFlags: 1
@@ -83,11 +112,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1995953377975674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.72, y: -4.7, z: 6}
+  m_LocalPosition: {x: -0.12, y: -5.23, z: 3}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4257980956648904}
   - {fileID: 4885764817908002}
+  - {fileID: 4498031385309330}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -141,13 +171,38 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.5, y: 7.9099994}
-    newSize: {x: 3.5, y: 7.9099994}
+    newSize: {x: 4, y: 8.23}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.53, y: 7.9099994}
+  m_Size: {x: 3.56, y: 6.32}
+  m_EdgeRadius: 0
+--- !u!61 &61523485922198762
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1236100191215298}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.93, y: 0.35}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.94, y: 0.33}
   m_EdgeRadius: 0
 --- !u!70 &70132137391097284
 CapsuleCollider2D:
@@ -182,42 +237,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!108 &108316557660011560
-Light:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1995953377975674}
-  m_Enabled: 0
-  serializedVersion: 8
-  m_Type: 0
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1.57
-  m_Range: 8.67
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  m_Lightmapping: 4
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
 --- !u!114 &114449283849391116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,7 +252,7 @@ MonoBehaviour:
   Empurrou: 0
   uiEmpurrar: {fileID: 0}
   puxar: 0
-  PodeAndar: 0
+  PodeAndar: 1
   emdialogo: 0
   nochao: 0
   check: {fileID: 4257980956648904}
@@ -242,11 +261,25 @@ MonoBehaviour:
     m_Bits: 256
   uiAtirar: {fileID: 0}
   forcaTiroAbsoluta: 0
-  Pedra: {fileID: 1641345334174744, guid: 70ce8065ef0d3d94c83ac1e853208871, type: 2}
+  Pedra: {fileID: 1881307116263970, guid: 27a364d51668c164ca82e3d0584adea2, type: 2}
   instanciadorPedra: {fileID: 4885764817908002}
-  aAtirarpedra: {fileID: 0}
-  aAcertarlevantar: {fileID: 0}
-  aErrarlevantar: {fileID: 0}
+  quantidadeMunicao: 0
+  pararParallar: 0
+  particula_pulo: {fileID: 0}
+  inputVertical: 0
+--- !u!114 &114708145655378262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1995953377975674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9a08ae35b8de84db7eeea36d872158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  alo: {fileID: 0}
 --- !u!212 &212372789398621796
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -287,7 +320,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.5, y: 7.9099994}
+  m_Size: {x: 4, y: 8.23}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

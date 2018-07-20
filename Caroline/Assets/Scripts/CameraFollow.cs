@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour {
 	public float        moveSpeed;      //speed que segue
 	public Vector3      offset;         //posicionamento
 
-	void FixedUpdate(){
+	void LateUpdate(){
 		Vector3 posicaoNormal = OqueSeguir.position + offset;
 		posicaoNormal.y = transform.position.y;
 		Vector3 SmoothPosition = Vector3.Lerp (transform.position, posicaoNormal, moveSpeed*Time.deltaTime);

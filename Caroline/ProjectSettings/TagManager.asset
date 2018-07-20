@@ -12,6 +12,12 @@ TagManager:
   - Fog
   - Menina
   - municao
+  - escalar
+  - parallax
+  - descer
+  - subir
+  - botaoBom
+  - botaoRuim
   layers:
   - Default
   - TransparentFX
@@ -27,10 +33,10 @@ TagManager:
   - inimigocolisor
   - saci
   - municao
-  - 
-  - 
-  - 
-  - 
+  - Climb
+  - Frente
+  - ObjCenario
+  - Parallax
   - 
   - 
   - 

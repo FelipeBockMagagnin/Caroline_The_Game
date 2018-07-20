@@ -6,22 +6,24 @@ public class Parallax : MonoBehaviour {
 
 	public float velParallax;
 	public Renderer quad;
-
     public GameObject Menina;
 
+    Vector2 offset;
+
+
+    void Start(){
+        offset = new Vector2 (velParallax * Time.deltaTime, 0);
+    }
+
 	void Update () {
-        //acessa a var que indica se a menina pode movimentar-se
-        bool podeandar = Menina.GetComponent<Menina>().PodeAndar;
-		Vector2 offset = new Vector2 (velParallax * Time.deltaTime, 0);
-
-
 
         //Somente se a menina puder andar acontece o parallax
-        if (podeandar == true)
+        if (Menina.GetComponent<Menina>().PodeAndar == true && Menina.GetComponent<Menina>().pararParallar == false)
         {
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 quad.material.mainTextureOffset += offset;
+                
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {
