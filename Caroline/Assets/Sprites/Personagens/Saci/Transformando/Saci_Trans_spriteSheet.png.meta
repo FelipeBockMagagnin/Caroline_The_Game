@@ -1,0 +1,401 @@
+fileFormatVersion: 2
+guid: b67cd13453065164a9d38f5edf13d670
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Saci_Trans_spriteSheet_6
+    21300002: Saci_Trans_spriteSheet_7
+    21300004: Saci_Trans_spriteSheet_10
+    21300006: Saci_Trans_spriteSheet_11
+    21300008: Saci_Trans_spriteSheet_1
+    21300010: Saci_Trans_spriteSheet_5
+    21300012: Saci_Trans_spriteSheet_8
+    21300014: Saci_Trans_spriteSheet_9
+    21300016: Saci_Trans_spriteSheet_12
+    21300018: Saci_Trans_spriteSheet_13
+    21300020: Saci_Trans_spriteSheet_14
+    21300022: Saci_Trans_spriteSheet_7
+    21300024: Saci_Trans_spriteSheet_3
+    21300026: Saci_Trans_spriteSheet_4
+    21300028: Saci_Trans_spriteSheet_2
+  externalObjects: {}
+  serializedVersion: 5
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: iPhone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Saci_Trans_spriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 2419
+        y: 37
+        width: 292
+        height: 917
+      alignment: 9
+      pivot: {x: 0.69183683, y: 0.4089801}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47a7fc710b9626d4fbe74bf49368d7e5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saci_Trans_spriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 2917
+        y: 42
+        width: 344
+        height: 908
+      alignment: 9
+      pivot: {x: 0.4959369, y: 0.41624764}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31e259e645fe4a34a860d4aaeaef63c8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saci_Trans_spriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 4401
+        y: 59
+        width: 296
+        height: 814
+      alignment: 9
+      pivot: {x: 0.3755691, y: 0.45970383}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe99ddbd24254464f847f2678510d818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saci_Trans_spriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 4847
+        y: 47
+        width: 215
+        height: 768
+      alignment: 9
+      pivot: {x: 0.605982, y: 0.4984453}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c105502785d6934d9f89385eea9f9ec
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saci_Trans_spriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 43
+        width: 196
+        height: 718
+      alignment: 9
+      pivot: {x: 0.41898438, y: 0.515139}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04a29db536915584388ab57535c47457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saci_Trans_spriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 1878
+        y: 47
+        width: 343
+        height: 712
+      alignment: 9
+      pivot: {x: 0.785994, y: 0.51060724}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e03a4b9d8dc08da4081a8533e7341108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saci_Trans_spriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 3396
+        y: 43
+        width: 266
+        height: 766
+      alignment: 9
+      pivot: {x: 0.64455694, y: 0.5025675}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a9ecf246848b5740a9ef2c3e239face
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saci_Trans_spriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 3899
+        y: 50
+        width: 225
+        height: 753
+      alignment: 9
+      pivot: {x: 0.6312088, y: 0.50243044}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3d0386b1fa5aad488adbc116615d402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saci_Trans_spriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 5309
+        y: 18
+        width: 244
+        height: 779
+      alignment: 9
+      pivot: {x: 0.6186283, y: 0.48120952}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fadbbb6a88f627c419f1d13b72fa04fb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saci_Trans_spriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 5735
+        y: 11
+        width: 294
+        height: 789
+      alignment: 9
+      pivot: {x: 0.64975953, y: 0.48144752}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 586e242d979c1b94c9ff76481632c9cf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saci_Trans_spriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 6246
+        y: 14
+        width: 255
+        height: 779
+      alignment: 9
+      pivot: {x: 0.6412684, y: 0.48136374}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3faa97e426e0dbc4db9f38535fa6d582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saci_Trans_spriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 40
+        width: 270
+        height: 676
+      alignment: 9
+      pivot: {x: 0.6350762, y: 0.5545717}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9731de21b27cc2c47990a12a03aebac5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saci_Trans_spriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 47
+        width: 221
+        height: 676
+      alignment: 9
+      pivot: {x: 0.7085243, y: 0.5425762}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a860e623e7c5524e8289497b6778e81
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saci_Trans_spriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 40
+        width: 279
+        height: 692
+      alignment: 9
+      pivot: {x: 0.73905176, y: 0.5344735}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96e28240ab471544a85e85f13e4031d4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 00ba8bc34124d4240b18d7386d5c4856
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

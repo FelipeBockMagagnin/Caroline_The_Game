@@ -83,26 +83,26 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1789662502256864}
-  m_LocalRotation: {x: -0.2691603, y: 0.6538752, z: -0.6538753, w: 0.26916003}
-  m_LocalPosition: {x: -42.658894, y: 52.64, z: 6.9}
+  m_LocalRotation: {x: -0.05793951, y: 0.704729, z: -0.7047291, w: 0.057939243}
+  m_LocalPosition: {x: 133.3, y: 54.2, z: 6.9}
   m_LocalScale: {x: 0.9363194, y: 1, z: 0.9401731}
   m_Children: []
   m_Father: {fileID: 4339810790863652}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -225.252, y: -90, z: 89.99999}
+  m_LocalEulerAnglesHint: {x: -260.6, y: -90, z: 89.99999}
 --- !u!4 &4206245833528836
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1181399245255892}
-  m_LocalRotation: {x: -0.26549336, y: 0.6553726, z: -0.6553728, w: 0.26549307}
-  m_LocalPosition: {x: -42.658894, y: 52.64, z: 6.9}
+  m_LocalRotation: {x: -0.05793951, y: 0.704729, z: -0.7047291, w: 0.057939243}
+  m_LocalPosition: {x: 133.3, y: 54.2, z: 6.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4339810790863652}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -260.6, y: -90, z: 89.99999}
 --- !u!4 &4339810790863652
 Transform:
   m_ObjectHideFlags: 1
@@ -110,7 +110,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1941740246219702}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.77, y: -6.44, z: 1}
+  m_LocalPosition: {x: 7.7064896, y: -3.6915646, z: -0.84375}
   m_LocalScale: {x: 1.140911, y: 1, z: 1}
   m_Children:
   - {fileID: 4206245833528836}
@@ -125,13 +125,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1220131515869066}
-  m_LocalRotation: {x: -0.26549336, y: 0.6553726, z: -0.6553728, w: 0.26549307}
-  m_LocalPosition: {x: -42.658894, y: 52.64, z: 6.9}
+  m_LocalRotation: {x: -0.05793951, y: 0.704729, z: -0.7047291, w: 0.057939243}
+  m_LocalPosition: {x: 133.3, y: 54.2, z: 6.9}
   m_LocalScale: {x: 0.9363194, y: 1, z: 0.9401731}
   m_Children: []
   m_Father: {fileID: 4339810790863652}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -225.894, y: -90, z: 89.99999}
+  m_LocalEulerAnglesHint: {x: -260.6, y: -90, z: 89.99999}
 --- !u!198 &198352533259604140
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -763,7 +763,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 54.32186, y: 0, z: 1}
+    m_Scale: {x: 503.1302, y: 0, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -903,8 +903,8 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.3
+      scalar: 5
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5294,7 +5294,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 54.32186, y: 1.2859597, z: 1}
+    m_Scale: {x: 477.51154, y: 1.2859597, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -5434,8 +5434,8 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.3
+      scalar: 5
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9825,7 +9825,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 54.32186, y: 1.2859597, z: 1}
+    m_Scale: {x: 508.2879, y: 1.2859597, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -9965,8 +9965,8 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.3
+      scalar: 5
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:

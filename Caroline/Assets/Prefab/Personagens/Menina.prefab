@@ -86,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1389278126587484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.29, y: -3.92, z: 0}
+  m_LocalPosition: {x: 0.29, y: -3.819, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4601572301191628}
@@ -112,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1995953377975674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.12, y: -5.23, z: 3}
+  m_LocalPosition: {x: -2, y: -5.3, z: 3}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4257980956648904}
@@ -261,12 +261,15 @@ MonoBehaviour:
     m_Bits: 256
   uiAtirar: {fileID: 0}
   forcaTiroAbsoluta: 0
-  Pedra: {fileID: 1881307116263970, guid: 27a364d51668c164ca82e3d0584adea2, type: 2}
+  Pedra: {fileID: 1463763535446640, guid: 7d973d5636e7b324dbad00d987aa1c18, type: 2}
   instanciadorPedra: {fileID: 4885764817908002}
   quantidadeMunicao: 0
   pararParallar: 0
-  particula_pulo: {fileID: 0}
+  particula_pulo: {fileID: 1601591174388356, guid: b0b8b8683f2207a47a6022c190c27730,
+    type: 2}
+  Spawn_Particula_Pulo: 0
   inputVertical: 0
+  Cam: {fileID: 0}
 --- !u!114 &114708145655378262
 MonoBehaviour:
   m_ObjectHideFlags: 1

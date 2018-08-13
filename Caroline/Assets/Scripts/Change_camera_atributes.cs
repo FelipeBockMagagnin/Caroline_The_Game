@@ -15,12 +15,17 @@ public Text alo;
 			cam.SetBool("descer",true);
 		}
 		
-
-	
+		if(collider.CompareTag("dialogo")){
+			cam.SetBool("dialogo",true);
+		}	
 	}
+	
 	void OnTriggerExit2D(Collider2D collider){
 		if(collider.CompareTag("descer")){
 			cam.SetBool("descer",false);
+		}
+		if(collider.CompareTag("dialogo")){
+			cam.SetBool("dialogo",false);
 		}
 	}
 }

@@ -68,11 +68,13 @@ public class Enemy_Follow_Atack : MonoBehaviour {
     }
     
     IEnumerator Forca_Empurrar_Puxar (float forca, float WaitTime){
+        anim.SetBool("ataque1", false);
         yield return new WaitForSeconds(WaitTime);
         menina.GetComponent<Rigidbody2D>().velocity = new Vector2(forca, 0);
     }    
 
 	IEnumerator Tempo_Parado(float time){
+        anim.SetBool("ataque1", false);
 		speed = 0;
         GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
         yield return new WaitForSeconds(time);

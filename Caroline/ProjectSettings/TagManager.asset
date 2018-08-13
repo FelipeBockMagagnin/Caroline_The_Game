@@ -16,8 +16,7 @@ TagManager:
   - parallax
   - descer
   - subir
-  - botaoBom
-  - botaoRuim
+  - dialogo
   layers:
   - Default
   - TransparentFX
