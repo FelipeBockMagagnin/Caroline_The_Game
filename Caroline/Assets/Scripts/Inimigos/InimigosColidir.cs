@@ -100,20 +100,6 @@ public class InimigosColidir : MonoBehaviour
     void FixedUpdate()
     {         
         Seguir(seguido);
-
-        //Movimentação do inimigo e escala ao virar
-      //  if (SaciT.transform.position.x > transform.position.x)
-        //{
-          //  transform.Translate(speed * Time.deltaTime, 0, 0);
-           // scale.x = escala;
-           // transform.localScale = scale;
-        //}
-        //else
-        //{
-          //  transform.Translate(-speed * Time.deltaTime, 0, 0);
-         //   scale.x = -escala;
-          //  transform.localScale = scale;
-       // }
     }    
 
 
@@ -153,12 +139,13 @@ public class InimigosColidir : MonoBehaviour
             {               
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(5,7), 1);                  //inimigo p/ dir s/ voar
                 collision.GetComponent<Menina>().time = 1.5f;
-                collision.GetComponent<Menina>().puxar = true;
+                collision.GetComponent<Menina>().puxarInimigo();
+                //collision.GetComponent<Menina>().puxar = true;
                 StartCoroutine(SIM());
-                    if(Acaboudeempurrar == true){
+                if(Acaboudeempurrar == true){
                     StartCoroutine(tempo());
                     Acaboudeempurrar = false;
-                    }
+                }
               
             }
 
@@ -168,7 +155,8 @@ public class InimigosColidir : MonoBehaviour
             {               
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(5, 7), 5);             //inimigo p/ dir          
                 collision.GetComponent<Menina>().time = 1.5f;
-                collision.GetComponent<Menina>().Empurrou = true;
+                //collision.GetComponent<Menina>().Empurrou = true;
+                collision.GetComponent<Menina>().EmpurrarInimigo();
                 StartCoroutine(SMI());
                     if(Acaboudeempurrar == true){
                         StartCoroutine(tempo());
@@ -184,12 +172,13 @@ public class InimigosColidir : MonoBehaviour
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-5, -7), 5);             //inimigo p/ esq
                 
                 collision.GetComponent<Menina>().time = 1.5f;
-                collision.GetComponent<Menina>().Empurrou = true;
+                //collision.GetComponent<Menina>().Empurrou = true;
+                collision.GetComponent<Menina>().EmpurrarInimigo();
                 StartCoroutine(IMS());
-                    if(Acaboudeempurrar == true){
+                if(Acaboudeempurrar == true){
                     StartCoroutine(tempo());
                     Acaboudeempurrar = false;
-                    }
+                }
                
             }
 
@@ -199,12 +188,13 @@ public class InimigosColidir : MonoBehaviour
             {           
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-5, -7), 1);              //inimigo p/ esq s/ voar    
                 collision.GetComponent<Menina>().time = 1.5f;
-                collision.GetComponent<Menina>().puxar = true;
+               //collision.GetComponent<Menina>().puxar = true;
+                collision.GetComponent<Menina>().puxarInimigo();
                 StartCoroutine(MIS());
-                    if(Acaboudeempurrar == true){
+                if(Acaboudeempurrar == true){
                     StartCoroutine(tempo());
                     Acaboudeempurrar = false;
-                    }
+                }
             }
         } 
     }
@@ -220,10 +210,9 @@ public class InimigosColidir : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Saci")){          
-        anim.SetBool("ataque1", true);
-        speed = 0;
-        matar = true;
-       
+            anim.SetBool("ataque1", true);
+            speed = 0;
+            matar = true;       
         }
     }
 

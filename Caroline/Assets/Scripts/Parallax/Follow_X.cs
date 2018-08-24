@@ -15,13 +15,8 @@ public class Follow_X : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-
 		Vector3 posicao = transform.position;
-		posicao.x = Menina.position.x;
-		transform.position = posicao;
-
-
-
-	
+		posicao.x = Menina.position.x + 4;
+		transform.position = posicao;	
 	}
 }

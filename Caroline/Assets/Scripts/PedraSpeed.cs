@@ -11,6 +11,6 @@ public class PedraSpeed : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(15*Time.deltaTime,0,0);
+		transform.Translate(30*Time.deltaTime,0,0);
 	}
 }

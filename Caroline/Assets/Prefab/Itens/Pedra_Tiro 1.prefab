@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 95481827006399080}
   - component: {fileID: 61943925036856118}
   - component: {fileID: 114137634371994042}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Pedra_Tiro 1
   m_TagString: pedra
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.62, y: 2.1}
+  m_Size: {x: 0.62, y: 10.9}
   m_EdgeRadius: 0
 --- !u!95 &95481827006399080
 Animator:

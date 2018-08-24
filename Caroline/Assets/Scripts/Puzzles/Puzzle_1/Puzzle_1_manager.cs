@@ -10,7 +10,6 @@ public class Puzzle_1_manager : MonoBehaviour {
 	public GameObject Armadilha;
 	[SerializeField] private Animator cam;
 
-
 	public void Perdeu () {
 		Armadilha.SetActive(true);
 		cam.SetTrigger("shake");
@@ -22,12 +21,11 @@ public class Puzzle_1_manager : MonoBehaviour {
 	}    
 
 
-	 IEnumerator Explodir_Porta (float WaitTime){
+	IEnumerator Explodir_Porta (float WaitTime){
 		yield return new WaitForSeconds(WaitTime);
 		porta_quebrar.SetBool("explodir",true);
 		particula_puzzle_win.Play();
-		cam.SetTrigger("shake");
-		
+		cam.SetTrigger("shake");		
 	}
 	
 }

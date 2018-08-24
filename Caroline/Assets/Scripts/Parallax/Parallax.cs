@@ -6,29 +6,20 @@ public class Parallax : MonoBehaviour {
 
 	public float velParallax;
 	public Renderer quad;
-    public GameObject Menina;
+    [SerializeField] Menina Menina;
 
     Vector2 offset;
 
-
-    void Start(){
-        offset = new Vector2 (velParallax * Time.deltaTime, 0);
-    }
-
-	void Update () {
-
-        //Somente se a menina puder andar acontece o parallax
-        if (Menina.GetComponent<Menina>().PodeAndar == true && Menina.GetComponent<Menina>().pararParallar == false)
-        {
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                quad.material.mainTextureOffset += offset;
-                
-            }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                quad.material.mainTextureOffset += -offset;
-            }
-        }
+	void FixedUpdate () {
+        Move_Parallax();    
+        offset = new Vector2 (velParallax * Time.deltaTime * Menina.inputVertical, 0);    
 	}
+
+    void Move_Parallax(){
+        //Somente se a menina puder andar acontece o parallax
+        if (Menina.PodeAndar == true && Menina.pararParallar == false)
+        {
+                quad.material.mainTextureOffset += offset;
+        }
+    }
 }

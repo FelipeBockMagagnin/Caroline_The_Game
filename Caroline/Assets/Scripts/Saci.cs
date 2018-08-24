@@ -13,7 +13,7 @@ public class Saci : MonoBehaviour {
     public AudioSource      aMatar;                 //audio placeholder
     public float tempoEntreAtaques;                 //armazena o tempo em que o saci ficaram sem atacar 
 
-        bool                atacar = true;
+           bool                atacar = true;
 
 
     private void Start()
