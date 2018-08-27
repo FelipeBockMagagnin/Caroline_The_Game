@@ -54,3 +54,30 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Parallax
+    uniqueID: 2600437843
+    locked: 0
+  - name: ObjCenario
+    uniqueID: 1531443459
+    locked: 0
+  - name: Luzes
+    uniqueID: 3439701093
+    locked: 0
+  - name: AjusteChao
+    uniqueID: 1281855833
+    locked: 0
+  - name: Chao
+    uniqueID: 404087735
+    locked: 0
+  - name: inimigo
+    uniqueID: 3149891543
+    locked: 0
+  - name: saci
+    uniqueID: 452849171
+    locked: 0
+  - name: Menina
+    uniqueID: 4212321303
+    locked: 0
+  - name: Frente
+    uniqueID: 2032660843
+    locked: 0

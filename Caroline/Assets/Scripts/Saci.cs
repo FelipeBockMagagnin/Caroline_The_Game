@@ -13,11 +13,10 @@ public class Saci : MonoBehaviour {
     public AudioSource      aMatar;                 //audio placeholder
     public float tempoEntreAtaques;                 //armazena o tempo em que o saci ficaram sem atacar 
 
-           bool                atacar = true;
+           bool             atacar = true;
 
 
-    private void Start()
-    {
+    private void Start(){
         anim = GetComponent<Animator>();
         scale = transform.localScale;
         escala = scale.x;
@@ -38,8 +37,7 @@ public class Saci : MonoBehaviour {
     }
     
     //detectar colisão com inimigo e o matar se puder atacar
-    private void OnTriggerStay2D(Collider2D collision)
-    {
+    private void OnTriggerStay2D(Collider2D collision){
         //definir atributos de combate
         if (collision.CompareTag("inimigo") && PodeAtacar)
         {
