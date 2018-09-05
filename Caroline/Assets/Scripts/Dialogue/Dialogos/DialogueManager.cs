@@ -26,7 +26,7 @@ public class DialogueManager : MonoBehaviour {
 
     public void StartDialogue(Dialogue dialogue)
     {
-        menina.GetComponent<Menina>().emdialogo = true;
+       // menina.GetComponent<Menina>().emdialogo = true;
         emDialogo = true; 
         animator.SetBool("IsOpen", true); //Anim de dialogo
         nameText.text = dialogue.name; //Display o nome no lugar dele
@@ -75,6 +75,6 @@ public class DialogueManager : MonoBehaviour {
         emDialogo = false;
         animator.SetBool("IsOpen", false);
         conjutosDeFrases++;
-        menina.GetComponent<Menina>().emdialogo = false;   
+       //8 menina.GetComponent<Menina>().emdialogo = false;   
     }
 }

@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4246657555953022}
   - component: {fileID: 212110552675527196}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Conj_1_plat_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ Transform:
   m_GameObject: {fileID: 1232128746974728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 404087735
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300004, guid: a1111663f21ca5a438b8c0611ab07c47, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

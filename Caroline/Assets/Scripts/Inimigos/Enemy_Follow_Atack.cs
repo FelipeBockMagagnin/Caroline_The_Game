@@ -50,17 +50,19 @@ public class Enemy_Follow_Atack : MonoBehaviour {
 	}
 
 	void Seguir(Transform Seguido){
-        if (Seguido.transform.position.x > transform.position.x)
-        {
-            transform.Translate(speed * Time.deltaTime, 0, 0);
-            escala.x = escalaX;
-            transform.localScale = escala;
-        }
-        else
-        {
-            transform.Translate(-speed * Time.deltaTime, 0, 0);
-            escala.x = -escalaX;
-            transform.localScale = escala;
+        if(!empurrado){
+            if (Seguido.transform.position.x > transform.position.x)
+            {
+                transform.Translate(speed * Time.deltaTime, 0, 0);
+                escala.x = escalaX;
+                transform.localScale = escala;
+            }
+            else
+            {
+                transform.Translate(-speed * Time.deltaTime, 0, 0);
+                escala.x = -escalaX;
+                transform.localScale = escala;
+            }
         }
     }	
 
@@ -149,7 +151,6 @@ public class Enemy_Follow_Atack : MonoBehaviour {
 
             if (collision.transform.position.x >= transform.position.x){                
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-3f, -4), 1);             //inimigo p/ esq
-                collision.GetComponent<Menina>().time = 1.5f;
                 collision.GetComponent<Menina>().EmpurrarInimigo();
                 empurrado = true;                
                 StartCoroutine(Forca_Empurrar_Puxar(3.5f,0.6f));
@@ -159,7 +160,6 @@ public class Enemy_Follow_Atack : MonoBehaviour {
 
             if (collision.transform.position.x < transform.position.x){
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(3f, 4), 1);              //inimigo p/ dir          
-                collision.GetComponent<Menina>().time = 1.5f;
                 collision.GetComponent<Menina>().EmpurrarInimigo();
                 empurrado = true;                
                 StartCoroutine(Forca_Empurrar_Puxar(-3.5f,0.6f));
@@ -174,7 +174,6 @@ public class Enemy_Follow_Atack : MonoBehaviour {
             //menina direita do saci e direita do inimigo
             if (collision.transform.position.x >= transform.position.x && collision.transform.position.x >= OqueSeguir.transform.position.x){               
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(5,7), 1);                  //inimigo p/ dir s/ voar
-                collision.GetComponent<Menina>().time = 1.5f;
                 collision.GetComponent<Menina>().puxarInimigo();
                 empurrado = true;               
                 StartCoroutine(Forca_Empurrar_Puxar(4.5f,.6f));
@@ -186,7 +185,6 @@ public class Enemy_Follow_Atack : MonoBehaviour {
             //menina direita de saci e esquerda do inimigo 
             if (collision.transform.position.x < transform.position.x && collision.transform.position.x > OqueSeguir.transform.position.x){               
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(5, 7), 5);             //inimigo p/ dir          
-                collision.GetComponent<Menina>().time = 1.5f;
                 collision.GetComponent<Menina>().EmpurrarInimigo();
                 empurrado = true;
                 StartCoroutine(Forca_Empurrar_Puxar(-7f,.6f));
@@ -198,7 +196,6 @@ public class Enemy_Follow_Atack : MonoBehaviour {
             //menina esquerda do saci e direita inimigo 
             if (collision.transform.position.x > transform.position.x && collision.transform.position.x < OqueSeguir.transform.position.x){         
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-5, -7), 5);             //inimigo p/ esq                
-                collision.GetComponent<Menina>().time = 1.5f;
                 collision.GetComponent<Menina>().EmpurrarInimigo();
                 empurrado = true;
                 StartCoroutine(Forca_Empurrar_Puxar(7f,.6f));
@@ -210,7 +207,6 @@ public class Enemy_Follow_Atack : MonoBehaviour {
             //menina esquerda do saci e esquerda do inimigo           
             if (collision.transform.position.x < transform.position.x && collision.transform.position.x < OqueSeguir.transform.position.x){           
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-5, -7), 1);              //inimigo p/ esq s/ voar    
-                collision.GetComponent<Menina>().time = 1.5f;
                 collision.GetComponent<Menina>().puxarInimigo();
                 empurrado = true;
                 StartCoroutine(Forca_Empurrar_Puxar(-4.5f,.6f));                
