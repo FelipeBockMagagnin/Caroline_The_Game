@@ -17,6 +17,7 @@ TagManager:
   - descer
   - subir
   - dialogo
+  - turnback
   layers:
   - Default
   - TransparentFX

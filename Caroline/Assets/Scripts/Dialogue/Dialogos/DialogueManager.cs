@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+//using TMPro;
 
 public class DialogueManager : MonoBehaviour {
 
 
     //Onde ser aescrito o dialogo
-    public TMP_Text nameText;
-    public TMP_Text dialogueText;
+    //public TMP_Text nameText;
+   // public TMP_Text dialogueText;
 
     //Anim de dialogo
     public Animator animator;
@@ -29,7 +29,7 @@ public class DialogueManager : MonoBehaviour {
        // menina.GetComponent<Menina>().emdialogo = true;
         emDialogo = true; 
         animator.SetBool("IsOpen", true); //Anim de dialogo
-        nameText.text = dialogue.name; //Display o nome no lugar dele
+        //nameText.text = dialogue.name; //Display o nome no lugar dele
         sentences.Clear(); 
 
         foreach (string sentence in dialogue.sentences)
@@ -62,10 +62,10 @@ public class DialogueManager : MonoBehaviour {
 
     IEnumerator TypeSentence (string sentence)
     {
-        dialogueText.text = "";
+        //dialogueText.text = "";
         foreach(char letter in sentence.ToCharArray())
         {
-            dialogueText.text += letter;
+        //    dialogueText.text += letter;
             yield return null;
         }
     }
