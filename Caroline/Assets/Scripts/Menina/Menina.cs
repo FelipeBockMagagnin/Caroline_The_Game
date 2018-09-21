@@ -8,9 +8,8 @@ public class Menina : MonoBehaviour {
     
     [Header("LUTA")]
            bool         apertouEspaco = false;      //saber se errou
-    public bool         Set_Levantar_true = true;   //muda a var podelevantar por meio de animação no jogo
+           bool         Set_Levantar_true = true;   //muda a var podelevantar por meio de animação no jogo
            float        time;                       //tempo a ficar parado  
-    public GameObject   uiEmpurrar;                 //demonstração do tempo  
     
     [Header("MOVIMENTAÇÃO")]
     public bool         PodeAndar = true;           //movimentação precisa dessa var           
@@ -37,7 +36,6 @@ public class Menina : MonoBehaviour {
            bool         Spawn_Particula_Pulo=false; //define se ira spawnar particula durante o pulo
        
     [Header("TIRO")]    
-    public GameObject   uiAtirar;                   //representação da força do tiro
     public GameObject   Pedra;                      //tiro prefab
     public Transform    instanciadorPedra;          //onde o tiro sera iniciado
            int          quantidadeMunicao;          //quantidade de monição
@@ -47,25 +45,27 @@ public class Menina : MonoBehaviour {
     [Header("ANIMAÇÕES")]
     public Animator     Cam;                        //animação de camera
            Animator     anim;                       //animações   
-    
 
+    [Header("UI")]
+    MeninaUI meninaUi;
+
+    
     void Awake(){
 		rb = GetComponent<Rigidbody2D> ();
 		anim = GetComponent<Animator> ();
         VelocidadePulo = 9f;
-        VelCorrendo = 7.5f; 
+        VelCorrendo = 7.5f;
+        meninaUi = GetComponent<MeninaUI>(); 
     }
    
     void FixedUpdate (){
-
         if(PodeAndar && !emdialogo){
             Move();
             Controle_Flip(); 
         }
-
-        Spawn_Particula_Chao();        
+        Spawn_Particula_Chao();    
         Controle_Gravidade_Pulo();
-        Calc_time();        
+        Calc_time();         
 
         //Controla animação quando parada
         if (emdialogo)
@@ -82,7 +82,6 @@ public class Menina : MonoBehaviour {
             Pulo();
             AnimAndar();
         }   
-
         Check_Input_Levantar();
         Input_AtirarPedra();
 
@@ -117,7 +116,7 @@ public class Menina : MonoBehaviour {
     void Check_Input_Levantar(){
         if (time >= 0.8f && time <= 1f){           
             if (Input.GetKeyDown(KeyCode.X) && !apertouEspaco){
-                uiEmpurrar.SetActive(false);
+                meninaUi.DesativarUI();                
                 rb.velocity = new Vector2(0, 0);
                 time = 0;
                 anim.SetBool("Levantar", true); 
@@ -126,19 +125,17 @@ public class Menina : MonoBehaviour {
         } else if (time <= 1.4f && time >= 1f || time >= 0.2f && time <= 0.8f){            
             if(Input.GetKeyDown(KeyCode.X)){
                 apertouEspaco = true;
-                uiEmpurrar.SetActive(false);
+                meninaUi.DesativarUI();
             }
         }
     }  
 
     void Calc_time(){
         //garantir que não haja bugs na paralização do personagem
-        if (time <= 5 && time > Time.deltaTime){          
-            
-            time -= Time.deltaTime;            
-            
+        if (time <= 5 && time > Time.deltaTime){              
+            time -= Time.deltaTime;               
             if(time <= Time.deltaTime && Set_Levantar_true){
-                uiEmpurrar.SetActive(false);
+                meninaUi.DesativarUI();
                 anim.SetBool("Levantar", true); 
                 Set_Levantar_true = false;                        
             }
@@ -147,11 +144,9 @@ public class Menina : MonoBehaviour {
 
     void Input_AtirarPedra(){
         //carregar força da pedra se tiver munição
-        if (Input.GetKey(KeyCode.Z) && PodeAndar && quantidadeMunicao>=1)
-        {
-            uiAtirar.SetActive(true);
-            if (forcaTiro <= 1)
-            {
+        if (Input.GetKey(KeyCode.Z) && PodeAndar && quantidadeMunicao>=1){
+            meninaUi.AtivarAtirarPedra();            
+            if (forcaTiro <= 1){
                 forcaTiro = forcaTiro + Time.deltaTime;
             }
         }
@@ -165,17 +160,16 @@ public class Menina : MonoBehaviour {
     void atirarPedra(){
         Vector3 instanciador12 = instanciadorPedra.transform.position;
         Instantiate(Pedra, instanciador12,instanciadorPedra.rotation);
-        uiAtirar.SetActive(false);
+        meninaUi.DesativarUI();
         forcaTiroAbsoluta = forcaTiro;
         forcaTiro = 0;
         quantidadeMunicao--;
     }
 
-    public void EmpurrarInimigo(){
-        
+    public void EmpurrarInimigo(){        
         time = 1.5f;
         Set_Levantar_true = true;
-        uiEmpurrar.SetActive(true);
+        meninaUi.AtivarEmpurrar();        
         anim.SetBool("Empurrar", true);
         anim.SetBool("Idle", false);
         anim.SetBool("Pulo", false);
@@ -183,10 +177,9 @@ public class Menina : MonoBehaviour {
         PodeAndar = false;
     }
 
-    public void puxarInimigo(){
-        
+    public void puxarInimigo(){        
         time = 1.5f;
-        uiEmpurrar.SetActive(true);
+        meninaUi.AtivarEmpurrar();        
         anim.SetBool("Puxando", true);
         anim.SetBool("Idle", false);
         anim.SetBool("Pulo", false);
@@ -303,7 +296,7 @@ public class Menina : MonoBehaviour {
         anim.SetBool("Idle", true);
         anim.SetBool("escalar", false);
         PodeAndar = true;
-        Gravidade = true;   
+        Gravidade = true;    
         rb.isKinematic = false; 
     }
 

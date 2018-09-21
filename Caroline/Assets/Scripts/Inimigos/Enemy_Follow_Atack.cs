@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Enemy_Follow_Atack : MonoBehaviour {
-
-	
+public class Enemy_Follow_Atack : MonoBehaviour {	
 
     //movimentação
     public  Transform OqueSeguir;   //dar follow
 	        float speed;            //contem a velocidade do inimigo
-            float escalaX;          //contem escala x do inimigo
+            float escalaX = 0.7f;          //contem escala x do inimigo
 	        Vector3 escala;         //contem a escala do inimigo
-            float time = 0;         //tempo em que o inimigo fica parado
+    public  float time = 0;         //tempo em que o inimigo fica parado
     public  float maxSpeed = 0;     //
     public  float minSpeed = 0;     //
 	       
@@ -24,37 +22,44 @@ public class Enemy_Follow_Atack : MonoBehaviour {
     //var importantes       
     public GameObject menina;       //contem a definição de menina
            bool empurrado = false;  //se ele for empurrado não pode atacar
-           bool contador;           //define de o tempo continuara descendo
+           bool contador = false;           //define de o tempo continuara descendo
     public bool apenasMenina;       //true = seguir somente menina, false = seguir e atacar saci
 
     //estetica
             Animator anim;          //contem as animações do inimigo
 
-
-	void Start(){
-	    escala = transform.localScale;
-	    escalaX = escala.x;
+    private void OnEnable() {
+         escala = transform.localScale;
+        escalaX = escala.x;
         anim = GetComponent<Animator>();
         Seguir(OqueSeguir);
-	}
+    }
 
     void FixedUpdate(){
 		transform.Translate(speed * Time.deltaTime, 0, 0);
         Contador_tempo();
-	}
+	}    
+
+    void corEnemy(float corInicial){
+        float cor;
+        cor = 1 - corInicial/3.33f;
+        GetComponent<SpriteRenderer>().color = new Color(1, cor, cor);    
+    }
 
     //*************************************************
     //movimentação
     void Seguir(Transform Seguido){
         if(!empurrado){
-            if (Seguido.transform.position.x > transform.position.x){
+            if (Seguido.transform.position.x >= transform.position.x){
                 speed = Random.Range(minSpeed,maxSpeed);
-                escala.x = escalaX;
-                transform.localScale = escala;
+                escala = transform.localScale;
+                escala.x = Mathf.Abs(escalaX);
+                transform.localScale = escala;        
             } else {
                 speed = -(Random.Range(minSpeed,maxSpeed));
-                escala.x = -escalaX;
-                transform.localScale = escala;
+                escala = transform.localScale;
+                escala.x = -(Mathf.Abs(escalaX));
+                transform.localScale = escala;       
             }
         }
     }
@@ -63,17 +68,20 @@ public class Enemy_Follow_Atack : MonoBehaviour {
     //luta
 
     void Contador_tempo(){
+        if(time > 10){
+            time = 10;
+        }
         if(time > 0){
             time = time - Time.deltaTime;
             speed = 0;
             anim.SetBool("ataque1", false);
-            GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
+            corEnemy(time);
         } 
         if(time <= 0 && contador) {
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
             empurrado = false;
-            Seguir(OqueSeguir);
             contador = false;
+            Seguir(OqueSeguir);            
         }
     }
 
@@ -101,18 +109,8 @@ public class Enemy_Follow_Atack : MonoBehaviour {
     IEnumerator Forca_Empurrar_Puxar (float forca, float WaitTime){
         anim.SetBool("ataque1", false);
         yield return new WaitForSeconds(WaitTime);
-        // menina.GetComponent<Rigidbody2D>().velocity = new Vector2(forca, 0);
+        //menina.GetComponent<Rigidbody2D>().velocity = new Vector2(forca, 0);
     }    
-
-	IEnumerator Tempo_Parado(float time){
-        anim.SetBool("ataque1", false);
-		speed = 0;
-        GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
-        yield return new WaitForSeconds(time);
-        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
-        Seguir(OqueSeguir);
-        empurrado = false;
-	}
   
 
     void OnTriggerEnter2D(Collider2D collision){
@@ -134,17 +132,20 @@ public class Enemy_Follow_Atack : MonoBehaviour {
       //colisão com a pedra
         if (collision.CompareTag("pedra")){
             float forcaTiroAbs = menina.GetComponent<Menina>().forcaTiroAbsoluta;
-
             if (OqueSeguir.position.x >= transform.position.x && menina.transform.position.x >= transform.position.x){
-                GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * -8) - 2, 2);
+                GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * -5) -1, 2);
                 Destroy(collision.gameObject);                
-                StartCoroutine(Tempo_Parado((forcaTiroAbs * 5) + 3));
+                time = time + (forcaTiroAbs * 5);
+                empurrado = true;
+                contador = true;
             }
 
             if(OqueSeguir.position.x <= transform.position.x && menina.transform.position.x <= transform.position.x){
-                GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * +8) + 2, 2);
+                GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * +5) +1, 2);
                 Destroy(collision.gameObject);
-                StartCoroutine(Tempo_Parado((forcaTiroAbs * 5) + 3));
+                time = time + (forcaTiroAbs * 5);
+                empurrado = true;
+                contador = true;
             }
         }
     }
