@@ -18,6 +18,8 @@ TagManager:
   - subir
   - dialogo
   - turnback
+  - Spell_Menina_Empurrar
+  - no_speel_area
   layers:
   - Default
   - TransparentFX

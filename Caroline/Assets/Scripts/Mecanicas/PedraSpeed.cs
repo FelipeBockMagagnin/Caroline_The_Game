@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PedraSpeed : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+	public float speed;
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(30*Time.deltaTime,0,0);
+		transform.Translate(speed*Time.deltaTime,0,0);
+	}
+
+	void Destroy(){
+		Destroy(this.gameObject);
 	}
 }

@@ -134,7 +134,10 @@ public class Enemy_Follow_Atack : MonoBehaviour {
             float forcaTiroAbs = menina.GetComponent<Menina>().forcaTiroAbsoluta;
             if (OqueSeguir.position.x >= transform.position.x && menina.transform.position.x >= transform.position.x){
                 GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * -5) -1, 2);
-                Destroy(collision.gameObject);                
+                collision.GetComponent<ParticleSystem>().loop = false;
+                collision.GetComponent<SpriteRenderer>().enabled = false;
+                collision.GetComponent<BoxCollider2D>().enabled = false;
+                Destroy(collision.gameObject, 0.30f);                
                 time = time + (forcaTiroAbs * 5);
                 empurrado = true;
                 contador = true;
@@ -142,7 +145,10 @@ public class Enemy_Follow_Atack : MonoBehaviour {
 
             if(OqueSeguir.position.x <= transform.position.x && menina.transform.position.x <= transform.position.x){
                 GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * +5) +1, 2);
-                Destroy(collision.gameObject);
+                collision.GetComponent<ParticleSystem>().loop = false;
+                collision.GetComponent<SpriteRenderer>().enabled = false;
+                collision.GetComponent<BoxCollider2D>().enabled = false;
+                Destroy(collision.gameObject, 0.20f);  
                 time = time + (forcaTiroAbs * 5);
                 empurrado = true;
                 contador = true;
@@ -156,6 +162,13 @@ public class Enemy_Follow_Atack : MonoBehaviour {
         }
     }   
 
+    void Empurrado(float forca){
+        empurrado = true;                
+        StartCoroutine(Forca_Empurrar_Puxar(forca,0.6f));
+        time = time + Random.Range(2.7f,3.5f);
+        contador = true;
+    }
+
     private void OnTriggerStay2D(Collider2D collision){        
         //garantir que o inimigo continue atacando caso ele não saia do colisor da Menina
         if(collision.CompareTag("Menina") && apenasMenina && matar){
@@ -163,71 +176,32 @@ public class Enemy_Follow_Atack : MonoBehaviour {
         }
 
         //Empurrar/puxar caso haja somente a menina
-        if (collision.CompareTag("Menina") && Input.GetKey(KeyCode.X) && collision.GetComponent<Menina>().PodeAndar == true && !Input.GetKey(KeyCode.Z) && apenasMenina){
-            if (collision.transform.position.x >= transform.position.x){                
+        if(collision.CompareTag("Spell_Menina_Empurrar")){
+            time = Random.Range(2.7f,3.5f);
+        }
+
+        if (collision.CompareTag("Spell_Menina_Empurrar") && apenasMenina && !empurrado){
+            if (menina.transform.position.x >= transform.position.x){                
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-3f, -4), 1);             //inimigo p/ esq
-                collision.GetComponent<Menina>().EmpurrarInimigo();
-                empurrado = true;                
-                StartCoroutine(Forca_Empurrar_Puxar(3.5f,0.6f));
-                time = time + Random.Range(2.5f,3.5f);
-                contador = true;                
+                Empurrado(3.5f);               
             }
 
             if (collision.transform.position.x < transform.position.x){
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(3f, 4), 1);              //inimigo p/ dir          
-                collision.GetComponent<Menina>().EmpurrarInimigo();
-                empurrado = true;                
-                StartCoroutine(Forca_Empurrar_Puxar(-3.5f,0.6f));
-                contador = true;
-                time = time + Random.Range(2.5f,3.5f);
+                Empurrado(-3.5f);
             }
         }
 
-        //Empurrar/puxar caso haja o saci e a menina na cena
-        if (collision.CompareTag("Menina") && Input.GetKey(KeyCode.X) && (collision.GetComponent<Menina>().PodeAndar == true) && !Input.GetKey(KeyCode.Z) && !apenasMenina){
-            //SIM
-            //menina direita do saci e direita do inimigo
-            if (collision.transform.position.x >= transform.position.x && collision.transform.position.x >= OqueSeguir.transform.position.x){               
-                GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(5,7), 1);                  //inimigo p/ dir s/ voar
-                collision.GetComponent<Menina>().puxarInimigo();
-                empurrado = true;               
-                StartCoroutine(Forca_Empurrar_Puxar(4.5f,.6f));
-                time = time + Random.Range(3,5);
-                contador = true;
+        if (collision.CompareTag("Spell_Menina_Empurrar") && !apenasMenina && !empurrado){
+            if (OqueSeguir.transform.position.x >= transform.position.x){                
+                GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-3f, -4), 1);             //inimigo p/ esq
+                Empurrado(3.5f);                
             }
 
-            //SMI
-            //menina direita de saci e esquerda do inimigo 
-            if (collision.transform.position.x < transform.position.x && collision.transform.position.x > OqueSeguir.transform.position.x){               
-                GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(5, 7), 5);             //inimigo p/ dir          
-                collision.GetComponent<Menina>().EmpurrarInimigo();
-                empurrado = true;
-                StartCoroutine(Forca_Empurrar_Puxar(-7f,.6f));
-                time = time + Random.Range(3,5);
-                contador = true;
+            if (OqueSeguir.transform.position.x < transform.position.x){
+                GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(3f, 4), 1);              //inimigo p/ dir          
+                Empurrado(-3.5f);
             }
-            
-            //IMS
-            //menina esquerda do saci e direita inimigo 
-            if (collision.transform.position.x > transform.position.x && collision.transform.position.x < OqueSeguir.transform.position.x){         
-                GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-5, -7), 5);             //inimigo p/ esq                
-                collision.GetComponent<Menina>().EmpurrarInimigo();
-                empurrado = true;
-                StartCoroutine(Forca_Empurrar_Puxar(7f,.6f));
-                time = time + Random.Range(3,5);
-                contador = true;                
-            }
-
-            //MIS
-            //menina esquerda do saci e esquerda do inimigo           
-            if (collision.transform.position.x < transform.position.x && collision.transform.position.x < OqueSeguir.transform.position.x){           
-                GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-5, -7), 1);              //inimigo p/ esq s/ voar    
-                collision.GetComponent<Menina>().puxarInimigo();
-                empurrado = true;
-                StartCoroutine(Forca_Empurrar_Puxar(-4.5f,.6f));                
-                time = time + Random.Range(3,5);
-                contador = true;                
-            }
-        } 
+        }
     }
 }

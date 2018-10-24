@@ -1,0 +1,383 @@
+fileFormatVersion: 2
+guid: b60fd319489503f4f83cdef56910fc22
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Spell Menina Empurrar_04
+    21300002: Spell Menina Empurrar_05
+    21300004: Spell Menina Empurrar_06
+    21300006: Spell Menina Empurrar_07
+    21300008: Spell Menina Empurrar_08
+    21300010: Spell Menina Empurrar_09
+    21300012: Spell Menina Empurrar_10
+    21300014: Spell Menina Empurrar_11
+    21300016: Spell Menina Empurrar_03
+    21300018: Spell Menina Empurrar_13
+    21300020: Spell Menina Empurrar_01
+    21300022: Spell Menina Empurrar_02
+    21300024: Spell Menina Empurrar_12
+  externalObjects: {}
+  serializedVersion: 7
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Spell Menina Empurrar_04
+      rect:
+        serializedVersion: 2
+        x: 1445
+        y: 96
+        width: 162
+        height: 183
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e48919c6416fb9549b0857b64ef82e42
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Menina Empurrar_05
+      rect:
+        serializedVersion: 2
+        x: 1935
+        y: 99
+        width: 159
+        height: 183
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5568d21efbcc6ad4eacb75084f2b3aa9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Menina Empurrar_06
+      rect:
+        serializedVersion: 2
+        x: 2409
+        y: 84
+        width: 170
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24142807ca5d7ca47ac0cb04c1e9cc1d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Menina Empurrar_07
+      rect:
+        serializedVersion: 2
+        x: 2892
+        y: 87
+        width: 229
+        height: 205
+      alignment: 9
+      pivot: {x: 0.39439586, y: 0.48314753}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74c6bb62a794e0244bc75ee882dc9be6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Menina Empurrar_08
+      rect:
+        serializedVersion: 2
+        x: 3372
+        y: 102
+        width: 297
+        height: 185
+      alignment: 9
+      pivot: {x: 0.341898, y: 0.44359577}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7524f6648436ac4498ddd84f1ca711e8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Menina Empurrar_09
+      rect:
+        serializedVersion: 2
+        x: 3855
+        y: 53
+        width: 444
+        height: 262
+      alignment: 9
+      pivot: {x: 0.22972973, y: 0.49999988}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0e977d0c49bb0c45a6edc4d28057ff0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Menina Empurrar_10
+      rect:
+        serializedVersion: 2
+        x: 4339
+        y: 41
+        width: 480
+        height: 309
+      alignment: 9
+      pivot: {x: 0.19565226, y: 0.46623048}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9dad40253c74664da90d5af6806bff1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Menina Empurrar_11
+      rect:
+        serializedVersion: 2
+        x: 4822
+        y: 0
+        width: 373
+        height: 386
+      alignment: 9
+      pivot: {x: 0.2482236, y: 0.45945036}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8b49ca8a2c132a4489c03ec9c8e43b2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Menina Empurrar_03
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 121
+        width: 138
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 540f60aab4c724b4481e5e36b745860b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Menina Empurrar_13
+      rect:
+        serializedVersion: 2
+        x: 5819
+        y: 0
+        width: 292
+        height: 400
+      alignment: 9
+      pivot: {x: 0.30345508, y: 0.48695657}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 921d23c234c297745bd13f9ea9e7d6fa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Menina Empurrar_01
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 167
+        width: 59
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56495a80d0398d24c938ea18897eb5c9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Menina Empurrar_02
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 148
+        width: 98
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c832f69e1b1efd64d97ba2e8994b2421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Menina Empurrar_12
+      rect:
+        serializedVersion: 2
+        x: 5309
+        y: 0
+        width: 344
+        height: 400
+      alignment: 9
+      pivot: {x: 0.22699684, y: 0.50000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7877379e7ef98a447a10b6e244599f5d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 3e405a5b9f617ae488466b5581fc0c40
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

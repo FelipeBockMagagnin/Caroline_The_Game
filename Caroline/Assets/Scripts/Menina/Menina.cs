@@ -7,21 +7,28 @@ public class Menina : MonoBehaviour {
 
     
     [Header("LUTA")]
-           bool         apertouEspaco = false;      //saber se errou
+    [HideInInspector]
+    public bool         apertouEspaco = false;      //saber se errou
            bool         Set_Levantar_true = true;   //muda a var podelevantar por meio de animação no jogo
-           float        time;                       //tempo a ficar parado  
+    [HideInInspector]
+    public float        time;                       //tempo a ficar parado  
     
     [Header("MOVIMENTAÇÃO")]
-    public bool         PodeAndar = true;           //movimentação precisa dessa var           
+    [HideInInspector]
+    public bool         PodeAndar = true;           //movimentação precisa dessa var    
+    [HideInInspector]       
     public bool         pararParallar = false;      //evitar paralax de andar enquanto menina trancada em parede
-           bool         face = true;                //define a movimentação dir/esq invertendo a escala quando chamado
+    [HideInInspector]
+    public bool         face = true;                //define a movimentação dir/esq invertendo a escala quando chamado
            bool         emdialogo = false;          //define se esta em dialogo
            bool         ClimbDir;                   //define a direção que ira se telopertar apos climb
            bool         ClimbEsq;                   //define a direção que ira se teleprotar apos climb
-           bool         Gravidade = true;           //climb(), acaba com a movimentação do personagem                      
+    [HideInInspector]
+    public bool         Gravidade = true;           //climb(), acaba com a movimentação do personagem                      
            float        VelocidadePulo;             //padrão de altura possivel com pulo
            float        VelCorrendo;                //padrão de velocidade possivel com pulo
-           public float inputVertical;              //contem o input, 1 se dir/-1se esq/0 de parado
+    [HideInInspector]
+    public float        inputVertical;              //contem o input, 1 se dir/-1se esq/0 de parado
            Rigidbody2D  rb;                         //aplicar forças
            Vector3      ClimbPos;                   //localização de onde o personagem ficará apos o climb()
     
@@ -29,7 +36,8 @@ public class Menina : MonoBehaviour {
     public Transform    check;                      //checar o chao
     public LayerMask    OqueEChao;                  //raycast check ground
     public GameObject   particula_pulo;             //contem a particula liberada ao pular
-           bool         nochao;                     //ver se esta no chão por meio de raycast   
+    [HideInInspector]
+    public bool         nochao;                     //ver se esta no chão por meio de raycast   
            float        raio = 0.30f;               //tamanho do raycast
            float        fallMultiplier = 5f;        //modificação da gravidade
            float        lowjumpmultiplayer = 4.3f;  //modificação da gravidade
@@ -37,17 +45,23 @@ public class Menina : MonoBehaviour {
        
     [Header("TIRO")]    
     public GameObject   Pedra;                      //tiro prefab
+    public GameObject   Spell_Empurrar;             //spell lançado ao empurrar;
     public Transform    instanciadorPedra;          //onde o tiro sera iniciado
-           int          quantidadeMunicao;          //quantidade de monição
-           float        forcaTiro;                  //aumenta quando pressionado control
+    [HideInInspector]
+    public int          quantidadeMunicao;          //quantidade de monição
+    [HideInInspector]
+    public float        forcaTiro;                  //aumenta quando pressionado control
+    [HideInInspector]
     public float        forcaTiroAbsoluta;          //guarda força total do tiro
+    [HideInInspector]
+    public bool         podeUsarSpeel = true;       //define se o poder spell poderá se spawnado;
  
     [Header("ANIMAÇÕES")]
-    public Animator     Cam;                        //animação de camera
-           Animator     anim;                       //animações   
+    Change_camera_atributes cam;
+    Animator            anim;                       //animações   
 
     [Header("UI")]
-    MeninaUI meninaUi;
+    MeninaUI            meninaUi;
 
     
     void Awake(){
@@ -55,7 +69,8 @@ public class Menina : MonoBehaviour {
 		anim = GetComponent<Animator> ();
         VelocidadePulo = 9f;
         VelCorrendo = 7.5f;
-        meninaUi = GetComponent<MeninaUI>(); 
+        meninaUi = GetComponent<MeninaUI>();
+        cam = GetComponent<Change_camera_atributes>(); 
     }
    
     void FixedUpdate (){
@@ -84,6 +99,7 @@ public class Menina : MonoBehaviour {
         }   
         Check_Input_Levantar();
         Input_AtirarPedra();
+        Check_Input_Empurrar();
 
         //Checar se esta no chao
         nochao = Physics2D.OverlapCircle(check.position, raio, OqueEChao); 
@@ -112,6 +128,20 @@ public class Menina : MonoBehaviour {
 
     //*******************************************************************\\
     //METODOS DE BATALHA
+    void Check_Input_Empurrar(){
+        if (Input.GetKeyDown(KeyCode.X) && PodeAndar && podeUsarSpeel){
+            Vector3 instanciador12 = instanciadorPedra.transform.position;
+            Instantiate(Spell_Empurrar, instanciador12,instanciadorPedra.rotation);
+            time = 1.5f;
+            Set_Levantar_true = true;
+            meninaUi.AtivarEmpurrar();        
+            anim.SetBool("Empurrar", true);
+            anim.SetBool("Idle", false);
+            anim.SetBool("Pulo", false);
+            anim.SetBool("Andando", false);
+            PodeAndar = false;
+        }
+    }
 
     void Check_Input_Levantar(){
         if (time >= 0.8f && time <= 1f){           
@@ -166,28 +196,6 @@ public class Menina : MonoBehaviour {
         quantidadeMunicao--;
     }
 
-    public void EmpurrarInimigo(){        
-        time = 1.5f;
-        Set_Levantar_true = true;
-        meninaUi.AtivarEmpurrar();        
-        anim.SetBool("Empurrar", true);
-        anim.SetBool("Idle", false);
-        anim.SetBool("Pulo", false);
-        anim.SetBool("Andando", false);
-        PodeAndar = false;
-    }
-
-    public void puxarInimigo(){        
-        time = 1.5f;
-        meninaUi.AtivarEmpurrar();        
-        anim.SetBool("Puxando", true);
-        anim.SetBool("Idle", false);
-        anim.SetBool("Pulo", false);
-        anim.SetBool("Andando", false);
-        PodeAndar = false;   
-        Set_Levantar_true = true;
-    }
-
     void levantar(){
         anim.SetBool("Puxando", false);
         anim.SetBool("Empurrar", false);
@@ -215,7 +223,7 @@ public class Menina : MonoBehaviour {
         if(nochao && Spawn_Particula_Pulo){
             Spawn_Particula_Pulo = false;
             Instantiate(particula_pulo,check.position,Quaternion.identity);    
-            Cam.SetTrigger("shake");          
+            cam.shake();         
         } 
     }
 
@@ -306,7 +314,8 @@ public class Menina : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision){ 
         if (collision.CompareTag("morte"))
         {
-            Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+            Scene scene = SceneManager.GetActiveScene(); 
+            SceneManager.LoadScene(scene.name);
         }
         if (collision.CompareTag("municao"))
         {
@@ -316,6 +325,10 @@ public class Menina : MonoBehaviour {
 
         if(collision.CompareTag("parallax")){
             pararParallar = true;
+        }
+
+        if(collision.CompareTag("no_speel_area")){
+            podeUsarSpeel = false;
         }
 
         //Inicia o Climb()
@@ -336,6 +349,10 @@ public class Menina : MonoBehaviour {
     }   
 
     void OnTriggerExit2D(Collider2D collision){
+        if(collision.CompareTag("no_speel_area")){
+            podeUsarSpeel = true;
+        }
+
         if(collision.CompareTag("parallax")){
             pararParallar = false;
         }
