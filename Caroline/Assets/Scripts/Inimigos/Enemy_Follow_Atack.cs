@@ -27,6 +27,7 @@ public class Enemy_Follow_Atack : MonoBehaviour {
 
     //estetica
             Animator anim;          //contem as animações do inimigo
+    public ParticleSystem particula_atingido;
 
     private void OnEnable() {
          escala = transform.localScale;
@@ -141,6 +142,7 @@ public class Enemy_Follow_Atack : MonoBehaviour {
                 time = time + (forcaTiroAbs * 5);
                 empurrado = true;
                 contador = true;
+                SpawnParticulaAtingido();
             }
 
             if(OqueSeguir.position.x <= transform.position.x && menina.transform.position.x <= transform.position.x){
@@ -152,6 +154,7 @@ public class Enemy_Follow_Atack : MonoBehaviour {
                 time = time + (forcaTiroAbs * 5);
                 empurrado = true;
                 contador = true;
+                SpawnParticulaAtingido();
             }
         }
     }
@@ -163,10 +166,15 @@ public class Enemy_Follow_Atack : MonoBehaviour {
     }   
 
     void Empurrado(float forca){
+        SpawnParticulaAtingido();
         empurrado = true;                
         StartCoroutine(Forca_Empurrar_Puxar(forca,0.6f));
         time = time + Random.Range(2.7f,3.5f);
         contador = true;
+    }
+
+    void SpawnParticulaAtingido(){
+        Instantiate(particula_atingido, transform.position, Quaternion.identity);
     }
 
     private void OnTriggerStay2D(Collider2D collision){        

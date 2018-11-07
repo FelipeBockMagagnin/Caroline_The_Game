@@ -13,11 +13,16 @@ public class Saci : MonoBehaviour {
     public AudioSource      aMatar;                 //audio placeholder
     public float            tempoEntreAtaques;      //armazena o tempo em que o saci ficaram sem atacar 
            bool             atacar = true;          //se true ele pode iniciar a nimação de ataque
+    public ParticleSystem   ParticulaTransf;        //
 
     private void Start(){
         anim = GetComponent<Animator>();
         scale = transform.localScale;
         escala = scale.x;
+    }
+
+    public void spawnParticleTranf(){
+        Instantiate(ParticulaTransf,transform.position,Quaternion.identity);
     }
 
     public void Matar(){
@@ -41,9 +46,9 @@ public class Saci : MonoBehaviour {
             anim.SetTrigger("atacar");
            
             if(atacar){
-            Destroy(collision.gameObject);
-            particle.Play();
-            atacar = false;            
+                Destroy(collision.gameObject);
+                particle.Play();
+                atacar = false;            
             }
 
             //inverter escala

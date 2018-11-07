@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4578537801104162}
   - component: {fileID: 61905026141470018}
+  - component: {fileID: 114690969299772540}
   m_Layer: 0
   m_Name: morte
   m_TagString: morte
@@ -65,3 +66,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.09, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114690969299772540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117805353373316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a0245080e71e84bb57aec5e85bd0d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particula: {fileID: 198184755287555672, guid: ab2dc04722256ae4aa9df393e2609929,
+    type: 2}

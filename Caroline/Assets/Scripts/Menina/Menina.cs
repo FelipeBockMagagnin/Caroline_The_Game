@@ -301,11 +301,21 @@ public class Menina : MonoBehaviour {
             transform.position = new Vector3(ClimbPos.x - 1.3f, ClimbPos.y + 2.4f, transform.position.z);
             ClimbEsq = false;
         }
+
+        Spawn_Particula_Pulo = false;
         anim.SetBool("Idle", true);
         anim.SetBool("escalar", false);
         PodeAndar = true;
         Gravidade = true;    
         rb.isKinematic = false; 
+    }
+
+    //morte
+    IEnumerator morte_wait(){
+        PodeAndar = false;
+        yield return new WaitForSeconds(1.5f);        
+        Scene scene = SceneManager.GetActiveScene(); 
+        SceneManager.LoadScene(scene.name);
     }
 
     //***********************************************************\\
@@ -314,8 +324,7 @@ public class Menina : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision){ 
         if (collision.CompareTag("morte"))
         {
-            Scene scene = SceneManager.GetActiveScene(); 
-            SceneManager.LoadScene(scene.name);
+            StartCoroutine(morte_wait());
         }
         if (collision.CompareTag("municao"))
         {
@@ -332,12 +341,12 @@ public class Menina : MonoBehaviour {
         }
 
         //Inicia o Climb()
-        if (collision.CompareTag("escalar")){
+        if (collision.CompareTag("escalar") && PodeAndar){
             Gravidade = false;
             PodeAndar = false; 
             rb.isKinematic = true;
             ClimbPos = GetComponent<Transform>().position;
-            anim.SetBool("escalar", true);
+            anim.SetBool("escalar", true);         
             anim.SetBool("Pulo", false);
             anim.SetBool("Idle", false);   
             if(collision.transform.position.x >= transform.position.x){
