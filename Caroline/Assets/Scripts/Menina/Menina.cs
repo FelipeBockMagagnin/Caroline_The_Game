@@ -61,16 +61,25 @@ public class Menina : MonoBehaviour {
     Animator            anim;                       //animações   
 
     [Header("UI")]
-    MeninaUI            meninaUi;
+    GirlUI            GirlUi;
 
-    
+    [HideInInspector]
+    public bool empurrando;
+    [HideInInspector]
+    public bool atirando;
+
     void Awake(){
-		rb = GetComponent<Rigidbody2D> ();
+        //inicializar ps componentes do jogo
+        rb = GetComponent<Rigidbody2D> ();
 		anim = GetComponent<Animator> ();
+        GirlUi = GetComponent<GirlUI>();
+        cam = GetComponent<Change_camera_atributes>();
+
+        //inicializar as variaveis do jogo
+        empurrando = false;
+        atirando = false;		
         VelocidadePulo = 9f;
         VelCorrendo = 7.5f;
-        meninaUi = GetComponent<MeninaUI>();
-        cam = GetComponent<Change_camera_atributes>(); 
     }
    
     void FixedUpdate (){
@@ -83,8 +92,7 @@ public class Menina : MonoBehaviour {
         Calc_time();         
 
         //Controla animação quando parada
-        if (emdialogo)
-        {
+        if (emdialogo){
             anim.SetBool("Idle", true);
             anim.SetBool("Andando", false);
             anim.SetBool("Pulo", false);
@@ -128,85 +136,101 @@ public class Menina : MonoBehaviour {
 
     //*******************************************************************\\
     //METODOS DE BATALHA
+
+    //checar se o botão de empurrar foi pressionado
     void Check_Input_Empurrar(){
-        if (Input.GetKeyDown(KeyCode.X) && PodeAndar && podeUsarSpeel){
+        if (Input.GetKeyDown(KeyCode.X) && PodeAndar && podeUsarSpeel && !atirando){
             Vector3 instanciador12 = instanciadorPedra.transform.position;
             Instantiate(Spell_Empurrar, instanciador12,instanciadorPedra.rotation);
             time = 1.5f;
             Set_Levantar_true = true;
-            meninaUi.AtivarEmpurrar();        
+            GirlUi.AtivarEmpurrar();        
             anim.SetBool("Empurrar", true);
             anim.SetBool("Idle", false);
             anim.SetBool("Pulo", false);
             anim.SetBool("Andando", false);
             PodeAndar = false;
+            empurrando = true;
         }
     }
 
+    //checar se o bitão de levantar foi pressionado no momento certo
     void Check_Input_Levantar(){
+        //MOMENTO CERTO
         if (time >= 0.8f && time <= 1f){           
             if (Input.GetKeyDown(KeyCode.X) && !apertouEspaco){
-                meninaUi.DesativarUI();                
+                GirlUi.DesativarUI();                
                 rb.velocity = new Vector2(0, 0);
+                empurrando = true;
                 time = 0;
                 anim.SetBool("Levantar", true); 
             }
-
+        
+        //MOMENTO ERRADO
         } else if (time <= 1.4f && time >= 1f || time >= 0.2f && time <= 0.8f){            
             if(Input.GetKeyDown(KeyCode.X)){
                 apertouEspaco = true;
-                meninaUi.DesativarUI();
+                GirlUi.DesativarUI();
             }
         }
     }  
 
-    void Calc_time(){
-        //garantir que não haja bugs na paralização do personagem
+    //garantir que não haja bugs na paralização do personagem
+    void Calc_time(){        
         if (time <= 5 && time > Time.deltaTime){              
             time -= Time.deltaTime;               
             if(time <= Time.deltaTime && Set_Levantar_true){
-                meninaUi.DesativarUI();
+                GirlUi.DesativarUI();
                 anim.SetBool("Levantar", true); 
-                Set_Levantar_true = false;                        
+                Set_Levantar_true = false;   
+                empurrando = false;                     
             }
         }
     }   
 
+    //checar se o input de atirar foi pressionado
     void Input_AtirarPedra(){
-        //carregar força da pedra se tiver munição
-        if (Input.GetKey(KeyCode.Z) && PodeAndar && quantidadeMunicao>=1){
-            meninaUi.AtivarAtirarPedra();            
+        
+        //carregar força da pedra se tiver munição e apertando a tecla de empurrar
+        if (Input.GetKey(KeyCode.Z) && PodeAndar && quantidadeMunicao>=1 && !empurrando){
+            GirlUi.AtivarAtirarPedra();   
+            atirando = true;
             if (forcaTiro <= 1){
                 forcaTiro = forcaTiro + Time.deltaTime;
             }
         }
 
         //atirar pedra
-        if (Input.GetKeyUp(KeyCode.Z) && PodeAndar && quantidadeMunicao >=1){
+        if (Input.GetKeyUp(KeyCode.Z) && quantidadeMunicao >=1 && !empurrando){
             atirarPedra();
+            atirando = false;
         }
     }
 
+    //aciona o ato de atirar a pedra
     void atirarPedra(){
         Vector3 instanciador12 = instanciadorPedra.transform.position;
         Instantiate(Pedra, instanciador12,instanciadorPedra.rotation);
-        meninaUi.DesativarUI();
+        GirlUi.DesativarUI();
         forcaTiroAbsoluta = forcaTiro;
         forcaTiro = 0;
         quantidadeMunicao--;
     }
 
+    //levanta a menina mudando anim e variaveis
     void levantar(){
         anim.SetBool("Puxando", false);
         anim.SetBool("Empurrar", false);
         anim.SetBool("Levantar",false);
         PodeAndar = true;
         apertouEspaco = false;
+        empurrando = false;
     }
 
     //***********************************************************\\
     //METODOS PULO
 
+    //adiciona força para cima e verifica se 2 pulos efetuados
     void Pulo(){
         if (Input.GetKeyDown(KeyCode.UpArrow) && nochao == true){  
             nochao = false;
@@ -215,10 +239,12 @@ public class Menina : MonoBehaviour {
         }
     }
 
+    //seta var particula pulo, ativado/chamado na animação
     void Spawn_Pulo(){
         Spawn_Particula_Pulo = true;
     }
 
+    //spawnar particula de pulo e desativvar variavel
     void Spawn_Particula_Chao(){
         if(nochao && Spawn_Particula_Pulo){
             Spawn_Particula_Pulo = false;
@@ -227,8 +253,8 @@ public class Menina : MonoBehaviour {
         } 
     }
 
+    //Modificação de Gravidade no pulo de acordo com o quanto o usuario pressionou o botao
     void Controle_Gravidade_Pulo(){
-        //Modificação de Gravidade no pulo de acordo com o quando o usuario pressionou o botao
         if (rb.velocity.y < 0 && Gravidade){ 
             rb.gravityScale = fallMultiplier;
         }
@@ -243,13 +269,14 @@ public class Menina : MonoBehaviour {
     //***********************************************************\\
     //METODOS MOVIMENTAÇÃO
 
+    //se move na direção do input, positivo ou negativo
     void Move(){
         transform.Translate(inputVertical*Time.deltaTime * VelCorrendo,0,0);
     }
 
+    //seta anim de andar, dir esquera 
     void AnimAndar(){
         if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow)){
-          // transform.Translate(VelCorrendo * Time.deltaTime, 0, 0);
             if (nochao){
                 anim.SetBool("Idle", false);
                 anim.SetBool("Andando", true);
@@ -275,6 +302,7 @@ public class Menina : MonoBehaviour {
         }
     }
 
+    //muda a diração do personagem de acordo com o input
     void Flip (){
 		face = !face;
 		Vector3 scale = transform.localScale;
@@ -282,6 +310,7 @@ public class Menina : MonoBehaviour {
 		transform.localScale = scale;
 	}
 
+    //controla direção do personagem e a localização do instanciador de pedra
     void Controle_Flip(){
         if (Input.GetKey(KeyCode.RightArrow) && !face){
             Flip();
@@ -293,6 +322,7 @@ public class Menina : MonoBehaviour {
         }        
     }   
 
+    //controla a direção do climb, dir/esq
     void Climb(){
         if (ClimbDir) {
             transform.position = new Vector3(ClimbPos.x + 1.3f, ClimbPos.y + 2.4f, transform.position.z);
@@ -310,32 +340,25 @@ public class Menina : MonoBehaviour {
         rb.isKinematic = false; 
     }
 
-    //morte
-    IEnumerator morte_wait(){
-        PodeAndar = false;
-        yield return new WaitForSeconds(1.5f);        
-        Scene scene = SceneManager.GetActiveScene(); 
-        SceneManager.LoadScene(scene.name);
-    }
-
     //***********************************************************\\
     //METODOS COLISÃO
 
     void OnTriggerEnter2D(Collider2D collision){ 
-        if (collision.CompareTag("morte"))
-        {
-            StartCoroutine(morte_wait());
+        //morre
+        if (collision.CompareTag("morte")){
+            Scene scene = SceneManager.GetActiveScene(); 
+            SceneManager.LoadScene(scene.name);
         }
-        if (collision.CompareTag("municao"))
-        {
+        //coleta munição e aumenta variavel
+        if (collision.CompareTag("municao")){
             Destroy(collision.gameObject);
             quantidadeMunicao++;
         }
-
+        //para o parallax
         if(collision.CompareTag("parallax")){
             pararParallar = true;
         }
-
+        //Não pode utilizar feituço nesta area
         if(collision.CompareTag("no_speel_area")){
             podeUsarSpeel = false;
         }
@@ -358,10 +381,11 @@ public class Menina : MonoBehaviour {
     }   
 
     void OnTriggerExit2D(Collider2D collision){
+        //não pode usar spell nesta area, ao sair pode
         if(collision.CompareTag("no_speel_area")){
             podeUsarSpeel = true;
         }
-
+        //ao sair pode continuar tendo parallax
         if(collision.CompareTag("parallax")){
             pararParallar = false;
         }
