@@ -4,48 +4,56 @@ using UnityEngine;
 
 public class Enemy2 : EnemyFather {
 
-    public float tiroSpeed;
+    public float shootSpeed;
 
 	private void OnEnable() {
-        escala = transform.localScale;
-        escalaX = escala.x;
+        scale = transform.localScale;
+        scaleX = scale.x;
         anim = GetComponent<Animator>();
-        Seguir(OqueSeguir);
+        Follow(WhatFollow);
     }
 
-	void FixedUpdate(){
+	void FixedUpdate()
+    {
 		transform.Translate(speed * Time.deltaTime, 0, 0);
 
-        if(Input.GetKeyDown(KeyCode.T)){
+        if(Input.GetKeyDown(KeyCode.T))
+        {
             anim.SetBool("Atirar", true);
-            if (menina.transform.position.x >= transform.position.x){
+            if (girl.transform.position.x >= transform.position.x)
+            {
                 speed = 0;
-                escala = transform.localScale;
-                escala.x = Mathf.Abs(escalaX);
-                transform.localScale = escala;        
-            } else {
+                scale = transform.localScale;
+                scale.x = Mathf.Abs(scaleX);
+                transform.localScale = scale;        
+            }
+            else
+            {
                 speed = 0;
-                escala = transform.localScale;
-                escala.x = -(Mathf.Abs(escalaX));
-                transform.localScale = escala;       
+                scale = transform.localScale;
+                scale.x = -(Mathf.Abs(scaleX));
+                transform.localScale = scale;       
             }
         }
         
 	}   
 
-    void tiro(){
-        print("aaaa");
-        if (menina.transform.position.x >= transform.position.x){
-                speed = tiroSpeed;
-                escala = transform.localScale;
-                escala.x = Mathf.Abs(escalaX);
-                transform.localScale = escala;        
-            } else {
-                speed = -tiroSpeed;
-                escala = transform.localScale;
-                escala.x = -(Mathf.Abs(escalaX));
-                transform.localScale = escala;       
-            }
+    void Shoot()
+    {
+        if (girl.transform.position.x >= transform.position.x)
+        {
+            speed = shootSpeed;
+            scale = transform.localScale;
+            scale.x = Mathf.Abs(scaleX);
+            transform.localScale = scale;        
+        }
+        else
+        {
+            speed = -shootSpeed;
+            scale = transform.localScale;
+            scale.x = -(Mathf.Abs(scaleX));
+            transform.localScale = scale;       
+        }
     }
 
 

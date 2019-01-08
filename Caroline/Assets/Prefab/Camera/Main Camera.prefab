@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4705517705083026}
   - component: {fileID: 212428298475120740}
   m_Layer: 0
-  m_Name: Indicador Levantar
+  m_Name: RiseIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4754546893754760}
   - component: {fileID: 212612805293893620}
   m_Layer: 0
-  m_Name: Holder indicadores
+  m_Name: HolderIndicators
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 212036028869914700}
   - component: {fileID: 222773644472797838}
   m_Layer: 0
-  m_Name: Principal fundo
+  m_Name: Main Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 212481764375940036}
   - component: {fileID: 95793819398816642}
   m_Layer: 0
-  m_Name: Ponteiro
+  m_Name: Pointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 4417316329111126}
   - component: {fileID: 212030308592914994}
   m_Layer: 0
-  m_Name: Indicador atirar
+  m_Name: ShootIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 4527692248071318}
   - component: {fileID: 212583759283713998}
   m_Layer: 0
-  m_Name: Medidas
+  m_Name: Measures
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4646013295052134}
   m_Layer: 0
-  m_Name: Empurrar
+  m_Name: Push
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166754836517858}
   m_Layer: 0
-  m_Name: Atirar
+  m_Name: Shoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 4692932566576724}
   - component: {fileID: 212205332839717646}
   m_Layer: 0
-  m_Name: Intervalo input levantar
+  m_Name: InputTimeInterval
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,7 +198,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1316448107979220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6924952, y: 0.49277973, z: -10}
+  m_LocalPosition: {x: 1.4948404, y: 5.0043077, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4321165851243526}
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Cinemachine.CinemachineBrain+VcamActivatedEvent, Cinemachine, Version=0.0.0.0,
+    m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Cinemachine, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114469032963043006
 MonoBehaviour:

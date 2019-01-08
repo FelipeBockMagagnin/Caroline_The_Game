@@ -5,53 +5,65 @@ using UnityEngine;
 public class EnemyFather : MonoBehaviour {
 
  	[Range(0, 10)]
-    public  float maxSpeed = 0;     
+    public    float         maxSpeed = 0;     
     [Range(0, 10)]
-    public  float minSpeed = 0; 
+    public    float         minSpeed = 0; 
 
-	public  Transform OqueSeguir;         //dar follow
+	public    Transform     WhatFollow;             //dar follow
+	protected float         speed;                  //contem a velocidade do inimigo
+    protected float         scaleX;                 //contem escala x do inimigo
+	protected Vector3       scale;                  //contem a escala do inimigo
+    protected float         time = 0;               //tempo em que o inimigo fica parado
+	protected bool          pushed = false;         //se ele for empurrado não pode atacar
+    protected bool          counter = false;        //define de o tempo continuara descendo
+    public    GameObject    girl;                   //contem a definição de menina
+	public   ParticleSystem hitParticle;            //
+	protected Animator      anim;                   //contem as animações do inimigo
 
-	protected float speed;                //contem a velocidade do inimigo
-    protected float escalaX;              //contem escala x do inimigo
-	protected Vector3 escala;             //contem a escala do inimigo
-    protected float time = 0;             //tempo em que o inimigo fica parado
+    //***************MOVIMENTATION**********************************
 
-	protected bool empurrado = false;     //se ele for empurrado não pode atacar
-    protected bool contador = false;      //define de o tempo continuara descendo
-
-    public  GameObject menina;          //contem a definição de menina
-
-	public  ParticleSystem particula_atingido;
-
-	protected Animator anim;              //contem as animações do inimigo
-
-	//*************************************************
-    //movimentação
-
-	protected void Seguir(Transform Seguido){
-        if(!empurrado){
-            if (Seguido.transform.position.x >= transform.position.x){
+    /// <summary>
+    /// Follow an object, just horizontal
+    /// </summary>
+    /// <param name="followObject"></param>
+    protected void Follow(Transform followObject)
+    {
+        if(!pushed)
+        {
+            if (followObject.transform.position.x >= transform.position.x)
+            {
                 speed = Random.Range(minSpeed,maxSpeed);
-                escala = transform.localScale;
-                escala.x = Mathf.Abs(escalaX);
-                transform.localScale = escala;        
-            } else {
+                scale = transform.localScale;
+                scale.x = Mathf.Abs(scaleX);
+                transform.localScale = scale;        
+            }
+            else
+            {
                 speed = -(Random.Range(minSpeed,maxSpeed));
-                escala = transform.localScale;
-                escala.x = -(Mathf.Abs(escalaX));
-                transform.localScale = escala;       
+                scale = transform.localScale;
+                scale.x = -(Mathf.Abs(scaleX));
+                transform.localScale = scale;       
             }
         }
     }
 
-	protected void corEnemy(float corInicial){
-        float cor;
-        cor = 1 - corInicial/3.33f;
-        GetComponent<SpriteRenderer>().color = new Color(1, cor, cor);    
+    /// <summary>
+    /// set the of enemy according to the time
+    /// </summary>
+    /// <param name="InitialColor"></param>
+    protected void EnemyColor(float InitialColor)
+    {
+        float color;
+        color = 1 - InitialColor / 3.33f;
+        GetComponent<SpriteRenderer>().color = new Color(1, color, color);    
     }
 
-	protected void SpawnParticulaAtingido(){
-        Instantiate(particula_atingido, transform.position, Quaternion.identity);
+    /// <summary>
+    /// spawn hitParticle on hit
+    /// </summary>
+	protected void SpawnHitParticle()
+    {
+        Instantiate(hitParticle, transform.position, Quaternion.identity);
     }
 
 }

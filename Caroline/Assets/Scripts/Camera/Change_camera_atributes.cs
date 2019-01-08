@@ -6,36 +6,38 @@ using UnityEngine.UI;
 public class Change_camera_atributes : MonoBehaviour {
 
 public Animator cam;
-public bool podeShake = true;
-
-//public Text alo;
-
-	public void shake(){
-		if(podeShake){
+public bool canShake = false;
+            
+	public void shake()
+    {
+		if(canShake)
+        {
 			cam.SetTrigger("shake");   
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D collider){
+	void OnTriggerEnter2D(Collider2D collider)
+    {
 		if(collider.CompareTag("descer")){
 			cam.SetBool("descer",true);
-			podeShake = false;
+            canShake = false;
 		}
 		
 		if(collider.CompareTag("dialogo")){
 			cam.SetBool("dialogo",true);
-			podeShake = false;
+            canShake = false;
 		}	
 	}
 	
-	void OnTriggerExit2D(Collider2D collider){
+	void OnTriggerExit2D(Collider2D collider)
+    {
 		if(collider.CompareTag("descer")){
 			cam.SetBool("descer",false);
-			podeShake = true;
+            canShake = false;
 		}
 		if(collider.CompareTag("dialogo")){
 			cam.SetBool("dialogo",false);
-			podeShake = true;
+            canShake = false;
 		}
 	}
 }
