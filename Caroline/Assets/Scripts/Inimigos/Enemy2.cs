@@ -5,22 +5,36 @@ using UnityEngine;
 public class Enemy2 : EnemyFather {
 
     public float shootSpeed;
+    float distance;
+    bool wasShoot = false;
 
-	private void OnEnable() {
+
+    private void OnEnable() {
         scale = transform.localScale;
         scaleX = scale.x;
         anim = GetComponent<Animator>();
         Follow(WhatFollow);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    void Move()
+    {
+        transform.Translate(speed * Time.deltaTime, 0, 0);
+    }
+
 	void FixedUpdate()
     {
-		transform.Translate(speed * Time.deltaTime, 0, 0);
+        Move();
 
-        if(Input.GetKeyDown(KeyCode.T))
+        distance = Vector3.Distance(transform.position, girl.transform.position);
+
+        if (distance <= 10.0 && wasShoot == false) 
         {
+            wasShoot = true;
             anim.SetBool("Atirar", true);
-            if (girl.transform.position.x >= transform.position.x)
+            if (girl.transform.position.x >= transform.position.x) 
             {
                 speed = 0;
                 scale = transform.localScale;
@@ -38,21 +52,28 @@ public class Enemy2 : EnemyFather {
         
 	}   
 
+
+    /// <summary>
+    /// 
+    /// </summary>
     void Shoot()
     {
-        if (girl.transform.position.x >= transform.position.x)
+        if (wasShoot)
         {
-            speed = shootSpeed;
-            scale = transform.localScale;
-            scale.x = Mathf.Abs(scaleX);
-            transform.localScale = scale;        
-        }
-        else
-        {
-            speed = -shootSpeed;
-            scale = transform.localScale;
-            scale.x = -(Mathf.Abs(scaleX));
-            transform.localScale = scale;       
+            if (girl.transform.position.x >= transform.position.x)
+            {
+                speed = shootSpeed;
+                scale = transform.localScale;
+                scale.x = Mathf.Abs(scaleX);
+                transform.localScale = scale;
+            }
+            else
+            {
+                speed = -shootSpeed;
+                scale = transform.localScale;
+                scale.x = -(Mathf.Abs(scaleX));
+                transform.localScale = scale;
+            }
         }
     }
 

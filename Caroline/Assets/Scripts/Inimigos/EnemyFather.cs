@@ -19,6 +19,7 @@ public class EnemyFather : MonoBehaviour {
     public    GameObject    girl;                   //contem a definição de menina
 	public   ParticleSystem hitParticle;            //
 	protected Animator      anim;                   //contem as animações do inimigo
+    protected AudioManager audioManager;
 
     //***************MOVIMENTATION**********************************
 

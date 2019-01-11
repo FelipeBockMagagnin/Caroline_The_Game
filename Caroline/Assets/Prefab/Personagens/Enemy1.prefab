@@ -175,11 +175,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 3
   minSpeed: 2
-  OqueSeguir: {fileID: 0}
-  menina: {fileID: 0}
-  particula_atingido: {fileID: 198086393906038406, guid: 8ecf112c0812aa643b6ebf8ff13eef60,
+  WhatFollow: {fileID: 0}
+  girl: {fileID: 0}
+  hitParticle: {fileID: 198086393906038406, guid: 8ecf112c0812aa643b6ebf8ff13eef60,
     type: 2}
-  apenasMenina: 1
+  justGirl: 0
 --- !u!212 &212499851697006716
 SpriteRenderer:
   m_ObjectHideFlags: 1

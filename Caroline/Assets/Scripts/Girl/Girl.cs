@@ -66,6 +66,7 @@ public class Girl : MonoBehaviour {
 
     //UI ATTIBUTES
             GirlUI      GirlUi;                         //script de controle de ui da menina
+    public AudioManager audioManager;
 
     void Awake(){
         //inicializar ps componentes do jogo
@@ -293,8 +294,15 @@ public class Girl : MonoBehaviour {
             inGround = false;
             rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse); 
             Instantiate(jumpParticle, check.position,Quaternion.identity);
+            audioManager.PlayGirlJumpSound();
         }
     }
+
+    public void PlayFootStepSound()
+    {
+        audioManager.PlayGirlFootSteps();
+    } 
+   
 
     /// <summary>
     ///  set variable "spawnJumoParticle", activated/called in animation
@@ -434,6 +442,20 @@ public class Girl : MonoBehaviour {
     }
 
     //********************COLLISION METHODS***************************************\\
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        //the girl turns into a child of the enemy2 while under the enemy2
+        if (collision.gameObject.tag == "enemy2")
+        {
+            transform.parent = collision.transform;
+        }
+        else
+        {
+            transform.parent = null;
+
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     { 

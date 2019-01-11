@@ -20,6 +20,7 @@ TagManager:
   - turnback
   - Spell_Menina_Empurrar
   - no_speel_area
+  - enemy2
   layers:
   - Default
   - TransparentFX

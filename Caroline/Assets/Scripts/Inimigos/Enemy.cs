@@ -15,6 +15,12 @@ public class Enemy : EnemyFather {
         scaleX = scale.x;
         anim = GetComponent<Animator>();
         Follow(WhatFollow);
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
+
+    private void Start()
+    {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void FixedUpdate(){
@@ -128,6 +134,7 @@ public class Enemy : EnemyFather {
                 pushed = true;
                 counter = true;
                 SpawnHitParticle();
+                audioManager.PlayEnemyHitSound();
             }
 
             if(WhatFollow.position.x <= transform.position.x && girl.transform.position.x <= transform.position.x){
@@ -140,6 +147,7 @@ public class Enemy : EnemyFather {
                 pushed = true;
                 counter = true;
                 SpawnHitParticle();
+                audioManager.PlayEnemyHitSound();
             }
         }
     }
@@ -163,6 +171,7 @@ public class Enemy : EnemyFather {
 
         if (collision.CompareTag("Spell_Menina_Empurrar") && justGirl && !pushed)
         {
+            audioManager.PlayEnemyHitSound();
             if (girl.transform.position.x >= transform.position.x){                
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-3f, -4), 1);             //inimigo p/ esq
                 Pushed();               
@@ -176,6 +185,7 @@ public class Enemy : EnemyFather {
 
         if (collision.CompareTag("Spell_Menina_Empurrar") && !justGirl && !pushed)
         {
+            audioManager.PlayEnemyHitSound();
             if (WhatFollow.transform.position.x >= transform.position.x){                
                 GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-3f, -4), 1);             //inimigo p/ esq
                 Pushed();                
