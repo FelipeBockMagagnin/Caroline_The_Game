@@ -31,19 +31,19 @@ MonoBehaviour:
   antialiasing:
     m_Enabled: 0
     m_Settings:
-      method: 1
+      method: 0
       fxaaSettings:
-        preset: 2
+        preset: 4
       taaSettings:
-        jitterSpread: 0.56
-        sharpen: 0.3
-        stationaryBlending: 0.95
-        motionBlending: 0.85
+        jitterSpread: 0.14
+        sharpen: 1.15
+        stationaryBlending: 0.27
+        motionBlending: 0.22
   ambientOcclusion:
     m_Enabled: 0
     m_Settings:
       intensity: 4
-      radius: 7.83
+      radius: 26.21
       sampleCount: 10
       downsampling: 1
       forceForwardCompatibility: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
       reflection:
         blendType: 0
         reflectionQuality: 2
-        maxDistance: 130
+        maxDistance: 300
         iterationCount: 710
         stepSize: 7
         widthModifier: 0.5
@@ -67,7 +67,7 @@ MonoBehaviour:
         fresnelFade: 1
         fresnelFadePower: 1
       screenEdgeMask:
-        intensity: 0.03
+        intensity: 1
   depthOfField:
     m_Enabled: 0
     m_Settings:
@@ -85,15 +85,15 @@ MonoBehaviour:
   eyeAdaptation:
     m_Enabled: 0
     m_Settings:
-      lowPercent: 45
-      highPercent: 95
+      lowPercent: 1
+      highPercent: 99
       minLuminance: -5
       maxLuminance: 1
       keyValue: 0.25
-      dynamicKeyValue: 1
+      dynamicKeyValue: 0
       adaptationType: 0
-      speedUp: 2
-      speedDown: 1
+      speedUp: 17.51
+      speedDown: 3.71
       logMin: -16
       logMax: 16
   bloom:
@@ -308,7 +308,7 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 0.04
+      intensity: 0.35
   grain:
     m_Enabled: 1
     m_Settings:

@@ -39,6 +39,7 @@ public class Girl : MonoBehaviour {
     //JUMO ATRRIBUTES          
     public  Transform   check;                          //checar o chao
     public  LayerMask   whatIsGround;                   //raycast check ground
+    public  LayerMask   enemy2LayerMask;
     public  GameObject  jumpParticle;                   //contem a particula liberada ao pular
     [HideInInspector]
     public  bool        inGround;                       //ver se esta no chão por meio de raycast   
@@ -67,6 +68,9 @@ public class Girl : MonoBehaviour {
     //UI ATTIBUTES
             GirlUI      GirlUi;                         //script de controle de ui da menina
     public AudioManager audioManager;
+    bool touchEnemy2;
+
+    public ParticleSystem test;
 
     void Awake(){
         //inicializar ps componentes do jogo
@@ -105,14 +109,18 @@ public class Girl : MonoBehaviour {
         {
             Jump();
             WalkAnim();
-        }   
-        CheckRiseInput();
+        }
+        CheckFinishSpellInput();
         InputShootRock();
         CheckPushingInput();
 
-        //Checar se esta no chao
-        inGround = Physics2D.OverlapCircle(check.position, radius, whatIsGround);
-
+        //Checar se esta no chao 
+        if (touchEnemy2 == false)
+        {
+            inGround = Physics2D.OverlapCircle(check.position, radius, whatIsGround);
+            print("a");
+        }
+        
         //movimentação
         verticalInput = Input.GetAxisRaw("Horizontal");        
         
@@ -170,42 +178,68 @@ public class Girl : MonoBehaviour {
     /// check if the input for pushing is presionated, if true: call Push() method 
     /// </summary>
     void CheckPushingInput(){
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            print("canUseSpell: " + canUseSpell.ToString());
+        }
         if (Input.GetKeyDown(KeyCode.X) && canMove && canUseSpell && !shooting)
         {
-            Push();
+            CastHeartSpell();
         }
     }
 
+
+
     /// <summary>
-    /// launch the pushing spell
+    /// cast a heart spell that kill enemys
     /// </summary>
-    void Push()
+    void CastHeartSpell()
     {
         Vector3 instanciador12 = rockInstancePosition.transform.position;
         Instantiate(pushingSpeel, instanciador12, rockInstancePosition.rotation);
-        time = 1.5f;
-        riseGirl = true;
         GirlUi.AtivarEmpurrar();
-        anim.SetBool("Empurrar", true);
-        anim.SetBool("Idle", false);
+        time = 1.5f;
+        anim.SetBool("Idle", true);
         anim.SetBool("Pulo", false);
         anim.SetBool("Andando", false);
         canMove = false;
         pushing = true;
+        gravity = false;
+        canUseSpell = false;
+        audioManager.PlayGirlHitSound();
+        test.Play();
     }
 
+
     /// <summary>
-    /// Check if the rise input was pressed in the right time
+    /// make the girl move again and can shoot again too
     /// </summary>
-    void CheckRiseInput(){
+    /// <returns></returns>
+    IEnumerator FinishCastHeartSpell()
+    {
+        yield return new WaitForSeconds(0.1f);
+        GirlUi.DesativarUI();
+        anim.SetBool("Idle", true);
+        anim.SetBool("Pulo", false);
+        anim.SetBool("Andando", false);
+        time = 0.3f;
+        pressedSpace = false;
+        pushing = false;
+        canMove = true;
+        gravity = true;
+        canUseSpell = true;
+        test.Stop();
+    }
+
+
+    /// <summary>
+    /// Check if the finish spell input was pressed in the right time
+    /// </summary>
+    void CheckFinishSpellInput(){
         //Right time
         if (time >= 0.8f && time <= 1f){           
             if (Input.GetKeyDown(KeyCode.X) && !pressedSpace){
-                GirlUi.DesativarUI();                
-                rb.velocity = new Vector2(0, 0);
-                pushing = true;
-                time = 0;
-                anim.SetBool("Levantar", true); 
+                StartCoroutine(FinishCastHeartSpell());
             }
         
         //wrong time
@@ -224,12 +258,9 @@ public class Girl : MonoBehaviour {
         if (time <= 5 && time > Time.deltaTime)
         {              
             time -= Time.deltaTime;               
-            if(time <= Time.deltaTime && riseGirl)
+            if(time <= Time.deltaTime && !canUseSpell)
             {
-                GirlUi.DesativarUI();
-                anim.SetBool("Levantar", true);
-                riseGirl = false;
-                pushing = false;                     
+                StartCoroutine(FinishCastHeartSpell());                       
             }
         }
     }
@@ -258,6 +289,7 @@ public class Girl : MonoBehaviour {
         }
     }
 
+    
     /// <summary>
     /// triggers the act of throwing the stone
     /// </summary>
@@ -269,19 +301,8 @@ public class Girl : MonoBehaviour {
         absoluteShootingForce = shootingForce;
         shootingForce = 0;
         ammunition--;
-    }
-
-    /// <summary>
-    /// raises the girl changing animation and variables
-    /// </summary>
-    void RiseGirl(){
-        anim.SetBool("Puxando", false);
-        anim.SetBool("Empurrar", false);
-        anim.SetBool("Levantar",false);
-        canMove = true;
-        pressedSpace = false;
-        pushing = false;
-    }
+    }  
+    
 
 
     //*************************JUMP METHODS**********************************\\
@@ -298,6 +319,10 @@ public class Girl : MonoBehaviour {
         }
     }
 
+
+    /// <summary>
+    /// play a footstep sound
+    /// </summary>
     public void PlayFootStepSound()
     {
         audioManager.PlayGirlFootSteps();
@@ -448,17 +473,35 @@ public class Girl : MonoBehaviour {
         //the girl turns into a child of the enemy2 while under the enemy2
         if (collision.gameObject.tag == "enemy2")
         {
-            transform.parent = collision.transform;
+            inGround = true;
+
+            transform.parent = collision.transform;            
         }
         else
         {
             transform.parent = null;
+        }
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("enemy2"))
+        {
+            touchEnemy2 = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("enemy2"))
+        {
+            inGround = false;
+            touchEnemy2 = false;
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
-    { 
+    {   
         //dead
         if (collision.CompareTag("morte"))
         {
@@ -501,17 +544,17 @@ public class Girl : MonoBehaviour {
                 ClimbLeft = true;
             }
         }
-    }   
+    }
 
     void OnTriggerExit2D(Collider2D collision)
     {
         //can use spell out of this area
-        if(collision.CompareTag("no_speel_area"))
+        if (collision.CompareTag("no_speel_area"))
         {
             canUseSpell = true;
         }
         //ao sair pode continuar tendo parallax
-        if(collision.CompareTag("parallax"))
+        if (collision.CompareTag("parallax"))
         {
             stopParallax = false;
         }

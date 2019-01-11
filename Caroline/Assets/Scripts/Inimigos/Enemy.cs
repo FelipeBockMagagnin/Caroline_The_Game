@@ -95,6 +95,16 @@ public class Enemy : EnemyFather {
         counter = true;
     }
 
+
+    /// <summary>
+    /// destroy the enemy and spawn particles
+    /// </summary>
+    void DestroyThis()
+    {
+        SpawnHitParticle();
+        Destroy(this.gameObject);
+    }
+
     //************Collision***********************************
 
     void OnTriggerEnter2D(Collider2D collision){
@@ -113,7 +123,9 @@ public class Enemy : EnemyFather {
         //Empurrar/puxar caso haja somente a menina
         if(collision.CompareTag("Spell_Menina_Empurrar"))
         {
-            time = Random.Range(2.7f,3.5f);
+            Destroy(collision);
+            Destroy(collision.gameObject);
+            DestroyThis();
         }
 
         if(collision.CompareTag(WhatFollow.tag)){
@@ -156,10 +168,6 @@ public class Enemy : EnemyFather {
         if(collision.CompareTag(WhatFollow.tag)){
             kill = false;
         }
-
-        if(collision.CompareTag("Spell_Menina_Empurrar")){
-            pushed = false;
-        }
     }   
 
     private void OnTriggerStay2D(Collider2D collision){        
@@ -173,13 +181,15 @@ public class Enemy : EnemyFather {
         {
             audioManager.PlayEnemyHitSound();
             if (girl.transform.position.x >= transform.position.x){                
-                GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-3f, -4), 1);             //inimigo p/ esq
-                Pushed();               
+                Destroy(collision);
+                Destroy(collision.gameObject);
+                DestroyThis();
             }
 
-            if (collision.transform.position.x < transform.position.x){
-                GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(3f, 4), 1);              //inimigo p/ dir          
-                Pushed();
+            if (collision.transform.position.x < transform.position.x){   
+                Destroy(collision);
+                Destroy(collision.gameObject);
+                DestroyThis();
             }
         }
 
@@ -187,13 +197,15 @@ public class Enemy : EnemyFather {
         {
             audioManager.PlayEnemyHitSound();
             if (WhatFollow.transform.position.x >= transform.position.x){                
-                GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-3f, -4), 1);             //inimigo p/ esq
-                Pushed();                
+                Destroy(collision);
+                Destroy(collision.gameObject);
+                DestroyThis();               
             }
 
-            if (WhatFollow.transform.position.x < transform.position.x){
-                GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(3f, 4), 1);              //inimigo p/ dir          
-                Pushed();
+            if (WhatFollow.transform.position.x < transform.position.x){    
+                Destroy(collision);
+                Destroy(collision.gameObject);
+                DestroyThis();
             }
         }
     }
