@@ -7,6 +7,7 @@ public class Enemy2 : EnemyFather {
     public float shootSpeed;
     float distance;
     bool wasShoot = false;
+    public bool faceRight;
 
 
     private void OnEnable() {
@@ -36,6 +37,7 @@ public class Enemy2 : EnemyFather {
             anim.SetBool("Atirar", true);
             if (girl.transform.position.x >= transform.position.x) 
             {
+                faceRight = true;
                 speed = 0;
                 scale = transform.localScale;
                 scale.x = Mathf.Abs(scaleX);
@@ -43,6 +45,7 @@ public class Enemy2 : EnemyFather {
             }
             else
             {
+                faceRight = false;
                 speed = 0;
                 scale = transform.localScale;
                 scale.x = -(Mathf.Abs(scaleX));
@@ -76,6 +79,5 @@ public class Enemy2 : EnemyFather {
             }
         }
     }
-
 
 }

@@ -29,7 +29,6 @@ public class DebugGirlStatus : MonoBehaviour {
 			+ "Força tiro: " + scriptgirl.shootingForce + "\n"
 			+ "Forca tiro Absoluta: " + scriptgirl.absoluteShootingForce + "\n"
 			+ "Munição: " + scriptgirl.ammunition + "\n"
-			+ "Empurrando" + scriptgirl.pushing + "\n"
 			+ "Atirando" + scriptgirl.shooting + "\n");
 		}		
 	} 

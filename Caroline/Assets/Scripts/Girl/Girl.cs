@@ -9,11 +9,8 @@ public class Girl : MonoBehaviour {
     //FIGHT ATTRIBUTES
     [HideInInspector]
     public  bool        pressedSpace;                   //saber se errou
-            bool        riseGirl;                       //muda a var podelevantar por meio de animação no jogo
     [HideInInspector]
     public  float       time;                           //tempo a ficar parado  
-    [HideInInspector]
-    public  bool        pushing;                        //define se esta no ato de empurrar
     [HideInInspector]
     public  bool        shooting;                       //define se esta no ato de atirar
 
@@ -24,7 +21,6 @@ public class Girl : MonoBehaviour {
     public  bool        stopParallax;                   //evitar paralax de andar enquanto menina trancada em parede
     [HideInInspector]
     public  bool        face;                           //define a movimentação dir/esq invertendo a escala quando chamado
-            bool        inDialogue;                     //define se esta em dialogo
             bool        ClimbRight;                     //define a direção que ira se telopertar apos climb
             bool        ClimbLeft;                      //define a direção que ira se teleprotar apos climb
     [HideInInspector]
@@ -35,6 +31,7 @@ public class Girl : MonoBehaviour {
     public  float       verticalInput;                  //contem o input, 1 se dir/-1se esq/0 de parado
             Rigidbody2D rb;                             //aplicar forças
             Vector3     ClimbPos;                       //localização de onde o personagem ficará apos o climb()
+            bool        invertDirection = false;                //
     
     //JUMO ATRRIBUTES          
     public  Transform   check;                          //checar o chao
@@ -57,7 +54,7 @@ public class Girl : MonoBehaviour {
     public  float       shootingForce;                  //aumenta quando pressionado control
     [HideInInspector]
     public  float       absoluteShootingForce;          //guarda força total do tiro
-    public  GameObject  pushingSpeel;                   //spell lançado ao empurrar;
+    public  GameObject  heartSpeel;                   //spell lançado ao empurrar;
     [HideInInspector]
     public  bool        canUseSpell;                    //define se o poder spell poderá se spawnado;
  
@@ -68,7 +65,7 @@ public class Girl : MonoBehaviour {
     //UI ATTIBUTES
             GirlUI      GirlUi;                         //script de controle de ui da menina
     public AudioManager audioManager;
-    bool touchEnemy2;
+            bool        touchEnemy2;
 
     public ParticleSystem test;
 
@@ -85,7 +82,7 @@ public class Girl : MonoBehaviour {
    
     void FixedUpdate ()
     {
-        if(canMove && !inDialogue)
+        if(canMove)
         {
             Move();
             FlipControl(); 
@@ -93,19 +90,11 @@ public class Girl : MonoBehaviour {
         SpawnGroundParticle();    
         JumpGravityControl();
         CalcTime();         
-
-        //Controla animação quando parada
-        if (inDialogue)
-        {
-            anim.SetBool("Idle", true);
-            anim.SetBool("Andando", false);
-            anim.SetBool("Pulo", false);
-        }
     }  
 
     private void Update()
     {       
-        if(canMove && !inDialogue)
+        if(canMove)
         {
             Jump();
             WalkAnim();
@@ -118,11 +107,17 @@ public class Girl : MonoBehaviour {
         if (touchEnemy2 == false)
         {
             inGround = Physics2D.OverlapCircle(check.position, radius, whatIsGround);
-            print("a");
         }
-        
+
         //movimentação
-        verticalInput = Input.GetAxisRaw("Horizontal");        
+        if (!invertDirection)
+        {
+            verticalInput = Input.GetAxisRaw("Horizontal");
+        }
+        else
+        {
+            verticalInput = -Input.GetAxisRaw("Horizontal");
+        }
         
         //Se nochão for false inicia animação de pulo
         if (inGround == false && canMove)
@@ -153,7 +148,6 @@ public class Girl : MonoBehaviour {
     /// </summary>
     void resetAtributtes()
     {
-        pushing = false;
         shooting = false;
         jumpVelocity = 9f;
         runVelocity = 7.5f;
@@ -163,12 +157,10 @@ public class Girl : MonoBehaviour {
         lowjumpmultiplayer = 4.3f;
         fallMultiplier = 5f;
         gravity = true;
-        inDialogue = false;
         face = true;
         stopParallax = false;
         canMove = true;
         pressedSpace = false;
-        riseGirl = true;
     }
 
     //*******************************************************************\\
@@ -196,14 +188,13 @@ public class Girl : MonoBehaviour {
     void CastHeartSpell()
     {
         Vector3 instanciador12 = rockInstancePosition.transform.position;
-        Instantiate(pushingSpeel, instanciador12, rockInstancePosition.rotation);
+        Instantiate(heartSpeel, instanciador12, rockInstancePosition.rotation);
         GirlUi.AtivarEmpurrar();
         time = 1.5f;
         anim.SetBool("Idle", true);
         anim.SetBool("Pulo", false);
         anim.SetBool("Andando", false);
         canMove = false;
-        pushing = true;
         gravity = false;
         canUseSpell = false;
         audioManager.PlayGirlHitSound();
@@ -224,7 +215,6 @@ public class Girl : MonoBehaviour {
         anim.SetBool("Andando", false);
         time = 0.3f;
         pressedSpace = false;
-        pushing = false;
         canMove = true;
         gravity = true;
         canUseSpell = true;
@@ -271,7 +261,7 @@ public class Girl : MonoBehaviour {
     void InputShootRock()
     {
         //load strength of the stone if you have ammo and pressing the push key
-        if (Input.GetKey(KeyCode.Z) && canMove && ammunition >= 1 && !pushing)
+        if (Input.GetKey(KeyCode.Z) && canMove && ammunition >= 1 && canUseSpell)
         {
             GirlUi.AtivarAtirarPedra();
             shooting = true;
@@ -282,13 +272,12 @@ public class Girl : MonoBehaviour {
         }
 
         //atirar pedra
-        if (Input.GetKeyUp(KeyCode.Z) && ammunition >= 1 && !pushing)
+        if (Input.GetKeyUp(KeyCode.Z) && ammunition >= 1 && canUseSpell)
         {
             ShootRock();
             shooting = false;
         }
     }
-
     
     /// <summary>
     /// triggers the act of throwing the stone
@@ -302,8 +291,6 @@ public class Girl : MonoBehaviour {
         shootingForce = 0;
         ammunition--;
     }  
-    
-
 
     //*************************JUMP METHODS**********************************\\
     /// <summary>
@@ -319,7 +306,6 @@ public class Girl : MonoBehaviour {
         }
     }
 
-
     /// <summary>
     /// play a footstep sound
     /// </summary>
@@ -328,7 +314,6 @@ public class Girl : MonoBehaviour {
         audioManager.PlayGirlFootSteps();
     } 
    
-
     /// <summary>
     ///  set variable "spawnJumoParticle", activated/called in animation
     /// </summary>
@@ -473,13 +458,18 @@ public class Girl : MonoBehaviour {
         //the girl turns into a child of the enemy2 while under the enemy2
         if (collision.gameObject.tag == "enemy2")
         {
-            inGround = true;
-
+            //se o inimigo estiver indo para esquerda, tornar a menina um filho dele faria com ela invertesse a direção
+            if (!collision.gameObject.GetComponent<Enemy2>().faceRight)
+            {
+                invertDirection = true;
+            }
+            inGround = true;            
             transform.parent = collision.transform;            
         }
         else
         {
             transform.parent = null;
+            invertDirection = false;
         }
     }
 
