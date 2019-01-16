@@ -4,341 +4,134 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a3bdb2cd68f901469e7cc149151eb49, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
   m_Name: PostProcessing
   m_EditorClassIdentifier: 
-  debugViews:
-    m_Enabled: 1
-    m_Settings:
-      mode: 0
-      depth:
-        scale: 1
-      motionVectors:
-        sourceOpacity: 1
-        motionImageOpacity: 0
-        motionImageAmplitude: 16
-        motionVectorsOpacity: 1
-        motionVectorsResolution: 24
-        motionVectorsAmplitude: 64
-  fog:
-    m_Enabled: 0
-    m_Settings:
-      excludeSkybox: 1
-  antialiasing:
-    m_Enabled: 0
-    m_Settings:
-      method: 0
-      fxaaSettings:
-        preset: 4
-      taaSettings:
-        jitterSpread: 0.14
-        sharpen: 1.15
-        stationaryBlending: 0.27
-        motionBlending: 0.22
-  ambientOcclusion:
-    m_Enabled: 0
-    m_Settings:
-      intensity: 4
-      radius: 26.21
-      sampleCount: 10
-      downsampling: 1
-      forceForwardCompatibility: 0
-      ambientOnly: 0
-      highPrecision: 0
-  screenSpaceReflection:
-    m_Enabled: 0
-    m_Settings:
-      reflection:
-        blendType: 0
-        reflectionQuality: 2
-        maxDistance: 300
-        iterationCount: 710
-        stepSize: 7
-        widthModifier: 0.5
-        reflectionBlur: 1
-        reflectBackfaces: 0
-      intensity:
-        reflectionMultiplier: 2
-        fadeDistance: 950
-        fresnelFade: 1
-        fresnelFadePower: 1
-      screenEdgeMask:
-        intensity: 1
-  depthOfField:
-    m_Enabled: 0
-    m_Settings:
-      focusDistance: 13.1
-      aperture: 32
-      focalLength: 124
-      useCameraFov: 0
-      kernelSize: 1
-  motionBlur:
-    m_Enabled: 0
-    m_Settings:
-      shutterAngle: 270
-      sampleCount: 10
-      frameBlending: 0
-  eyeAdaptation:
-    m_Enabled: 0
-    m_Settings:
-      lowPercent: 1
-      highPercent: 99
-      minLuminance: -5
-      maxLuminance: 1
-      keyValue: 0.25
-      dynamicKeyValue: 0
-      adaptationType: 0
-      speedUp: 17.51
-      speedDown: 3.71
-      logMin: -16
-      logMax: 16
-  bloom:
-    m_Enabled: 1
-    m_Settings:
-      bloom:
-        intensity: 0.77
-        threshold: 1.23
-        softKnee: 1
-        radius: 7
-        antiFlicker: 1
-      lensDirt:
-        texture: {fileID: 0}
-        intensity: 0
-  colorGrading:
-    m_Enabled: 0
-    m_Settings:
-      tonemapping:
-        tonemapper: 2
-        neutralBlackIn: 0.02
-        neutralWhiteIn: 10
-        neutralBlackOut: 0
-        neutralWhiteOut: 10
-        neutralWhiteLevel: 5.3
-        neutralWhiteClip: 10
-      basic:
-        postExposure: 0
-        temperature: 0
-        tint: 0
-        hueShift: 0
-        saturation: 1
-        contrast: 1
-      channelMixer:
-        red: {x: 1, y: 0, z: 0}
-        green: {x: 0, y: 1, z: 0}
-        blue: {x: 0, y: 0, z: 1}
-        currentEditingChannel: 0
-      colorWheels:
-        mode: 1
-        log:
-          slope: {r: 1, g: 1, b: 1, a: 0}
-          power: {r: 1, g: 1, b: 1, a: 0}
-          offset: {r: 1, g: 1, b: 1, a: 0}
-        linear:
-          lift: {r: 0, g: 0, b: 0, a: 0}
-          gamma: {r: 0, g: 0, b: 0, a: 0}
-          gain: {r: 0, g: 0, b: 0, a: 0}
-      curves:
-        master:
-          curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 1
-              outSlope: 1
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 1
-              inSlope: 1
-              outSlope: 1
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          m_Loop: 0
-          m_ZeroValue: 0
-          m_Range: 1
-        red:
-          curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 1
-              outSlope: 1
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 1
-              inSlope: 1
-              outSlope: 1
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          m_Loop: 0
-          m_ZeroValue: 0
-          m_Range: 1
-        green:
-          curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 1
-              outSlope: 1
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 1
-              inSlope: 1
-              outSlope: 1
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          m_Loop: 0
-          m_ZeroValue: 0
-          m_Range: 1
-        blue:
-          curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 1
-              outSlope: 1
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 1
-              inSlope: 1
-              outSlope: 1
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          m_Loop: 0
-          m_ZeroValue: 0
-          m_Range: 1
-        hueVShue:
-          curve:
-            serializedVersion: 2
-            m_Curve: []
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          m_Loop: 1
-          m_ZeroValue: 0.5
-          m_Range: 1
-        hueVSsat:
-          curve:
-            serializedVersion: 2
-            m_Curve: []
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          m_Loop: 1
-          m_ZeroValue: 0.5
-          m_Range: 1
-        satVSsat:
-          curve:
-            serializedVersion: 2
-            m_Curve: []
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          m_Loop: 0
-          m_ZeroValue: 0.5
-          m_Range: 1
-        lumVSsat:
-          curve:
-            serializedVersion: 2
-            m_Curve: []
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          m_Loop: 0
-          m_ZeroValue: 0.5
-          m_Range: 1
-        e_CurrentEditingCurve: 0
-        e_CurveY: 1
-        e_CurveR: 0
-        e_CurveG: 0
-        e_CurveB: 0
-  userLut:
-    m_Enabled: 0
-    m_Settings:
-      lut: {fileID: 0}
-      contribution: 1
-  chromaticAberration:
-    m_Enabled: 0
-    m_Settings:
-      spectralTexture: {fileID: 0}
-      intensity: 0.35
-  grain:
-    m_Enabled: 1
-    m_Settings:
-      colored: 0
-      intensity: 0.52
-      size: 0.3
-      luminanceContribution: 1
-  vignette:
-    m_Enabled: 1
-    m_Settings:
-      mode: 0
-      color: {r: 0, g: 0, b: 0, a: 1}
-      center: {x: 0.5, y: 0.5}
-      intensity: 0.52
-      smoothness: 1
-      roundness: 0.56
-      mask: {fileID: 0}
-      opacity: 1
-      rounded: 0
-  dithering:
-    m_Enabled: 0
-  monitors:
-    currentMonitorID: 0
-    refreshOnPlay: 1
-    histogramMode: 3
-    waveformExposure: 0.12
-    waveformY: 0
-    waveformR: 1
-    waveformG: 1
-    waveformB: 1
-    paradeExposure: 0.12
-    vectorscopeExposure: 0.12
-    vectorscopeShowBackground: 1
+  settings:
+  - {fileID: 114410457272838624}
+  - {fileID: 114583165628733210}
+  - {fileID: 114303366024289358}
+--- !u!114 &114303366024289358
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
+  m_Name: Grain
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  colored:
+    overrideState: 1
+    value: 0
+  intensity:
+    overrideState: 1
+    value: 0.342
+  size:
+    overrideState: 0
+    value: 1
+  lumContrib:
+    overrideState: 0
+    value: 0.8
+--- !u!114 &114410457272838624
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
+  m_Name: Bloom
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 50.39
+  threshold:
+    overrideState: 1
+    value: 1.1
+  softKnee:
+    overrideState: 1
+    value: 0.279
+  clamp:
+    overrideState: 0
+    value: 65243.3
+  diffusion:
+    overrideState: 1
+    value: 5.3
+  anamorphicRatio:
+    overrideState: 1
+    value: 0
+  color:
+    overrideState: 1
+    value: {r: 1, g: 1, b: 1, a: 1}
+  fastMode:
+    overrideState: 1
+    value: 0
+  dirtTexture:
+    overrideState: 0
+    value: {fileID: 0}
+    defaultState: 1
+  dirtIntensity:
+    overrideState: 0
+    value: 0
+--- !u!114 &114583165628733210
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b924e2dad56384a8df2a1e111bb675, type: 3}
+  m_Name: Vignette
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  mode:
+    overrideState: 1
+    value: 0
+  color:
+    overrideState: 0
+    value: {r: 0, g: 0, b: 0, a: 1}
+  center:
+    overrideState: 0
+    value: {x: 0.5, y: 0.5}
+  intensity:
+    overrideState: 1
+    value: 0.568
+  smoothness:
+    overrideState: 1
+    value: 1
+  roundness:
+    overrideState: 1
+    value: 0.288
+  rounded:
+    overrideState: 0
+    value: 0
+  mask:
+    overrideState: 0
+    value: {fileID: 0}
+    defaultState: 1
+  opacity:
+    overrideState: 0
+    value: 1
