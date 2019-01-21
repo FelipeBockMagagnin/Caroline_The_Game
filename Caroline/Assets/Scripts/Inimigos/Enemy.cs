@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Enemy : EnemyFather {	        	       
 
     bool kill = false;                  //se for true no ultimo frame da animação, ele mata         
-    public  bool justGirl;              //true = seguir somente menina, false = seguir e atacar saci    
+    public  bool justGirl;              //true = seguir somente menina, false = seguir e atacar saci  
 
     //*************start************************************
     //start components on spawn
@@ -78,8 +77,7 @@ public class Enemy : EnemyFather {
         }
         if(kill && !pushed)
         {
-            //lose
-            Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+            Girl.Reload();
         }              
     }
 
@@ -137,11 +135,7 @@ public class Enemy : EnemyFather {
         if (collision.CompareTag("pedra")){
             float forcaTiroAbs = girl.GetComponent<Girl>().absoluteShootingForce;
             if (WhatFollow.position.x >= transform.position.x && girl.transform.position.x >= transform.position.x){
-                GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * -5) -1, 2);
-                collision.GetComponent<ParticleSystem>().loop = false;
-                collision.GetComponent<SpriteRenderer>().enabled = false;
-                collision.GetComponent<BoxCollider2D>().enabled = false;
-                Destroy(collision.gameObject, 0.30f);                
+                GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * -5) -1, 2);          
                 time = time + (forcaTiroAbs * 5);
                 pushed = true;
                 counter = true;
@@ -151,10 +145,6 @@ public class Enemy : EnemyFather {
 
             if(WhatFollow.position.x <= transform.position.x && girl.transform.position.x <= transform.position.x){
                 GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * +5) +1, 2);
-                collision.GetComponent<ParticleSystem>().loop = false;
-                collision.GetComponent<SpriteRenderer>().enabled = false;
-                collision.GetComponent<BoxCollider2D>().enabled = false;
-                Destroy(collision.gameObject, 0.20f);  
                 time = time + (forcaTiroAbs * 5);
                 pushed = true;
                 counter = true;

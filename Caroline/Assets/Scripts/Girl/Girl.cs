@@ -101,7 +101,7 @@ public class Girl : MonoBehaviour {
         }
         CheckFinishSpellInput();
         InputShootRock();
-        CheckPushingInput();
+        CheckHeartSpellInput();
 
         //Checar se esta no chao 
         if (touchEnemy2 == false)
@@ -169,7 +169,7 @@ public class Girl : MonoBehaviour {
     /// <summary>
     /// check if the input for pushing is presionated, if true: call Push() method 
     /// </summary>
-    void CheckPushingInput(){
+    void CheckHeartSpellInput(){
         if (Input.GetKeyDown(KeyCode.X))
         {
             print("canUseSpell: " + canUseSpell.ToString());
@@ -179,7 +179,6 @@ public class Girl : MonoBehaviour {
             CastHeartSpell();
         }
     }
-
 
 
     /// <summary>
@@ -451,6 +450,16 @@ public class Girl : MonoBehaviour {
         rb.isKinematic = false; 
     }
 
+
+    /// <summary>
+    /// simple test reload level function
+    /// </summary>
+    static public void Reload()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
+
     //********************COLLISION METHODS***************************************\\
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -495,8 +504,7 @@ public class Girl : MonoBehaviour {
         //dead
         if (collision.CompareTag("morte"))
         {
-            Scene scene = SceneManager.GetActiveScene(); 
-            SceneManager.LoadScene(scene.name);
+            Reload();
         }
         //colect ammo
         if (collision.CompareTag("municao"))
@@ -533,6 +541,11 @@ public class Girl : MonoBehaviour {
             {
                 ClimbLeft = true;
             }
+        }
+
+        if (collision.CompareTag("enemy2"))
+        {
+            Reload();
         }
     }
 
