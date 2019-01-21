@@ -197,7 +197,6 @@ public class Girl : MonoBehaviour {
         gravity = false;
         canUseSpell = false;
         audioManager.PlayGirlHitSound();
-        test.Play();
     }
 
 
@@ -217,7 +216,6 @@ public class Girl : MonoBehaviour {
         canMove = true;
         gravity = true;
         canUseSpell = true;
-        test.Stop();
     }
 
 
