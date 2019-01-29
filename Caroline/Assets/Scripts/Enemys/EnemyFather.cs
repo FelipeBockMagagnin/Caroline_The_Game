@@ -16,7 +16,7 @@ public class EnemyFather : MonoBehaviour {
     protected float         time = 0;               //tempo em que o inimigo fica parado
 	protected bool          pushed = false;         //se ele for empurrado não pode atacar
     protected bool          counter = false;        //define de o tempo continuara descendo
-    public    GameObject    girl;                   //contem a definição de menina
+    protected GameObject    girl;                   //contem a definição de menina
 	public   ParticleSystem hitParticle;            //
 	protected Animator      anim;                   //contem as animações do inimigo
     protected AudioManager audioManager;

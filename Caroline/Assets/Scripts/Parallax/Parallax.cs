@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour {
 
+    [Range(0,0.05f)]
 	public float velParallax;
 	public Renderer quad;
-    [SerializeField] Girl Menina;
+    Girl Menina;
 
     Vector2 offset;
 
-	void FixedUpdate () {
+    private void Start()
+    {
+        Menina = GameObject.Find("Girl").GetComponent<Girl>();
+    }
+
+    void FixedUpdate () {
         Move_Parallax();    
         offset = new Vector2 (velParallax * Time.deltaTime * Menina.verticalInput, 0);    
 	}

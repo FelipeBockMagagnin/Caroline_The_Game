@@ -6,7 +6,6 @@ public class SpawnMonsters : MonoBehaviour {
 
 
 	public GameObject[] enemys;
-	public AudioSource spawnSound;
 
 	void Start(){
 		for (int i = 0 ; i < enemys.Length; i ++)
@@ -18,7 +17,6 @@ public class SpawnMonsters : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collision)
     {
 		if(collision.CompareTag("Menina")){
-            spawnSound.Play();
 			for (int i = 0 ; i < enemys.Length; i ++){
                 enemys[i].SetActive(true);
 			}

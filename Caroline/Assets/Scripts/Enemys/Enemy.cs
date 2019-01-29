@@ -10,16 +10,18 @@ public class Enemy : EnemyFather {
     //*************start************************************
     //start components on spawn
     private void OnEnable() {
+        girl = GameObject.Find("Girl");
         scale = transform.localScale;
         scaleX = scale.x;
         anim = GetComponent<Animator>();
+        try
+        {
+            audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        }
+        catch (System.Exception)
+        {
+        }
         Follow(WhatFollow);
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-    }
-
-    private void Start()
-    {
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void FixedUpdate(){

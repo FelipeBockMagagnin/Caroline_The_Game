@@ -11,10 +11,11 @@ public class Enemy2 : EnemyFather {
 
 
     private void OnEnable() {
+        girl = GameObject.Find("Girl");
         scale = transform.localScale;
         scaleX = scale.x;
         anim = GetComponent<Animator>();
-        Follow(WhatFollow);
+        Follow(WhatFollow);        
     }
 
     /// <summary>

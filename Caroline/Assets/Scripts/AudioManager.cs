@@ -16,10 +16,6 @@ public class AudioManager : MonoBehaviour {
 
     int footStepIndex = 0;
 
-    private void Update()
-    {
-    }
-
     void Awake(){
 		if(instance == null){
 			instance = this;
@@ -32,7 +28,6 @@ public class AudioManager : MonoBehaviour {
     //futura verificação se esta no grass ou na madeira etc
     public void PlayGirlFootSteps()
     {
-        print("Index: " + footStepIndex);
         audioSource.clip = girlFootSteps[footStepIndex];
         audioSource.Play();
         if(footStepIndex >= (girlFootSteps.Length - 1))

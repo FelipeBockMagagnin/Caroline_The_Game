@@ -55,6 +55,7 @@ public class Girl : MonoBehaviour {
     [HideInInspector]
     public  float       absoluteShootingForce;          //guarda força total do tiro
     public  GameObject  heartSpeel;                   //spell lançado ao empurrar;
+    public ParticleSystem heartSpellParticles;
     [HideInInspector]
     public  bool        canUseSpell;                    //define se o poder spell poderá se spawnado;
  
@@ -75,6 +76,15 @@ public class Girl : MonoBehaviour {
 		anim = GetComponent<Animator> ();
         GirlUi = GetComponent<GirlUI>();
         cam = GetComponent<Change_camera_atributes>();
+
+        try
+        {
+            audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        }
+        catch (System.Exception)
+        {
+            print("a");
+        }
 
         //inicializar as variaveis do jogo
         resetAtributtes();
@@ -139,7 +149,11 @@ public class Girl : MonoBehaviour {
 
         if(gravity == false)
         {
-            rb.velocity = Vector3.zero;
+            rb.isKinematic = true;
+            rb.velocity = new Vector2(0, 0);
+        } else
+        {
+            rb.isKinematic = false;
         }
     }
 
@@ -185,9 +199,7 @@ public class Girl : MonoBehaviour {
     /// cast a heart spell that kill enemys
     /// </summary>
     void CastHeartSpell()
-    {
-        Vector3 instanciador12 = rockInstancePosition.transform.position;
-        Instantiate(heartSpeel, instanciador12, rockInstancePosition.rotation);
+    {        
         GirlUi.AtivarEmpurrar();
         time = 1.5f;
         anim.SetBool("Idle", true);
@@ -196,7 +208,16 @@ public class Girl : MonoBehaviour {
         canMove = false;
         gravity = false;
         canUseSpell = false;
-        audioManager.PlayGirlHitSound();
+        anim.SetBool("StopHeartSpell", false);
+        anim.SetTrigger("HeartSpell");
+        audioManager.PlayGirlHitSound();        
+    }
+
+    public void CreateHeartSpell()
+    {
+        Vector3 instanciador12 = rockInstancePosition.transform.position;
+        Instantiate(heartSpeel, instanciador12, rockInstancePosition.rotation);
+        Instantiate(heartSpellParticles, instanciador12, rockInstancePosition.rotation);        
     }
 
 
@@ -211,6 +232,7 @@ public class Girl : MonoBehaviour {
         anim.SetBool("Idle", true);
         anim.SetBool("Pulo", false);
         anim.SetBool("Andando", false);
+        anim.SetBool("StopHeartSpell", true);
         time = 0.3f;
         pressedSpace = false;
         canMove = true;
@@ -342,7 +364,7 @@ public class Girl : MonoBehaviour {
         { 
             rb.gravityScale = fallMultiplier;
         }
-        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow))
+        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow) && gravity)
         {
             rb.gravityScale = lowjumpmultiplayer;
         }
