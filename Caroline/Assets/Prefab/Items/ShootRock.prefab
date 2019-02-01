@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
+  timeToDestroy: 0.8
 --- !u!198 &198959345733216614
 ParticleSystem:
   m_ObjectHideFlags: 0

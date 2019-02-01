@@ -5,7 +5,7 @@ using UnityEngine;
 public class PoleActiver : MonoBehaviour
 {
 
-    PoleManager polemanager;
+    public PoleManager polemanager;
     public Animator anim;
     public ParticleSystem hitParticle;
     bool activated = false;
@@ -13,7 +13,6 @@ public class PoleActiver : MonoBehaviour
     private void Start()
     {
         activated = false;
-        polemanager = GameObject.Find("PoleManager").GetComponent<PoleManager>();
     }
 
 

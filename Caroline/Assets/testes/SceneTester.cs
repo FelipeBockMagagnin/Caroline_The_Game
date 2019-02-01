@@ -48,6 +48,10 @@ public class SceneTester : MonoBehaviour
         {
             SceneManager.LoadScene("Lvl_6");
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            SceneManager.LoadScene("Lvl_7");
+        }
 
 
     }

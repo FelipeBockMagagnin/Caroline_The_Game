@@ -9,9 +9,25 @@ public class pole
     public bool activated;
 }
 
+
+
+
 public class PoleManager : MonoBehaviour
 {
     public pole[] poles;
+    public bool gateTurntoRight;
+    public Animator gateAnim;
+
+    public void OpenTheGate()
+    {
+        if (gateTurntoRight)
+        {
+            gateAnim.SetTrigger("OpenRight");
+        } else
+        {
+            gateAnim.SetTrigger("OpenLeft");
+        }
+    }
 
     public void activePole(GameObject _pole, Animator anim)
     {
@@ -46,7 +62,7 @@ public class PoleManager : MonoBehaviour
 
         if(cont == poles.Length)
         {
-            Debug.Log("Win");
+            OpenTheGate();
         }
     }
 }
