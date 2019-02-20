@@ -36,6 +36,7 @@ public class PoleManager : MonoBehaviour
             if(_pol.Pole == _pole)
             {
                 _pol.activated = true;
+                GameObject.Find("Girl").GetComponent<Change_camera_atributes>().NormalShake();
                 setAnimActive(anim);
                 checkIfActivated();
                 break;

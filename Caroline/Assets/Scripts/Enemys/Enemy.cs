@@ -123,6 +123,7 @@ public class Enemy : EnemyFather {
         //Empurrar/puxar caso haja somente a menina
         if(collision.CompareTag("Spell_Menina_Empurrar"))
         {
+            girl.GetComponent<Change_camera_atributes>().NormalShake();
             Destroy(collision);
             Destroy(collision.gameObject);
             DestroyThis();

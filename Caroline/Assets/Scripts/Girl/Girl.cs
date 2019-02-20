@@ -83,7 +83,7 @@ public class Girl : MonoBehaviour {
         }
         catch (System.Exception)
         {
-            print("a");
+            print("não foi acahado o audio manager");
         }
 
         //inicializar as variaveis do jogo
@@ -210,7 +210,7 @@ public class Girl : MonoBehaviour {
         canUseSpell = false;
         anim.SetBool("StopHeartSpell", false);
         anim.SetTrigger("HeartSpell");
-        audioManager.PlayGirlHitSound();        
+        audioManager.PlayGirlHitSound();
     }
 
     public void CreateHeartSpell()
@@ -238,6 +238,7 @@ public class Girl : MonoBehaviour {
         canMove = true;
         gravity = true;
         canUseSpell = true;
+        cam.NormalShake();
     }
 
 
@@ -349,8 +350,8 @@ public class Girl : MonoBehaviour {
         if(inGround && spawnJumpParticle)
         {
             spawnJumpParticle = false;
-            Instantiate(jumpParticle, check.position,Quaternion.identity);    
-            cam.shake();         
+            Instantiate(jumpParticle, check.position,Quaternion.identity);
+            cam.NormalShake();        
         } 
     }
 
@@ -575,6 +576,7 @@ public class Girl : MonoBehaviour {
         if (collision.CompareTag("no_speel_area"))
         {
             canUseSpell = true;
+            cam.shake();
         }
         //ao sair pode continuar tendo parallax
         if (collision.CompareTag("parallax"))

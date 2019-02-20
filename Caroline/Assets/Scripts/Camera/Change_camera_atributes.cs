@@ -16,6 +16,11 @@ public bool canShake = false;
 		}
 	}
 
+    public void NormalShake()
+    {
+        cam.SetTrigger("shake");
+    }
+
 	void OnTriggerEnter2D(Collider2D collider)
     {
 		if(collider.CompareTag("descer")){
