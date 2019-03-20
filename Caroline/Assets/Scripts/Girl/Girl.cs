@@ -61,7 +61,8 @@ public class Girl : MonoBehaviour {
  
     //ANIMATION ATTRIBUTES
             Change_camera_atributes cam;
-            Animator    anim;                           //animações   
+    [HideInInspector]
+    public Animator    anim;                           //animações   
 
     //UI ATTIBUTES
             GirlUI      GirlUi;                         //script de controle de ui da menina
