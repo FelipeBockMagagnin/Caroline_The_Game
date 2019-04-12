@@ -483,11 +483,20 @@ public class Girl : MonoBehaviour {
     }
 
     //********************COLLISION METHODS***************************************\\
+    public void DetachCarolineChildren()
+    {
+        transform.parent = null;
+        canBeChildOfEnemy = false;
+        inGround = true;
+        touchEnemy2 = false;
+    }
+
+    private bool canBeChildOfEnemy = true;
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         //the girl turns into a child of the enemy2 while under the enemy2
-        if (collision.gameObject.tag == "enemy2")
+        if (collision.gameObject.tag == "enemy2" && canBeChildOfEnemy)
         {
             //se o inimigo estiver indo para esquerda, tornar a menina um filho dele faria com ela invertesse a direção
             if (!collision.gameObject.GetComponent<Enemy2>().faceRight)
@@ -506,7 +515,7 @@ public class Girl : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("enemy2"))
+        if (collision.gameObject.CompareTag("enemy2") & canBeChildOfEnemy)
         {
             touchEnemy2 = true;
         }
@@ -518,6 +527,7 @@ public class Girl : MonoBehaviour {
         {
             inGround = false;
             touchEnemy2 = false;
+            canBeChildOfEnemy = true;
         }
     }
 

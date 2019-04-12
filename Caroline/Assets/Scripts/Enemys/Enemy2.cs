@@ -18,9 +18,6 @@ public class Enemy2 : EnemyFather {
         Follow(WhatFollow);        
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void Move()
     {
         transform.Translate(speed * Time.deltaTime, 0, 0);
@@ -78,6 +75,16 @@ public class Enemy2 : EnemyFather {
                 scale.x = -(Mathf.Abs(scaleX));
                 transform.localScale = scale;
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("morte"))
+        {
+            girl.GetComponent<Girl>().DetachCarolineChildren();
+            SpawnHitParticle();
+            Destroy(this.gameObject);
         }
     }
 
