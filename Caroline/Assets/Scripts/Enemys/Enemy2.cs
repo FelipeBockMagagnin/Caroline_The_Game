@@ -10,7 +10,8 @@ public class Enemy2 : EnemyFather {
     public bool faceRight;
 
 
-    private void OnEnable() {
+    private void OnEnable() 
+    {
         girl = GameObject.Find("Girl");
         scale = transform.localScale;
         scaleX = scale.x;
@@ -49,14 +50,9 @@ public class Enemy2 : EnemyFather {
                 scale.x = -(Mathf.Abs(scaleX));
                 transform.localScale = scale;       
             }
-        }
-        
+        }        
 	}   
 
-
-    /// <summary>
-    /// 
-    /// </summary>
     void Shoot()
     {
         if (wasShoot)
@@ -87,5 +83,4 @@ public class Enemy2 : EnemyFather {
             Destroy(this.gameObject);
         }
     }
-
 }
