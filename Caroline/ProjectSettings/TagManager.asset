@@ -21,6 +21,9 @@ TagManager:
   - Spell_Menina_Empurrar
   - no_speel_area
   - enemy2
+  - ExplosionFX
+  - Bullet
+  - BombPickup
   layers:
   - Default
   - TransparentFX
@@ -43,7 +46,7 @@ TagManager:
   - tiro
   - enemy2
   - Camera
-  - 
+  - Moon
   - 
   - 
   - 
