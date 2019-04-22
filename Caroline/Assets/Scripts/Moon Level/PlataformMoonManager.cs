@@ -4,38 +4,59 @@ using UnityEngine;
 
 public class PlataformMoonManager : MonoBehaviour
 {
-    float speed;
+    //moving
+    private float speed;
     public bool move;
 
+    //Triggers
     public float time;
     public float TimeWhenStopPlataform;
     public float TimeWhenStartSpawn;
     public float TimeWhenStopSpawn;
     public float TimeWhenStopPlataform2;
 
+    //Musics
     public AudioClip Music1;
     public AudioClip Transition1Sound;
     public AudioClip Music2;
     public AudioClip Transition2Sound;
     public AudioClip Music3;
 
+    //misc
     public Animator moonAnim;
     public FightMoonManager fightMoonManager;
-
+    public Transform finalPoint;
+    public Girl girl;
+    
+    //triggers
     private bool start = false;
     private bool startSpawn = true;
     private bool stopspawn = true;
     private bool transition1 = true;
-    private bool transition2 = true;
-
-    public Transform finalPoint;
-    public Girl girl;
+    private bool transition2 = true;   
 
     private void Awake()
     {
-        speed = 1f;
-        move = false;
+        resetStats();        
+    }
+
+    private void resetStats()
+    {
+        speed = 1;
         time = 0;
+        move = false;
+        start = false;
+        startSpawn = true;
+        stopspawn = true;
+        transition1 = true;
+        transition2 = true; 
+    }
+
+    private void setSpeed()
+    {
+        //distance to final point
+        float distance = Mathf.Abs(transform.position.y - finalPoint.position.y);
+        speed = distance/(TimeWhenStopSpawn-time);
     }
 
     void countTime()
@@ -47,6 +68,10 @@ public class PlataformMoonManager : MonoBehaviour
     {
         if (start)
         {
+            if(!startSpawn)
+            {
+                setSpeed();
+            }
             countTime();
             verifyTime();
             if (move && this.transform.position.y <= finalPoint.position.y)
@@ -61,14 +86,14 @@ public class PlataformMoonManager : MonoBehaviour
         if(time >= TimeWhenStartSpawn && startSpawn)
         {
             startSpawn = false;
-            //fightMoonManager.StartSpawnning();
+            fightMoonManager.StartSpawnning();
             TransitionStartSpawn();
         }
 
         if(time >= TimeWhenStopSpawn && stopspawn)
         {
             stopspawn = false;
-            //fightMoonManager.StopSpawnning();
+            fightMoonManager.StopSpawnning();
             TransitionStopSpawn();
         }
 
@@ -107,14 +132,12 @@ public class PlataformMoonManager : MonoBehaviour
     private void TransitionStopSpawn()
     {
         move = false;
-        speed = 0;
         Debug.Log("Parou de Spawnar");
     }
 
     private void TransitionStartSpawn()
     {
         move = true;
-        speed = 0.5f;
         Debug.Log("Começou a spawnar");
     }
 
@@ -128,13 +151,10 @@ public class PlataformMoonManager : MonoBehaviour
 
     }
 
-
-
     public void EnableSpawnEnemy2()
     {
 
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -147,6 +167,11 @@ public class PlataformMoonManager : MonoBehaviour
             this.GetComponent<Animator>().SetTrigger("ShakePlataform");
             girl.anim.SetBool("Idle", true);
             girl.anim.SetBool("Andando", false);
+        }
+
+        if(collision.CompareTag("enemy2"))
+        {
+            collision.transform.parent = this.transform;
         }
     }
 

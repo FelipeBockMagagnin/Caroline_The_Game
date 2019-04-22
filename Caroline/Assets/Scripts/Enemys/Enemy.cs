@@ -11,6 +11,10 @@ public class Enemy : EnemyFather {
     //start components on spawn
     private void OnEnable() {
         girl = GameObject.Find("Girl");
+        if(WhatFollow == null)
+        {
+            WhatFollow = girl.transform;
+        }
         scale = transform.localScale;
         scaleX = scale.x;
         anim = GetComponent<Animator>();

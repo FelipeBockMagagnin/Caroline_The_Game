@@ -185,12 +185,9 @@ public class Girl : MonoBehaviour {
     /// check if the input for pushing is presionated, if true: call Push() method 
     /// </summary>
     void CheckHeartSpellInput(){
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            print("canUseSpell: " + canUseSpell.ToString());
-        }
         if (Input.GetKeyDown(KeyCode.X) && canMove && canUseSpell && !shooting)
         {
+            knockBack();
             CastHeartSpell();
         }
     }
@@ -200,25 +197,39 @@ public class Girl : MonoBehaviour {
     /// cast a heart spell that kill enemys
     /// </summary>
     void CastHeartSpell()
-    {        
+    {                
         GirlUi.AtivarEmpurrar();
+        transform.parent = null;
         time = 1.5f;
         anim.SetBool("Idle", true);
         anim.SetBool("Pulo", false);
         anim.SetBool("Andando", false);
         canMove = false;
-        gravity = false;
+        //gravity = false;
         canUseSpell = false;
         anim.SetBool("StopHeartSpell", false);
-        anim.SetTrigger("HeartSpell");
-        audioManager.PlayGirlHitSound();
+        anim.SetTrigger("HeartSpell");        
+        audioManager.PlayGirlHitSound();        
+    }
+
+    private void knockBack()
+    {
+        if(face)
+        {
+            rb.AddForce(new Vector2(-8,2),ForceMode2D.Impulse);
+        }
+        else 
+        {
+            rb.AddForce(new Vector2(8,2),ForceMode2D.Impulse);
+        }
     }
 
     public void CreateHeartSpell()
     {
         Vector3 instanciador12 = rockInstancePosition.transform.position;
         Instantiate(heartSpeel, instanciador12, rockInstancePosition.rotation);
-        Instantiate(heartSpellParticles, instanciador12, rockInstancePosition.rotation);        
+        Instantiate(heartSpellParticles, instanciador12, rockInstancePosition.rotation);     
+        transform.parent = null;   
     }
 
 
@@ -234,10 +245,11 @@ public class Girl : MonoBehaviour {
         anim.SetBool("Pulo", false);
         anim.SetBool("Andando", false);
         anim.SetBool("StopHeartSpell", true);
+        rb.velocity = new Vector2(0,0);
         time = 0.3f;
         pressedSpace = false;
         canMove = true;
-        gravity = true;
+        //gravity = true;
         canUseSpell = true;
         cam.NormalShake();
     }

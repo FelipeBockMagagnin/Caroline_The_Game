@@ -13,6 +13,10 @@ public class Enemy2 : EnemyFather {
     private void OnEnable() 
     {
         girl = GameObject.Find("Girl");
+        if(WhatFollow == null)
+        {
+            WhatFollow = girl.transform;
+        }
         scale = transform.localScale;
         scaleX = scale.x;
         anim = GetComponent<Animator>();
@@ -56,7 +60,7 @@ public class Enemy2 : EnemyFather {
     void Shoot()
     {
         if (wasShoot)
-        {
+        {            
             if (girl.transform.position.x >= transform.position.x)
             {
                 speed = shootSpeed;
@@ -72,6 +76,11 @@ public class Enemy2 : EnemyFather {
                 transform.localScale = scale;
             }
         }
+    }
+
+    public void disableRigidBody()
+    {
+        this.GetComponent<Rigidbody2D>().isKinematic = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

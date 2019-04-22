@@ -7,8 +7,8 @@ public class FightMoonManager : MonoBehaviour
     public GameObject enemy1;
     public GameObject enemy2;
 
-    public Transform SpawnDir;
-    public Transform SpawnEsq;
+    public Transform spawnRight;
+    public Transform spawnLeft;
 
     public float SpawnWaitTime;
 
@@ -25,11 +25,41 @@ public class FightMoonManager : MonoBehaviour
         StartCoroutine(spawn());
     }
 
+    private int lastRoll = 0;
     void SpawnRandomEnemyInRandomSpot()
     {
+        int roll = Random.Range(1,5);
+        if(roll == lastRoll)
+        {
+            if(roll < 5)
+            {
+                roll++;
+            }
+            else 
+            {
+                roll--;
+            }
+        }
+        
         //BASIC CODE TO TEST
-        Instantiate(enemy1, SpawnDir.position, Quaternion.identity);
-        Instantiate(enemy2, SpawnEsq.position, Quaternion.identity);
+        Debug.Log("Valor roletado: " + roll);
+        switch(roll)
+        {
+            case 1:
+                Instantiate(enemy1, spawnRight.position, Quaternion.identity);
+                break;
+            case 2:
+                Instantiate(enemy2, spawnLeft.position, Quaternion.identity);
+                break;
+            case 3: 
+                Instantiate(enemy1, spawnLeft.position, Quaternion.identity);
+                break;
+            case 4:
+                Instantiate(enemy2, spawnRight.position, Quaternion.identity);
+                break;
+        }       
+
+        lastRoll = roll;
     }
 
     public void StopSpawnning()
