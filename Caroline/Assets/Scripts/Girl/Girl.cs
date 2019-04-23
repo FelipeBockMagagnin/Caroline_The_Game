@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Girl : MonoBehaviour {
 
@@ -208,8 +209,7 @@ public class Girl : MonoBehaviour {
         //gravity = false;
         canUseSpell = false;
         anim.SetBool("StopHeartSpell", false);
-        anim.SetTrigger("HeartSpell");        
-        audioManager.PlayGirlHitSound();        
+        anim.SetTrigger("HeartSpell");               
     }
 
     private void knockBack()
@@ -335,17 +335,45 @@ public class Girl : MonoBehaviour {
             inGround = false;
             rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse); 
             Instantiate(jumpParticle, check.position,Quaternion.identity);
-            audioManager.PlayGirlJumpSound();
+            playJumpSound();
         }
     }
 
-    /// <summary>
-    /// play a footstep sound
-    /// </summary>
+    private void playGirlHitSound()
+    {
+        try
+        {
+            audioManager.PlayGirlHitSound(); 
+        } 
+        catch (NullReferenceException e)
+        {
+            Debug.Log("Error " + e.Message);
+        }
+    }
+
     public void PlayFootStepSound()
     {
-        audioManager.PlayGirlFootSteps();
+        try
+        {
+            audioManager.PlayGirlFootSteps();
+        }
+        catch(NullReferenceException e)
+        {
+            Debug.Log("Error " + e.Message);
+        }
     } 
+
+    public void playJumpSound()
+    {
+        try
+        {
+            audioManager.PlayGirlJumpSound();
+        } 
+        catch (NullReferenceException e)
+        {
+            Debug.Log("Error " + e.Message);
+        }
+    }
    
     /// <summary>
     ///  set variable "spawnJumoParticle", activated/called in animation
@@ -498,8 +526,8 @@ public class Girl : MonoBehaviour {
     public void DetachCarolineChildren()
     {
         transform.parent = null;
-        canBeChildOfEnemy = false;
-        inGround = true;
+        canBeChildOfEnemy = true;
+        inGround = false;
         touchEnemy2 = false;
     }
 
@@ -515,12 +543,16 @@ public class Girl : MonoBehaviour {
             {
                 invertDirection = true;
             }
+            else 
+            {
+                invertDirection = false;
+            }
             inGround = true;            
             transform.parent = collision.transform;            
         }
         else
         {
-            transform.parent = null;
+            //transform.parent = null;
             invertDirection = false;
         }
     }
@@ -537,9 +569,7 @@ public class Girl : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("enemy2"))
         {
-            inGround = false;
-            touchEnemy2 = false;
-            canBeChildOfEnemy = true;
+            DetachCarolineChildren();
         }
     }
 

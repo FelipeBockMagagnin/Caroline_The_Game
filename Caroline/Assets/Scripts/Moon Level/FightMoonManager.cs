@@ -28,7 +28,7 @@ public class FightMoonManager : MonoBehaviour
     private int lastRoll = 0;
     void SpawnRandomEnemyInRandomSpot()
     {
-        int roll = Random.Range(1,5);
+        int roll = Random.Range(1,7);
         if(roll == lastRoll)
         {
             if(roll < 5)
@@ -40,9 +40,7 @@ public class FightMoonManager : MonoBehaviour
                 roll--;
             }
         }
-        
-        //BASIC CODE TO TEST
-        Debug.Log("Valor roletado: " + roll);
+
         switch(roll)
         {
             case 1:
@@ -57,8 +55,19 @@ public class FightMoonManager : MonoBehaviour
             case 4:
                 Instantiate(enemy2, spawnRight.position, Quaternion.identity);
                 break;
-        }       
-
+            case 5:
+                Instantiate(enemy1, spawnLeft.position, Quaternion.identity);
+                break;
+            case 6:
+                Instantiate(enemy1, spawnRight.position, Quaternion.identity);
+                break;
+            case 7:
+                Instantiate(enemy1, spawnLeft.position, Quaternion.identity);
+                break;
+            case 8:
+                Instantiate(enemy1, spawnRight.position, Quaternion.identity);
+                break;
+        }      
         lastRoll = roll;
     }
 
