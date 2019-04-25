@@ -42,7 +42,7 @@ public class PlataformMoonManager : MonoBehaviour
 
     private void resetStats()
     {
-        speed = 1;
+        speed = 2;
         time = 0;
         move = false;
         start = false;

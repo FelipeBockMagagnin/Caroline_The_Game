@@ -11,14 +11,17 @@ public class MoonScript : MonoBehaviour
     public Vector3 offset;
     Vector3 targetPos;
 
+    private Explodable _explodable;
+
     private void Awake()
     {
+        _explodable = GetComponent<Explodable>();
         targetPos = transform.position;
     }
 
     private void Update()
     {
-        this.transform.localScale = new Vector2((target.transform.position.y / 60) + 1, (target.transform.position.y / 60) + 1);
+        this.transform.localScale = new Vector2((target.transform.position.y / 60) + 0.5f, (target.transform.position.y / 60) + 0.5f);
         //this.transform.position = new Vector2(girlTrans.position.x, girlTrans.position.y + increaseY);
     }
 
@@ -38,6 +41,13 @@ public class MoonScript : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, targetPos + offset, 0.25f);
 
         }
+    }
+
+    public void explodeWithForce()
+    {
+        _explodable.explode();
+		ExplosionForce ef = GameObject.FindObjectOfType<ExplosionForce>();
+		ef.doExplosion(transform.position);
     }
 
 

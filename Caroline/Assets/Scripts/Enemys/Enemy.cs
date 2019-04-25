@@ -103,7 +103,7 @@ public class Enemy : EnemyFather {
     /// <summary>
     /// destroy the enemy and spawn particles
     /// </summary>
-    void DestroyThis()
+    protected void DestroyThis()
     {
         SpawnHitParticle();
         Destroy(this.gameObject);

@@ -57,7 +57,7 @@ public class FallPlataform : MonoBehaviour
     void fall()
     {
         speed = fallSpeed;
-        
+        Destroy(this.GetComponent<Collider2D>());
     }
 
     private void FixedUpdate()
