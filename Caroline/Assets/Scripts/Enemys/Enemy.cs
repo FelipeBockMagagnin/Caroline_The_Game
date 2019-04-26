@@ -38,7 +38,7 @@ public class Enemy : EnemyFather {
     /// <summary>
     /// count the stop time of the enemy
     /// </summary>
-    void TimeCount()
+    protected virtual void TimeCount()
     {
         if(time > 10){
             time = 10;
@@ -103,7 +103,7 @@ public class Enemy : EnemyFather {
     /// <summary>
     /// destroy the enemy and spawn particles
     /// </summary>
-    protected void DestroyThis()
+    public virtual void DestroyThis()
     {
         SpawnHitParticle();
         Destroy(this.gameObject);
@@ -147,7 +147,7 @@ public class Enemy : EnemyFather {
                 pushed = true;
                 counter = true;
                 SpawnHitParticle();
-                audioManager.PlayEnemyHitSound();
+                PlayEnemyHitSound();
             }
 
             if(WhatFollow.position.x <= transform.position.x && girl.transform.position.x <= transform.position.x){
@@ -156,7 +156,7 @@ public class Enemy : EnemyFather {
                 pushed = true;
                 counter = true;
                 SpawnHitParticle();
-                audioManager.PlayEnemyHitSound();
+                PlayEnemyHitSound();
             }
         }
     }

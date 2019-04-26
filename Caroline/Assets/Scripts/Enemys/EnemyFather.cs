@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyFather : MonoBehaviour {
 
@@ -33,14 +34,14 @@ public class EnemyFather : MonoBehaviour {
         {
             if (followObject.transform.position.x >= transform.position.x)
             {
-                speed = Random.Range(minSpeed,maxSpeed);
+                speed = UnityEngine.Random.Range(minSpeed,maxSpeed);
                 scale = transform.localScale;
                 scale.x = Mathf.Abs(scaleX);
                 transform.localScale = scale;        
             }
             else
             {
-                speed = -(Random.Range(minSpeed,maxSpeed));
+                speed = -(UnityEngine.Random.Range(minSpeed,maxSpeed));
                 scale = transform.localScale;
                 scale.x = -(Mathf.Abs(scaleX));
                 transform.localScale = scale;       
@@ -52,7 +53,7 @@ public class EnemyFather : MonoBehaviour {
     /// set the of enemy according to the time
     /// </summary>
     /// <param name="InitialColor"></param>
-    protected void EnemyColor(float InitialColor)
+    public virtual void EnemyColor(float InitialColor)
     {
         float color;
         color = 1 - InitialColor / 3.33f;
@@ -67,4 +68,18 @@ public class EnemyFather : MonoBehaviour {
         Instantiate(hitParticle, transform.position, Quaternion.identity);
     }
 
+    /// <summary>
+    /// sound with exeption tratament
+    /// </summary>
+    protected void PlayEnemyHitSound()
+    {
+        try
+        {
+            audioManager.PlayEnemyHitSound();
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log("Error: " + e.Message);
+        }
+    }
 }

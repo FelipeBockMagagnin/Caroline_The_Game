@@ -555,6 +555,20 @@ public class Girl : MonoBehaviour {
             //transform.parent = null;
             invertDirection = false;
         }
+
+        if(collision.gameObject.CompareTag("fallplataform"))
+        {
+            if(Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                rb.velocity = new Vector2 (rb.velocity.x,0);
+                radius = 0.3f;
+            }
+            radius = 0.7f;
+        }
+        else 
+        {
+            radius = 0.3f;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -570,6 +584,11 @@ public class Girl : MonoBehaviour {
         if (collision.gameObject.CompareTag("enemy2"))
         {
             DetachCarolineChildren();
+        }
+
+        if(collision.gameObject.CompareTag("fallplataform"))
+        {
+            radius = 0.3f;
         }
     }
 

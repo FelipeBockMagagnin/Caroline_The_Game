@@ -24,6 +24,7 @@ TagManager:
   - ExplosionFX
   - Bullet
   - BombPickup
+  - fallplataform
   layers:
   - Default
   - TransparentFX
