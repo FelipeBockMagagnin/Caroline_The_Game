@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<dialogues>
+
+	<dialogue name="fala0">
+		<sentences>
+		
+			<sentence>(color=yellow)Oi(endcolor) (bold)meu(endbold) (color=blue)nome(endcolor) é Pedro!</sentence>
+			<sentence>Eu (color=red)tenho(endcolor) uma (italic)missão(enditalic) para você!</sentence>
+			<sentence>Você aceita?</sentence>
+		</sentences>
+	</dialogue>
+	
+	<dialogue name="fala1">
+		<sentences>
+		
+			<sentence>Fico feliz em saber que você irá me ajudar!</sentence>
+			<sentence>Ao terminar a missão volte a falar comigo!</sentence>
+			<sentence>Até Logo!</sentence>
+		</sentences>
+	</dialogue>	
+	
+</dialogues>

@@ -71,6 +71,10 @@ public class Girl : MonoBehaviour {
             bool        touchEnemy2;
 
     public ParticleSystem test;
+    public GameObject interactiveObj;
+    public bool interacting; 
+    private bool canBeChildOfEnemy = true;
+    public bool inDialogue;
 
     void Awake(){
         //inicializar ps componentes do jogo
@@ -114,6 +118,7 @@ public class Girl : MonoBehaviour {
         CheckFinishSpellInput();
         InputShootRock();
         CheckHeartSpellInput();
+        CheckInteract();
 
         //Checar se esta no chao 
         if (touchEnemy2 == false)
@@ -177,6 +182,20 @@ public class Girl : MonoBehaviour {
         stopParallax = false;
         canMove = true;
         pressedSpace = false;
+        interacting = false;
+    }
+
+    //*******************************************************************\\
+    //INTERACT METHODS
+    private void CheckInteract()
+    {
+        if(Input.GetKeyDown(KeyCode.X) && interacting && !shooting && canUseSpell && interactiveObj != null)
+        {
+            canMove = false;
+            interactiveObj.SendMessage("Interact"); 
+            anim.SetBool("Idle", true);   
+            anim.SetBool("Andando", false);        
+        }
     }
 
     //*******************************************************************\\
@@ -186,13 +205,12 @@ public class Girl : MonoBehaviour {
     /// check if the input for pushing is presionated, if true: call Push() method 
     /// </summary>
     void CheckHeartSpellInput(){
-        if (Input.GetKeyDown(KeyCode.X) && canMove && canUseSpell && !shooting)
+        if (Input.GetKeyDown(KeyCode.X) && canMove && canUseSpell && !shooting && !interacting)
         {
             knockBack();
             CastHeartSpell();
         }
     }
-
 
     /// <summary>
     /// cast a heart spell that kill enemys
@@ -206,7 +224,6 @@ public class Girl : MonoBehaviour {
         anim.SetBool("Pulo", false);
         anim.SetBool("Andando", false);
         canMove = false;
-        //gravity = false;
         canUseSpell = false;
         anim.SetBool("StopHeartSpell", false);
         anim.SetTrigger("HeartSpell");               
@@ -232,7 +249,6 @@ public class Girl : MonoBehaviour {
         transform.parent = null;   
     }
 
-
     /// <summary>
     /// make the girl move again and can shoot again too
     /// </summary>
@@ -253,7 +269,6 @@ public class Girl : MonoBehaviour {
         canUseSpell = true;
         cam.NormalShake();
     }
-
 
     /// <summary>
     /// Check if the finish spell input was pressed in the right time
@@ -396,7 +411,6 @@ public class Girl : MonoBehaviour {
         } 
     }
 
-
     /// <summary>
     /// Gravity change in the jump according to how much the user pressed the jump button
     /// </summary>
@@ -512,7 +526,6 @@ public class Girl : MonoBehaviour {
         rb.isKinematic = false; 
     }
 
-
     /// <summary>
     /// simple test reload level function
     /// </summary>
@@ -530,8 +543,6 @@ public class Girl : MonoBehaviour {
         inGround = false;
         touchEnemy2 = false;
     }
-
-    private bool canBeChildOfEnemy = true;
 
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -594,6 +605,13 @@ public class Girl : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {   
+        //interract
+        if(collision.CompareTag("Interactive"))
+        {
+            interactiveObj = collision.gameObject;
+            interacting = true;
+        }
+
         //dead
         if (collision.CompareTag("morte"))
         {
@@ -644,6 +662,13 @@ public class Girl : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D collision)
     {
+        //interract
+        if(collision.CompareTag("Interactive"))
+        {
+            interactiveObj = null;
+            interacting = false;
+        }
+
         //can use spell out of this area
         if (collision.CompareTag("no_speel_area"))
         {

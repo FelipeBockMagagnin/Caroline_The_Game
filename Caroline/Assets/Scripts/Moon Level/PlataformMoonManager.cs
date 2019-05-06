@@ -151,17 +151,12 @@ public class PlataformMoonManager : MonoBehaviour
 
     }
 
-    public void EnableSpawnEnemy2()
-    {
-
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        move = true;
-        start = true;
+    {        
         if (collision.CompareTag("Menina"))
         {
+            move = true;
+            start = true;
             Destroy(this.GetComponent<Collider2D>());
             collision.GetComponent<Girl>().canMove = false;
             this.GetComponent<Animator>().SetTrigger("ShakePlataform");

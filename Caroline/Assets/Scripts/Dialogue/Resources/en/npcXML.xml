@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<dialogos>
+
+	<dialogo name="fala0">
+		<falas>
+		
+			<fala>hi, meu nome é Pedro!</fala>
+			<fala>Eu tenho uma missão para você!</fala>
+			<fala>Você aceita?</fala>
+		</falas>
+	</dialogo>
+	
+	<dialogo name="fala1">
+		<falas>
+		
+			<fala>Fico feliz em saber que você irá me ajudar!</fala>
+			<fala>Ao terminar a missão volte a falar comigo!</fala>
+			<fala>Até Logo!</fala>
+		</falas>
+	</dialogo>	
+	
+</dialogos>
