@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 
-public class Girl : MonoBehaviour {
-
-    
+public class Girl : MonoBehaviour {    
     //FIGHT ATTRIBUTES
     [HideInInspector]
     public  bool        pressedSpace;                   //saber se errou
@@ -61,20 +59,21 @@ public class Girl : MonoBehaviour {
     public  bool        canUseSpell;                    //define se o poder spell poderá se spawnado;
  
     //ANIMATION ATTRIBUTES
-            Change_camera_atributes cam;
+           Change_camera_atributes cam;
     [HideInInspector]
     public Animator    anim;                           //animações   
 
-    //UI ATTIBUTES
+    //UI ATTRIBUTES
             GirlUI      GirlUi;                         //script de controle de ui da menina
-    public AudioManager audioManager;
+    public  AudioManager audioManager;
             bool        touchEnemy2;
 
-    public ParticleSystem test;
-    public GameObject interactiveObj;
-    public bool interacting; 
+    //MISC ATTRIBUTES
+    public  GameObject interactBaloon;
+    private GameObject interactiveObj; 
+    private bool interacting; 
     private bool canBeChildOfEnemy = true;
-    public bool inDialogue;
+    private bool inDialogue;
 
     void Awake(){
         //inicializar ps componentes do jogo
@@ -105,7 +104,9 @@ public class Girl : MonoBehaviour {
         }
         SpawnGroundParticle();    
         JumpGravityControl();
-        CalcTime();         
+        CalcTime();      
+        
+        interactBaloon.SetActive(interacting);   
     }  
 
     private void Update()

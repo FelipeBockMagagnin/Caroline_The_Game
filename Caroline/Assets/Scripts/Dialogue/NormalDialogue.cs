@@ -13,11 +13,13 @@ public class NormalDialogue : MonoBehaviour
 
     public int sentenceID;
     public int  dialogueID;    
-    public List<string> dialogue0;
-    public List<string> dialogue1;
+    //public List<string> dialogue0;
+    //public List<string> dialogue1;
     public List<string> dialogueLines; 
     private bool dialogueOn;
     private Girl girl;
+    
+    public Dictionary<string, List<string>> dialogueLists = new Dictionary<string, List<string>>();    
 
     private void Start()
     {
@@ -46,11 +48,34 @@ public class NormalDialogue : MonoBehaviour
         }
     }
 
+
+    IEnumerator waitLether()
+    {
+        yield return new WaitForSeconds(0.2f);
+    }
+
+    int currentlyAnimatedIndex =0;
+    string currentlyAnimatedText = "";//assign dialogue text here
+    string tempAnimatedText = "";
+
+    private void Update()
+    {
+        girl.canMove = true;
+        if (currentlyAnimatedIndex < currentlyAnimatedText.Length)
+        {
+            currentlyAnimatedIndex++;
+            dialogueTxt.text = currentlyAnimatedText;
+            tempAnimatedText = dialogueTxt.text.Insert(currentlyAnimatedIndex, "<color=#00000000>");
+            dialogueTxt.text = tempAnimatedText;
+        }
+    }
+
     public void DisplayDialogue()
     {
         if(sentenceID < dialogueLines.Count)
         {
-            dialogueTxt.text = dialogueLines[sentenceID];
+            currentlyAnimatedText = dialogueLines[sentenceID];
+ 
         }
         else    //ends dialogue
         {
@@ -71,24 +96,25 @@ public class NormalDialogue : MonoBehaviour
 
     public void ReadyDialogue()
     {
-        dialogueLines.Clear();
-        switch(dialogueID)
+        dialogueLines.Clear();        
+        foreach(KeyValuePair<string, List<string>> l in dialogueLists)
         {
-            case 0:
-                foreach(string s in dialogue0)
-                {
-                    dialogueLines.Add(s);
-                }
+            switch(dialogueID)
+            {
+                case 0:  
+                    if(l.Key == "fala0")                  
+                        dialogueLines = l.Value;
                 break;
-            case 1:
-                foreach(string s in dialogue1)
-                {
-                    dialogueLines.Add(s);
-                }
-                break;
-        }    
-    }
 
+                case 1:
+                    if(l.Key == "fala1")   
+                        dialogueLines = l.Value;
+                break;
+            }
+                                
+        }           
+    }        
+    
     //Read XML archive
     private void LoadDialogueData()
     {
@@ -99,21 +125,17 @@ public class NormalDialogue : MonoBehaviour
         
         foreach(XmlNode dialogue in xmlDocument["dialogues"].ChildNodes)
         {
-            string dialogueName = dialogue.Attributes["name"].Value;
+            string dialogueName = dialogue.Attributes["name"].Value; 
+            List<string> currentList = new List<string>();
+            currentList.Clear(); 
             foreach(XmlNode d in dialogue["sentences"].ChildNodes)
             {
-                Debug.Log("foreach 2");
-                switch(dialogueName)
-                {
-                    case "fala0":
-                        dialogue0.Add(formatedText(d.InnerText));
-                    break;
-                    case "fala1":
-                        dialogue1.Add(formatedText(d.InnerText));
-                    break;
-                }
-            }            
-        }
+                currentList.Add(formatedText(d.InnerText));
+                Debug.Log("AAa" + d.InnerText);
+            }      
+            dialogueLists.Add(dialogueName, currentList);     
+                                      
+        } 
     }
 
     public string formatedText(string sentence)
