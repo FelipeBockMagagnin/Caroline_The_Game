@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Xml;
+using System.Text.RegularExpressions;
 
 public class NormalDialogue : MonoBehaviour
 {
@@ -13,8 +14,6 @@ public class NormalDialogue : MonoBehaviour
 
     public int sentenceID;
     public int  dialogueID;    
-    //public List<string> dialogue0;
-    //public List<string> dialogue1;
     public List<string> dialogueLines; 
     private bool dialogueOn;
     private Girl girl;
@@ -30,7 +29,7 @@ public class NormalDialogue : MonoBehaviour
     {
         girl = GameObject.Find("Girl").GetComponent<Girl>();
     }
-
+    
     public void Interact()
     {
         if(dialogueOn == false)
@@ -48,25 +47,24 @@ public class NormalDialogue : MonoBehaviour
         }
     }
 
-
-    IEnumerator waitLether()
+    IEnumerator PlayText()
     {
-        yield return new WaitForSeconds(0.2f);
-    }
+        int totalVisibleChars = dialogueTxt.text.Length;
+        int counter = 0;
 
-    int currentlyAnimatedIndex =0;
-    string currentlyAnimatedText = "";//assign dialogue text here
-    string tempAnimatedText = "";
-
-    private void Update()
-    {
-        girl.canMove = true;
-        if (currentlyAnimatedIndex < currentlyAnimatedText.Length)
+        foreach(char c in dialogueTxt.text)
         {
-            currentlyAnimatedIndex++;
-            dialogueTxt.text = currentlyAnimatedText;
-            tempAnimatedText = dialogueTxt.text.Insert(currentlyAnimatedIndex, "<color=#00000000>");
-            dialogueTxt.text = tempAnimatedText;
+            int visibleCounter = counter % (totalVisibleChars + 1);            
+            dialogueTxt.maxVisibleCharacters = visibleCounter;
+            if(c == '.' | c == ',' | c == '!' | c == '?')
+            {
+                yield return new WaitForSeconds (0.3f);
+            }               
+            else
+            {
+                yield return new WaitForSeconds (0.03f);
+            } 	
+            counter += 1; 
         }
     }
 
@@ -74,8 +72,8 @@ public class NormalDialogue : MonoBehaviour
     {
         if(sentenceID < dialogueLines.Count)
         {
-            currentlyAnimatedText = dialogueLines[sentenceID];
- 
+            dialogueTxt.text = dialogueLines[sentenceID];
+            StartCoroutine(PlayText());
         }
         else    //ends dialogue
         {

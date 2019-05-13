@@ -3774,11 +3774,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4988891663902466, guid: 03018188ab3aff74b877fc93506badb6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.193335
+      value: 32.423332
       objectReference: {fileID: 0}
     - target: {fileID: 4988891663902466, guid: 03018188ab3aff74b877fc93506badb6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.476
+      value: 11.685999
       objectReference: {fileID: 0}
     - target: {fileID: 4988891663902466, guid: 03018188ab3aff74b877fc93506badb6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4971,11 +4971,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4010284165387968, guid: fee1f827d6710ec45a2a532ef2c5dad6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.193335
+      value: 32.423332
       objectReference: {fileID: 0}
     - target: {fileID: 4010284165387968, guid: fee1f827d6710ec45a2a532ef2c5dad6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.476
+      value: 11.685999
       objectReference: {fileID: 0}
     - target: {fileID: 4010284165387968, guid: fee1f827d6710ec45a2a532ef2c5dad6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8811,11 +8811,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4601572301191628, guid: 9f043bb7c161cea43ba428ddadf3b411, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.7
+      value: 30.93
       objectReference: {fileID: 0}
     - target: {fileID: 4601572301191628, guid: 9f043bb7c161cea43ba428ddadf3b411, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.1
+      value: 6.31
       objectReference: {fileID: 0}
     - target: {fileID: 4601572301191628, guid: 9f043bb7c161cea43ba428ddadf3b411, type: 3}
       propertyPath: m_LocalPosition.z
@@ -33957,7 +33957,7 @@ PrefabInstance:
     - target: {fileID: 5274540918249137219, guid: 0ba791fb1beada444bfa582c20b29e16,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4446256634263409026, guid: 0ba791fb1beada444bfa582c20b29e16,
         type: 3}
@@ -34147,7 +34147,7 @@ PrefabInstance:
     - target: {fileID: 3302623917252188316, guid: a51524512a3d3b042af15408253adc3b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 393634052739592581, guid: a51524512a3d3b042af15408253adc3b,
         type: 3}
@@ -34162,6 +34162,46 @@ PrefabInstance:
     - target: {fileID: 393634052739592581, guid: a51524512a3d3b042af15408253adc3b,
         type: 3}
       propertyPath: m_overrideHtmlColors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 393634052739592581, guid: a51524512a3d3b042af15408253adc3b,
+        type: 3}
+      propertyPath: m_enableExtraPadding
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 393634052739592581, guid: a51524512a3d3b042af15408253adc3b,
+        type: 3}
+      propertyPath: checkPaddingRequired
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 393634052739592581, guid: a51524512a3d3b042af15408253adc3b,
+        type: 3}
+      propertyPath: m_enableKerning
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 393634052739592581, guid: a51524512a3d3b042af15408253adc3b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 393634052739592581, guid: a51524512a3d3b042af15408253adc3b,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 393634052739592581, guid: a51524512a3d3b042af15408253adc3b,
+        type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 393634052739592581, guid: a51524512a3d3b042af15408253adc3b,
+        type: 3}
+      propertyPath: m_geometrySortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 393634052739592581, guid: a51524512a3d3b042af15408253adc3b,
+        type: 3}
+      propertyPath: m_useMaxVisibleDescender
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6257442410523258111, guid: a51524512a3d3b042af15408253adc3b,
