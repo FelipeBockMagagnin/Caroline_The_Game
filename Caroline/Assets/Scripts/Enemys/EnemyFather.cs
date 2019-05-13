@@ -21,16 +21,42 @@ public class EnemyFather : MonoBehaviour {
 	public   ParticleSystem hitParticle;            //
 	protected Animator      anim;                   //contem as animações do inimigo
     protected AudioManager audioManager;
-
+    protected bool canMove;
+    protected bool attacking = false;
+    public  bool justGirl;              //true = seguir somente menina, false = seguir e atacar saci
     //***************MOVIMENTATION**********************************
 
     /// <summary>
     /// Follow an object, just horizontal
     /// </summary>
     /// <param name="followObject"></param>
-    protected void Follow(Transform followObject)
+    protected virtual void Follow(Transform followObject)
     {
-        if(!pushed)
+        if(girl.GetComponent<Girl>().canBeAttacked)
+        {
+            WhatFollow = girl.transform;
+            canMove = true;
+            justGirl = true;
+        }
+        else 
+        {
+            if(WhatFollow = girl.transform)
+            {
+                canMove = false;
+                speed = 0;
+                justGirl = true;
+            }
+            else 
+            {
+                WhatFollow = GameObject.Find("Saci").GetComponent<Transform>();
+                canMove = true;
+                justGirl = false;
+            }
+        }
+
+        Debug.Log("Following : " + followObject.name);
+
+        if(!pushed && canMove && !attacking)
         {
             if (followObject.transform.position.x >= transform.position.x)
             {

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Xml;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 public class NormalDialogue : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class NormalDialogue : MonoBehaviour
     public TMP_Text dialogueTxt;
 
     public string archiveXMLName;
-
     public int sentenceID;
     public int  dialogueID;    
     public List<string> dialogueLines; 
@@ -29,10 +29,10 @@ public class NormalDialogue : MonoBehaviour
     {
         girl = GameObject.Find("Girl").GetComponent<Girl>();
     }
-    
+
     public void Interact()
     {
-        if(dialogueOn == false)
+        if(dialogueOn == false && !playingText)
         {
             sentenceID = 0;            
             ReadyDialogue();
@@ -40,32 +40,29 @@ public class NormalDialogue : MonoBehaviour
             dialogueCanvas.SetActive(true);
             dialogueOn = true;
         }
-        else 
+        else if (dialogueOn == true && !playingText) 
         {
             sentenceID += 1;
             DisplayDialogue();
         }
     }
 
+    public bool playingText;
+
     IEnumerator PlayText()
     {
         int totalVisibleChars = dialogueTxt.text.Length;
         int counter = 0;
-
+        playingText = true;
         foreach(char c in dialogueTxt.text)
         {
-            int visibleCounter = counter % (totalVisibleChars + 1);            
+            int visibleCounter = counter + 1;            
             dialogueTxt.maxVisibleCharacters = visibleCounter;
-            if(c == '.' | c == ',' | c == '!' | c == '?')
-            {
-                yield return new WaitForSeconds (0.3f);
-            }               
-            else
-            {
-                yield return new WaitForSeconds (0.03f);
-            } 	
             counter += 1; 
+            yield return new WaitForSeconds (0.02f);            	            
         }
+        playingText = false;
+        
     }
 
     public void DisplayDialogue()
@@ -77,15 +74,17 @@ public class NormalDialogue : MonoBehaviour
         }
         else    //ends dialogue
         {
-            switch(dialogueID)
+            if(dialogueID >= dialogueLists.Count-1)
             {
-                case 0:
-                    dialogueID = 1;
-                break;
-                case 1:
-                    
-                break;
-            }  
+                dialogueID = dialogueLists.Count-1;
+                ReadyDialogue();
+                Debug.Log("Final dialogue id : " + dialogueID);
+            }
+            else 
+            {
+                dialogueID += 1;
+                Debug.Log("Dialogue id : " + dialogueID);
+            }                       
             dialogueCanvas.SetActive(false);
             dialogueOn = false;
             girl.canMove = true;
@@ -94,23 +93,15 @@ public class NormalDialogue : MonoBehaviour
 
     public void ReadyDialogue()
     {
-        dialogueLines.Clear();        
-        foreach(KeyValuePair<string, List<string>> l in dialogueLists)
+        dialogueLines.Clear();     
+        for(int x = 0; x <= dialogueLists.Count; x++)
         {
-            switch(dialogueID)
+            if(x == dialogueID)
             {
-                case 0:  
-                    if(l.Key == "fala0")                  
-                        dialogueLines = l.Value;
-                break;
-
-                case 1:
-                    if(l.Key == "fala1")   
-                        dialogueLines = l.Value;
-                break;
+                dialogueLines = dialogueLists.ElementAt(x).Value;
+                Debug.Log("Escolhido dialogo numero: " + x);
             }
-                                
-        }           
+        }       
     }        
     
     //Read XML archive
@@ -129,10 +120,8 @@ public class NormalDialogue : MonoBehaviour
             foreach(XmlNode d in dialogue["sentences"].ChildNodes)
             {
                 currentList.Add(formatedText(d.InnerText));
-                Debug.Log("AAa" + d.InnerText);
             }      
-            dialogueLists.Add(dialogueName, currentList);     
-                                      
+            dialogueLists.Add(dialogueName, currentList);                              
         } 
     }
 

@@ -19,23 +19,47 @@ public class Enemy2 : EnemyFather {
         }
         scale = transform.localScale;
         scaleX = scale.x;
-        anim = GetComponent<Animator>();
-        Follow(WhatFollow);        
+        anim = GetComponent<Animator>();               
+    }
+
+    protected override void Follow(Transform followObject)
+    {
+        if(!wasShoot)
+        {
+            if (followObject.transform.position.x >= transform.position.x)
+            {
+                speed = UnityEngine.Random.Range(minSpeed,maxSpeed);
+                scale = transform.localScale;
+                scale.x = Mathf.Abs(scaleX);
+                transform.localScale = scale;        
+            }
+            else
+            {
+                speed = -(UnityEngine.Random.Range(minSpeed,maxSpeed));
+                scale = transform.localScale;
+                scale.x = -(Mathf.Abs(scaleX));
+                transform.localScale = scale;       
+            }
+        }
     }
 
     void Move()
     {
-        transform.Translate(speed * Time.deltaTime, 0, 0);
+        if(!attacking)
+        {
+            transform.Translate(speed * Time.deltaTime, 0, 0);
+        }        
     }
 
 	void FixedUpdate()
     {
+        Follow(WhatFollow);
         Move();
-
         distance = Vector3.Distance(transform.position, girl.transform.position);
 
         if (distance <= 10.0 && wasShoot == false) 
         {
+            attacking = true;
             wasShoot = true;
             anim.SetBool("Atirar", true);
             if (girl.transform.position.x >= transform.position.x) 
@@ -59,6 +83,7 @@ public class Enemy2 : EnemyFather {
 
     void Shoot()
     {
+        attacking = false;
         if (wasShoot)
         {            
             if (girl.transform.position.x >= transform.position.x)

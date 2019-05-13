@@ -74,6 +74,7 @@ public class Girl : MonoBehaviour {
     private bool interacting; 
     private bool canBeChildOfEnemy = true;
     private bool inDialogue;
+    public bool canBeAttacked;
 
     void Awake(){
         //inicializar ps componentes do jogo
@@ -120,6 +121,7 @@ public class Girl : MonoBehaviour {
         InputShootRock();
         CheckHeartSpellInput();
         CheckInteract();
+        checkInputCanBeAttackable();
 
         //Checar se esta no chao 
         if (touchEnemy2 == false)
@@ -184,6 +186,7 @@ public class Girl : MonoBehaviour {
         canMove = true;
         pressedSpace = false;
         interacting = false;
+        canBeAttacked = true;
     }
 
     //*******************************************************************\\
@@ -201,6 +204,27 @@ public class Girl : MonoBehaviour {
 
     //*******************************************************************\\
     //FIGHT METHODS
+
+    private void checkInputCanBeAttackable()
+    {
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            changeCanBeAttackable();
+        }
+    }
+
+    private void changeCanBeAttackable()
+    {
+        canBeAttacked = !canBeAttacked;  
+        if(canBeAttacked)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1,1); 
+        }      
+        else
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1,0.5f);
+        }
+    }
 
     /// <summary>
     /// check if the input for pushing is presionated, if true: call Push() method 
@@ -525,6 +549,7 @@ public class Girl : MonoBehaviour {
         canMove = true;
         gravity = true;    
         rb.isKinematic = false; 
+        GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
     }
 
     /// <summary>
@@ -638,6 +663,7 @@ public class Girl : MonoBehaviour {
         //starts the Climb()
         if (collision.CompareTag("escalar") && canMove)
         {
+            GetComponent<SpriteRenderer>().color = new Color(0.83f, 0.83f, 0.83f,1);
             gravity = false;
             canMove = false; 
             rb.isKinematic = true;

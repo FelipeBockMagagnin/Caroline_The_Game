@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : EnemyFather {	        	       
 
     bool kill = false;                  //se for true no ultimo frame da animação, ele mata         
-    public  bool justGirl;              //true = seguir somente menina, false = seguir e atacar saci  
+      
 
     //*************start************************************
     //start components on spawn
@@ -25,12 +25,15 @@ public class Enemy : EnemyFather {
         catch (System.Exception)
         {
         }
-        Follow(WhatFollow);
-    }
+    }    
 
     void FixedUpdate(){
-		transform.Translate(speed * Time.deltaTime, 0, 0);
+        if(!attacking)
+        {
+            transform.Translate(speed * Time.deltaTime, 0, 0);
+        }		
         TimeCount();
+        Follow(WhatFollow);
 	}
 
     //***************fight**********************************
@@ -67,6 +70,7 @@ public class Enemy : EnemyFather {
         if(!pushed && time <= 0)
         { 
             speed = 0;
+            attacking = true;
             anim.SetBool("ataque1", true);
         }
 	}
@@ -77,6 +81,7 @@ public class Enemy : EnemyFather {
     void Kill()
     {
         anim.SetBool("ataque1", false);
+        attacking = false;
         if(!pushed)
         {
             Follow(WhatFollow);
@@ -134,8 +139,19 @@ public class Enemy : EnemyFather {
         }
 
         if(collision.CompareTag(WhatFollow.tag)){
-            Atack();
-            kill = true;
+            if(WhatFollow != girl.transform)
+            {
+                Atack();
+                kill = true;
+            }
+            else 
+            {
+                if(girl.GetComponent<Girl>().canBeAttacked)
+                {
+                    Atack();
+                    kill = true;
+                }  
+            }            
         }
           
       //colisão com a pedra
@@ -171,7 +187,10 @@ public class Enemy : EnemyFather {
         //garantir que o inimigo continue atacando caso ele não saia do colisor da Menina
         if(collision.CompareTag("Menina") && justGirl && kill)
         {
-            Atack();
+            if(girl.GetComponent<Girl>().canBeAttacked)
+            {
+                Atack();
+            }            
         }        
 
         if (collision.CompareTag("Spell_Menina_Empurrar") && justGirl && !pushed)

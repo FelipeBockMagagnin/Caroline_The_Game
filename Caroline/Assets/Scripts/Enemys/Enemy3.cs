@@ -24,7 +24,6 @@ public class Enemy3 : Enemy
         Follow(WhatFollow);
     }
 
-
     public override void DestroyThis()
     {
         SpawnHitParticle();

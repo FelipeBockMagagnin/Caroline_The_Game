@@ -2,21 +2,26 @@
 
 <dialogues>
 
-	<dialogue name="fala0">
-		<sentences>
-		
-			<sentence>Que passeio legal!! (color=blue)Sera(endcolor) que a gente pode ser amigos?...!</sentence>
+	<dialogue name="fala1">
+		<sentences>		
+			<sentence>fala1 (color=blue)Sera(endcolor) que. a gente pode. ser amigos?...!</sentence>
 			<sentence>(bold)Puff!!(endbold)</sentence>
 		</sentences>
 	</dialogue>
 	
-	<dialogue name="fala1">
-		<sentences>
-		
-			<sentence>Fico feliz em saber que você irá me ajudar!</sentence>
+	<dialogue name="fala2">
+		<sentences>		
+			<sentence>fala2</sentence>
 			<sentence>chupa meu cu (bold)bold(endbold)</sentence>
 			<sentence>Até Logo!</sentence>
 		</sentences>
 	</dialogue>	
-	
+
+	<dialogue name="fala3">
+		<sentences>		
+			<sentence>fala3</sentence>
+			<sentence>chupa meu cu (bold)bold(endbold)</sentence>
+			<sentence>ultima</sentence>
+		</sentences>
+	</dialogue>	
 </dialogues>
