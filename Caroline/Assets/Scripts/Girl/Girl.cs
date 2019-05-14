@@ -75,6 +75,7 @@ public class Girl : MonoBehaviour {
     private bool canBeChildOfEnemy = true;
     private bool inDialogue;
     public bool canBeAttacked;
+    public bool hide;
 
     void Awake(){
         //inicializar ps componentes do jogo
@@ -105,9 +106,7 @@ public class Girl : MonoBehaviour {
         }
         SpawnGroundParticle();    
         JumpGravityControl();
-        CalcTime();      
-        
-        interactBaloon.SetActive(interacting);   
+        CalcTime();                 
     }  
 
     private void Update()
@@ -161,7 +160,8 @@ public class Girl : MonoBehaviour {
         {
             rb.isKinematic = true;
             rb.velocity = new Vector2(0, 0);
-        } else
+        } 
+        else
         {
             rb.isKinematic = false;
         }
@@ -187,13 +187,19 @@ public class Girl : MonoBehaviour {
         pressedSpace = false;
         interacting = false;
         canBeAttacked = true;
+        hide = false;
     }
 
     //*******************************************************************\\
     //INTERACT METHODS
     private void CheckInteract()
     {
-        if(Input.GetKeyDown(KeyCode.X) && interacting && !shooting && canUseSpell && interactiveObj != null)
+        if(!hide)
+        {
+            interactBaloon.SetActive(interacting);
+        }
+
+        if(Input.GetKeyDown(KeyCode.X) && interacting && !shooting && canUseSpell && interactiveObj != null && !hide)
         {
             canMove = false;
             interactiveObj.SendMessage("Interact"); 
@@ -207,10 +213,10 @@ public class Girl : MonoBehaviour {
 
     private void checkInputCanBeAttackable()
     {
-        if(Input.GetKeyDown(KeyCode.C))
+        if(Input.GetKeyDown(KeyCode.C) && canMove)
         {
             changeCanBeAttackable();
-        }
+        }        
     }
 
     private void changeCanBeAttackable()
@@ -219,10 +225,12 @@ public class Girl : MonoBehaviour {
         if(canBeAttacked)
         {
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1,1); 
+            hide = false;
         }      
         else
         {
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1,0.5f);
+            hide = true;
         }
     }
 
@@ -230,7 +238,7 @@ public class Girl : MonoBehaviour {
     /// check if the input for pushing is presionated, if true: call Push() method 
     /// </summary>
     void CheckHeartSpellInput(){
-        if (Input.GetKeyDown(KeyCode.X) && canMove && canUseSpell && !shooting && !interacting)
+        if (Input.GetKeyDown(KeyCode.X) && canMove && canUseSpell && !shooting && !interacting && !hide)
         {
             knockBack();
             CastHeartSpell();
@@ -334,7 +342,7 @@ public class Girl : MonoBehaviour {
     void InputShootRock()
     {
         //load strength of the stone if you have ammo and pressing the push key
-        if (Input.GetKey(KeyCode.Z) && canMove && ammunition >= 1 && canUseSpell)
+        if (Input.GetKey(KeyCode.Z) && canMove && ammunition >= 1 && canUseSpell && !hide)
         {
             GirlUi.AtivarAtirarPedra();
             shooting = true;
@@ -371,7 +379,7 @@ public class Girl : MonoBehaviour {
     /// </summary>
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && inGround == true){
+        if (Input.GetKeyDown(KeyCode.UpArrow) && inGround == true && !hide){
             inGround = false;
             rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse); 
             Instantiate(jumpParticle, check.position,Quaternion.identity);

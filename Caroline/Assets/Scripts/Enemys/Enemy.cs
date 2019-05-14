@@ -1,20 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Enemy : EnemyFather {	        	       
 
-    bool kill = false;                  //se for true no ultimo frame da animação, ele mata         
-      
+    bool kill = false;                  //se for true no ultimo frame da animação, ele mata
 
     //*************start************************************
     //start components on spawn
     private void OnEnable() {
         girl = GameObject.Find("Girl");
-        if(WhatFollow == null)
-        {
-            WhatFollow = girl.transform;
-        }
+        girlScript = girl.GetComponent<Girl>();
         scale = transform.localScale;
         scaleX = scale.x;
         anim = GetComponent<Animator>();
@@ -27,13 +24,9 @@ public class Enemy : EnemyFather {
         }
     }    
 
-    void FixedUpdate(){
-        if(!attacking)
-        {
-            transform.Translate(speed * Time.deltaTime, 0, 0);
-        }		
+    void FixedUpdate(){	
         TimeCount();
-        Follow(WhatFollow);
+        Follow();
 	}
 
     //***************fight**********************************
@@ -57,8 +50,7 @@ public class Enemy : EnemyFather {
         {
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
             pushed = false;
-            counter = false;
-            Follow(WhatFollow);            
+            counter = false;           
         }
     }
 
@@ -82,10 +74,6 @@ public class Enemy : EnemyFather {
     {
         anim.SetBool("ataque1", false);
         attacking = false;
-        if(!pushed)
-        {
-            Follow(WhatFollow);
-        }
         if(kill && !pushed)
         {
             Girl.Reload();
@@ -93,25 +81,34 @@ public class Enemy : EnemyFather {
     }
 
     /// <summary>
-    /// finalize the animation and make the enemy stop for a litle time
-    /// </summary>
-    void Pushed()
-    {
-        anim.SetBool("ataque1", false);
-        SpawnHitParticle();
-        pushed = true;                
-        time = time + Random.Range(2.7f,3.5f);
-        counter = true;
-    }
-
-
-    /// <summary>
     /// destroy the enemy and spawn particles
     /// </summary>
-    public virtual void DestroyThis()
+    public virtual void DestroyThis(Collider2D collider)
     {
         SpawnHitParticle();
         Destroy(this.gameObject);
+    }
+
+    public void OnRockCollision()
+    {   
+        float forcaTiroAbs = girl.GetComponent<Girl>().absoluteShootingForce;
+        if (WhatFollow.position.x >= transform.position.x && girl.transform.position.x >= transform.position.x){
+            GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * -5) -1, 2);          
+            time = time + (forcaTiroAbs * 5);
+            pushed = true;
+            counter = true;
+            SpawnHitParticle();
+            PlayEnemyHitSound();
+        }
+
+        if(WhatFollow.position.x <= transform.position.x && girl.transform.position.x <= transform.position.x){
+            GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * +5) +1, 2);
+            time = time + (forcaTiroAbs * 5);
+            pushed = true;
+            counter = true;
+            SpawnHitParticle();
+            PlayEnemyHitSound();
+        }
     }
 
     //************Collision***********************************
@@ -135,94 +132,63 @@ public class Enemy : EnemyFather {
             girl.GetComponent<Change_camera_atributes>().NormalShake();
             Destroy(collision);
             Destroy(collision.gameObject);
-            DestroyThis();
+            DestroyThis(collision);
         }
 
-        if(collision.CompareTag(WhatFollow.tag)){
-            if(WhatFollow != girl.transform)
-            {
+        try 
+        {
+            if(collision.CompareTag(decideWhatToFollow().tag)){
                 Atack();
-                kill = true;
+                kill = true;           
             }
-            else 
-            {
-                if(girl.GetComponent<Girl>().canBeAttacked)
-                {
-                    Atack();
-                    kill = true;
-                }  
-            }            
+        }
+        catch(UnassignedReferenceException)
+        {
+            Debug.Log("Don't have char to follow");
         }
           
-      //colisão com a pedra
+        //colisão com a pedra
         if (collision.CompareTag("pedra")){
-            float forcaTiroAbs = girl.GetComponent<Girl>().absoluteShootingForce;
-            if (WhatFollow.position.x >= transform.position.x && girl.transform.position.x >= transform.position.x){
-                GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * -5) -1, 2);          
-                time = time + (forcaTiroAbs * 5);
-                pushed = true;
-                counter = true;
-                SpawnHitParticle();
-                PlayEnemyHitSound();
-            }
-
-            if(WhatFollow.position.x <= transform.position.x && girl.transform.position.x <= transform.position.x){
-                GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * +5) +1, 2);
-                time = time + (forcaTiroAbs * 5);
-                pushed = true;
-                counter = true;
-                SpawnHitParticle();
-                PlayEnemyHitSound();
-            }
+            OnRockCollision();
         }
     }
 
     void OnTriggerExit2D(Collider2D collision){
-        if(collision.CompareTag(WhatFollow.tag)){
-            kill = false;
+        try
+        {
+            if(collision.CompareTag(decideWhatToFollow().tag))
+            {
+                kill = false;
+            }
         }
+        catch(UnassignedReferenceException)
+        {
+            Debug.Log("Don't have char to follow");
+        }
+        
     }   
 
     private void OnTriggerStay2D(Collider2D collision){        
         //garantir que o inimigo continue atacando caso ele não saia do colisor da Menina
-        if(collision.CompareTag("Menina") && justGirl && kill)
+        try
         {
-            if(girl.GetComponent<Girl>().canBeAttacked)
+            if(collision.CompareTag(decideWhatToFollow().tag) && kill)
             {
-                Atack();
-            }            
-        }        
-
-        if (collision.CompareTag("Spell_Menina_Empurrar") && justGirl && !pushed)
-        {
-            audioManager.PlayEnemyHitSound();
-            if (girl.transform.position.x >= transform.position.x){                
-                Destroy(collision);
-                Destroy(collision.gameObject);
-                DestroyThis();
-            }
-
-            if (collision.transform.position.x < transform.position.x){   
-                Destroy(collision);
-                Destroy(collision.gameObject);
-                DestroyThis();
-            }
+            Atack();            
+            } 
         }
-
-        if (collision.CompareTag("Spell_Menina_Empurrar") && !justGirl && !pushed)
+        catch(UnassignedReferenceException)
         {
-            audioManager.PlayEnemyHitSound();
-            if (WhatFollow.transform.position.x >= transform.position.x){                
-                Destroy(collision);
-                Destroy(collision.gameObject);
-                DestroyThis();               
-            }
+            Debug.Log("Don't have char to follow");
+        }
+               
 
-            if (WhatFollow.transform.position.x < transform.position.x){    
-                Destroy(collision);
-                Destroy(collision.gameObject);
-                DestroyThis();
-            }
+        if (collision.CompareTag("Spell_Menina_Empurrar") && !pushed)
+        {
+            audioManager.PlayEnemyHitSound();              
+            Destroy(collision);
+            Destroy(collision.gameObject);
+            DestroyThis(collision);
         }
     }
 }

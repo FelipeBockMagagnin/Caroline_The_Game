@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7663475701702957210}
   - component: {fileID: 3024759791667912843}
-  m_Layer: 19
+  m_Layer: 11
   m_Name: Enemy2Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 4434812833555554302}
   - component: {fileID: 4434812833555554299}
   - component: {fileID: 2713335967036466576}
+  - component: {fileID: 1949248076131004037}
   m_Layer: 19
   m_Name: Enemy2
   m_TagString: enemy2
@@ -216,3 +217,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!61 &1949248076131004037
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4434812833555554289}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00000023841858, y: 3.2245412}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.5683334, y: 7.5}
+    newSize: {x: 2.5683334, y: 7.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.0001, y: 0.0001}
+  m_EdgeRadius: 0

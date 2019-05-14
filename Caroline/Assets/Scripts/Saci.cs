@@ -61,5 +61,25 @@ public class Saci : MonoBehaviour {
                 transform.localScale = scale;
             }
         }
+
+        if(collision.CompareTag("Enemy3") && PodeAtacar)
+        {
+            StartCoroutine(tempo());
+            anim.SetBool("ModoDemon", true);
+            anim.SetTrigger("atacar");
+
+            if(atacar){
+                collision.GetComponent<Enemy3>().DestroyThis(this.GetComponent<Collider2D>());           
+            }
+
+            if (collision.transform.position.x <= transform.position.x){
+                scale.x = escala;
+                transform.localScale = scale;
+            }
+            else{
+                scale.x = -escala;
+                transform.localScale = scale;
+            }
+        }
     }
 }

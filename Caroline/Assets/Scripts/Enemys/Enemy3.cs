@@ -5,15 +5,18 @@ using UnityEngine;
 public class Enemy3 : Enemy
 {    
 
+    private bool canBeKilled = false;
+    private Color initialColor;
+
     private void OnEnable() {
+        initialColor = this.GetComponent<SpriteRenderer>().color;
         girl = GameObject.Find("Girl");
-        if(WhatFollow == null)
-        {
-            WhatFollow = girl.transform;
-        }
+        girlScript = girl.GetComponent<Girl>();
         scale = transform.localScale;
         scaleX = scale.x;
         anim = GetComponent<Animator>();
+        canBeKilled = false;
+
         try
         {
             audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
@@ -21,28 +24,68 @@ public class Enemy3 : Enemy
         catch (System.Exception)
         {
         }
-        Follow(WhatFollow);
     }
 
-    public override void DestroyThis()
+    public override void DestroyThis(Collider2D collision)
     {
-        SpawnHitParticle();
-        float forcaTiroAbs = Random.Range(0.5f,1);
-        if (WhatFollow.position.x >= transform.position.x){
+        if(collision.CompareTag("Saci"))
+        {
+            float forcaTiroAbs = Random.Range(0.5f,1);
+            if (decideWhatToFollow().position.x >= transform.position.x)
+            {
                 GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * -5) -1, 2);          
-                time = time + (forcaTiroAbs * 2);
-                pushed = true;
-                counter = true;
-                PlayEnemyHitSound();
+                Pushed(forcaTiroAbs*3);
+            }
+            else if(decideWhatToFollow().position.x < transform.position.x)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * +5) +1, 2);
+                Pushed(forcaTiroAbs*3);                
+            }
         }
 
-        if(WhatFollow.position.x < transform.position.x){
-                GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * +5) +1, 2);
-                time = time + (forcaTiroAbs * 2);
-                pushed = true;
-                counter = true;
-                PlayEnemyHitSound();
-        }
+        if(collision.CompareTag("Spell_Menina_Empurrar"))
+        {
+            if(canBeKilled)
+            {
+                SpawnHitParticle();
+                Destroy(this.gameObject);
+            }
+            else 
+            {
+                float forcaTiroAbs = Random.Range(0.5f,1);
+                if (decideWhatToFollow().position.x >= transform.position.x)
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * -5) -1, 2);          
+                    anim.SetBool("ataque1", false);
+                    SpawnHitParticle();
+                    PlayEnemyHitSound();
+                    pushed = true;                
+                    counter = true; 
+                }
+                else if(decideWhatToFollow().position.x < transform.position.x)
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * +5) +1, 2);  
+                    anim.SetBool("ataque1", false);
+                    SpawnHitParticle();
+                    PlayEnemyHitSound();
+                    pushed = true;                
+                    counter = true;              
+                }
+            }
+        }        
+    }
+
+    /// <summary>
+    /// finalize the animation and make the enemy stop for a litle time
+    /// </summary>
+    void Pushed(float force)
+    {
+        anim.SetBool("ataque1", false);
+        SpawnHitParticle();
+        PlayEnemyHitSound();
+        pushed = true;                
+        time = time + force * 2;
+        counter = true;
     }
 
     protected override void TimeCount()
@@ -54,13 +97,16 @@ public class Enemy3 : Enemy
         {
             time = time - Time.deltaTime;
             speed = 0;
+            canBeKilled = true;
             anim.SetBool("ataque1", false);
+            this.GetComponent<SpriteRenderer>().color = Color.yellow;
         } 
         if(time <= 0 && counter)
         {
             pushed = false;
-            counter = false;
-            Follow(WhatFollow);            
+            counter = false;   
+            canBeKilled = false;  
+            this.GetComponent<SpriteRenderer>().color = initialColor;     
         }
     }
 }

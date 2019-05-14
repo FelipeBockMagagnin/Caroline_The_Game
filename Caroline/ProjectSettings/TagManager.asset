@@ -26,6 +26,7 @@ TagManager:
   - BombPickup
   - fallplataform
   - Interactive
+  - Enemy3
   layers:
   - Default
   - TransparentFX

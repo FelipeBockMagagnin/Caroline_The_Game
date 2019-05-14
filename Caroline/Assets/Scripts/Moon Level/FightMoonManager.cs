@@ -22,6 +22,8 @@ public class FightMoonManager : MonoBehaviour
     {
         SpawnRandomEnemyInRandomSpot();
         yield return new WaitForSeconds(SpawnWaitTime);
+        SpawnWaitTime -= Time.deltaTime/3;
+        Debug.Log("SpawnWaitTime: " + SpawnWaitTime); 
         StartCoroutine(spawn());
     }
 

@@ -21,42 +21,41 @@ public class EnemyFather : MonoBehaviour {
 	public   ParticleSystem hitParticle;            //
 	protected Animator      anim;                   //contem as animações do inimigo
     protected AudioManager audioManager;
-    protected bool canMove;
     protected bool attacking = false;
-    public  bool justGirl;              //true = seguir somente menina, false = seguir e atacar saci
+    protected Girl girlScript;
+    
     //***************MOVIMENTATION**********************************
+
+    protected Transform decideWhatToFollow()
+    {
+        //Se apenas Girl
+        if(WhatFollow == girl.transform && girlScript.canBeAttacked == true)
+        {
+            return girl.transform;
+        }
+        else if(WhatFollow == girl.transform && girlScript.canBeAttacked == false)
+        {
+            return null;
+        }
+        else if (WhatFollow != girl.transform && girlScript.canBeAttacked == false)
+        {
+            return WhatFollow;
+        }
+        else if (WhatFollow != girl.transform && girlScript.canBeAttacked == true)
+        {
+            return girl.transform;
+        }
+        return null;
+    }
 
     /// <summary>
     /// Follow an object, just horizontal
     /// </summary>
     /// <param name="followObject"></param>
-    protected virtual void Follow(Transform followObject)
+    protected void Follow()
     {
-        if(girl.GetComponent<Girl>().canBeAttacked)
-        {
-            WhatFollow = girl.transform;
-            canMove = true;
-            justGirl = true;
-        }
-        else 
-        {
-            if(WhatFollow = girl.transform)
-            {
-                canMove = false;
-                speed = 0;
-                justGirl = true;
-            }
-            else 
-            {
-                WhatFollow = GameObject.Find("Saci").GetComponent<Transform>();
-                canMove = true;
-                justGirl = false;
-            }
-        }
-
-        Debug.Log("Following : " + followObject.name);
-
-        if(!pushed && canMove && !attacking)
+        Transform followObject = decideWhatToFollow();
+        if(!pushed && !attacking && followObject != null)
         {
             if (followObject.transform.position.x >= transform.position.x)
             {
@@ -72,7 +71,14 @@ public class EnemyFather : MonoBehaviour {
                 scale.x = -(Mathf.Abs(scaleX));
                 transform.localScale = scale;       
             }
+            Move(speed);
         }
+    }
+
+
+    protected void Move(float _speed)
+    {
+        transform.Translate(_speed * Time.deltaTime, 0, 0);
     }
 
     /// <summary>

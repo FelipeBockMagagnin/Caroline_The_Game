@@ -197,7 +197,7 @@ SpriteRenderer:
   m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0ee9f1e3cd58f5d4c846808466009ae4, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -268,6 +268,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   audioManager: {fileID: 0}
   interactBaloon: {fileID: 7824989273941841290}
+  canBeAttacked: 0
+  hide: 0
 --- !u!50 &50564748904304294
 Rigidbody2D:
   serializedVersion: 4
@@ -318,7 +320,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.21745348, y: 0}
+  m_Offset: {x: 0.21745348, y: 1.3951468}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -329,7 +331,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.9567537, y: 6.32}
+  m_Size: {x: 2.9567537, y: 3.529706}
   m_EdgeRadius: 0
 --- !u!114 &114708145655378262
 MonoBehaviour:

@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class SpawnManagerMinigame : MonoBehaviour
 {
-    public GameObject rock;    
     public float xPos, maxY, minY;
 
     // Start is called before the first frame update
-    void Awake()
+    public void StartRockSpawn(GameObject _spawnObject, float _time, int _rounds)
     {
-        StartCoroutine(spawnRock());
+        StartCoroutine(spawnRock(_spawnObject, _time, _rounds));
     }
 
-    IEnumerator spawnRock()
+    IEnumerator spawnRock(GameObject _spawnObject, float _time, int _rounds)
     {
-        Instantiate(rock, new Vector3(xPos, Random.Range(minY, maxY), 0), Quaternion.identity);
-        yield return new WaitForSeconds(0.2f);
-        StartCoroutine(spawnRock());
+        for(int x = 0; x < _rounds; x++)
+        {
+            Instantiate(_spawnObject, new Vector3(xPos, Random.Range(minY, maxY), 0), Quaternion.identity);
+            yield return new WaitForSeconds(_time);
+        }
+        Debug.Log("End burst of " + _spawnObject.name);
     }
 }

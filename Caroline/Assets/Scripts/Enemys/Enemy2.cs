@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Enemy2 : EnemyFather {
 
@@ -9,60 +10,42 @@ public class Enemy2 : EnemyFather {
     bool wasShoot = false;
     public bool faceRight;
 
-
     private void OnEnable() 
     {
         girl = GameObject.Find("Girl");
-        if(WhatFollow == null)
-        {
-            WhatFollow = girl.transform;
-        }
+        girlScript = girl.GetComponent<Girl>();
         scale = transform.localScale;
         scaleX = scale.x;
         anim = GetComponent<Animator>();               
     }
 
-    protected override void Follow(Transform followObject)
+	void FixedUpdate()
     {
         if(!wasShoot)
         {
-            if (followObject.transform.position.x >= transform.position.x)
-            {
-                speed = UnityEngine.Random.Range(minSpeed,maxSpeed);
-                scale = transform.localScale;
-                scale.x = Mathf.Abs(scaleX);
-                transform.localScale = scale;        
-            }
-            else
-            {
-                speed = -(UnityEngine.Random.Range(minSpeed,maxSpeed));
-                scale = transform.localScale;
-                scale.x = -(Mathf.Abs(scaleX));
-                transform.localScale = scale;       
-            }
+            Follow();
         }
-    }
-
-    void Move()
-    {
-        if(!attacking)
+        else 
         {
-            transform.Translate(speed * Time.deltaTime, 0, 0);
-        }        
-    }
-
-	void FixedUpdate()
-    {
-        Follow(WhatFollow);
-        Move();
-        distance = Vector3.Distance(transform.position, girl.transform.position);
+            Move(speed);
+        }
+        
+        try
+        {
+            distance = Vector3.Distance(transform.position, decideWhatToFollow().position);
+        }
+        catch (UnassignedReferenceException)
+        {
+            Debug.Log("Don't have chat to follow");
+        }
+        
 
         if (distance <= 10.0 && wasShoot == false) 
         {
             attacking = true;
             wasShoot = true;
             anim.SetBool("Atirar", true);
-            if (girl.transform.position.x >= transform.position.x) 
+            if (decideWhatToFollow().position.x >= transform.position.x) 
             {
                 faceRight = true;
                 speed = 0;
@@ -86,7 +69,7 @@ public class Enemy2 : EnemyFather {
         attacking = false;
         if (wasShoot)
         {            
-            if (girl.transform.position.x >= transform.position.x)
+            if (decideWhatToFollow().position.x >= transform.position.x)
             {
                 speed = shootSpeed;
                 scale = transform.localScale;
