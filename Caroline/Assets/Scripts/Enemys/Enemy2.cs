@@ -12,6 +12,7 @@ public class Enemy2 : EnemyFather {
 
     private void OnEnable() 
     {
+        alertSignal = transform.Find("AlertSignal").gameObject;
         girl = GameObject.Find("Girl");
         girlScript = girl.GetComponent<Girl>();
         scale = transform.localScale;
@@ -36,7 +37,11 @@ public class Enemy2 : EnemyFather {
         }
         catch (UnassignedReferenceException)
         {
-            Debug.Log("Don't have chat to follow");
+            Debug.Log("Don't have char to follow");
+        }
+        catch (NullReferenceException)
+        {
+            Debug.Log("Don't have char to follow");
         }
         
 

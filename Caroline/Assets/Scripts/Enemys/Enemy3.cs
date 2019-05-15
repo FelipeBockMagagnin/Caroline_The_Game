@@ -9,6 +9,7 @@ public class Enemy3 : Enemy
     private Color initialColor;
 
     private void OnEnable() {
+        alertSignal = transform.Find("AlertSignal").gameObject;
         initialColor = this.GetComponent<SpriteRenderer>().color;
         girl = GameObject.Find("Girl");
         girlScript = girl.GetComponent<Girl>();

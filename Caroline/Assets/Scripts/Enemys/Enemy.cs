@@ -10,6 +10,7 @@ public class Enemy : EnemyFather {
     //*************start************************************
     //start components on spawn
     private void OnEnable() {
+        alertSignal = transform.Find("AlertSignal").gameObject;
         girl = GameObject.Find("Girl");
         girlScript = girl.GetComponent<Girl>();
         scale = transform.localScale;
@@ -174,10 +175,14 @@ public class Enemy : EnemyFather {
         {
             if(collision.CompareTag(decideWhatToFollow().tag) && kill)
             {
-            Atack();            
+                Atack();            
             } 
         }
         catch(UnassignedReferenceException)
+        {
+            Debug.Log("Don't have char to follow");
+        }
+        catch (NullReferenceException)
         {
             Debug.Log("Don't have char to follow");
         }

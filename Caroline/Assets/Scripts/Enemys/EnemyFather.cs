@@ -23,6 +23,7 @@ public class EnemyFather : MonoBehaviour {
     protected AudioManager audioManager;
     protected bool attacking = false;
     protected Girl girlScript;
+    protected GameObject alertSignal;
     
     //***************MOVIMENTATION**********************************
 
@@ -55,6 +56,17 @@ public class EnemyFather : MonoBehaviour {
     protected void Follow()
     {
         Transform followObject = decideWhatToFollow();
+        if(followObject != null)
+        {
+            alertSignal.SetActive(false);
+            Debug.Log("disable alert");
+        } 
+        else 
+        {
+            alertSignal.SetActive(true);
+            Debug.Log("enable alert");
+        }
+
         if(!pushed && !attacking && followObject != null)
         {
             if (followObject.transform.position.x >= transform.position.x)
