@@ -6,9 +6,12 @@ public class FightMoonManager : MonoBehaviour
 {
     public GameObject enemy1;
     public GameObject enemy2;
+    public GameObject rocks;
 
     public Transform spawnRight;
     public Transform spawnLeft;
+    public Transform rockSpawn1;
+    public Transform rockSpawn2;    
 
     public float SpawnWaitTime;
 
@@ -30,7 +33,7 @@ public class FightMoonManager : MonoBehaviour
     private int lastRoll = 0;
     void SpawnRandomEnemyInRandomSpot()
     {
-        int roll = Random.Range(1,7);
+        int roll = Random.Range(1,11);
         if(roll == lastRoll)
         {
             if(roll < 5)
@@ -68,6 +71,12 @@ public class FightMoonManager : MonoBehaviour
                 break;
             case 8:
                 Instantiate(enemy1, spawnRight.position, Quaternion.identity);
+                break;
+            case 9:
+                Instantiate(rocks, rockSpawn1.position, Quaternion.identity);
+                break;
+            case 10:
+                Instantiate(rocks, rockSpawn2.position, Quaternion.identity);
                 break;
         }      
         lastRoll = roll;

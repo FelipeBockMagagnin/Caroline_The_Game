@@ -6,9 +6,11 @@ using System;
 public class Enemy2 : EnemyFather {
 
     public float shootSpeed;
-    float distance;
-    bool wasShoot = false;
+    private float distance;
+    private bool wasShoot = false;
+    [HideInInspector]
     public bool faceRight;
+    private float nextShootSpeed;
 
     private void OnEnable() 
     {
@@ -54,6 +56,7 @@ public class Enemy2 : EnemyFather {
             {
                 faceRight = true;
                 speed = 0;
+                nextShootSpeed = shootSpeed;
                 scale = transform.localScale;
                 scale.x = Mathf.Abs(scaleX);
                 transform.localScale = scale;        
@@ -62,6 +65,7 @@ public class Enemy2 : EnemyFather {
             {
                 faceRight = false;
                 speed = 0;
+                nextShootSpeed = -shootSpeed;
                 scale = transform.localScale;
                 scale.x = -(Mathf.Abs(scaleX));
                 transform.localScale = scale;       
@@ -69,25 +73,27 @@ public class Enemy2 : EnemyFather {
         }        
 	}   
 
+    
+
     void Shoot()
     {
         attacking = false;
         if (wasShoot)
-        {            
-            if (decideWhatToFollow().position.x >= transform.position.x)
+        {     
+            if(nextShootSpeed > 0)
             {
                 speed = shootSpeed;
                 scale = transform.localScale;
                 scale.x = Mathf.Abs(scaleX);
                 transform.localScale = scale;
             }
-            else
+            else 
             {
                 speed = -shootSpeed;
                 scale = transform.localScale;
                 scale.x = -(Mathf.Abs(scaleX));
                 transform.localScale = scale;
-            }
+            }   
         }
     }
 

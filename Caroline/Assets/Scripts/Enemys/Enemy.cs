@@ -93,7 +93,7 @@ public class Enemy : EnemyFather {
     public void OnRockCollision()
     {   
         float forcaTiroAbs = girl.GetComponent<Girl>().absoluteShootingForce;
-        if (WhatFollow.position.x >= transform.position.x && girl.transform.position.x >= transform.position.x){
+        if (decideWhatToFollow().position.x >= transform.position.x && girl.transform.position.x >= transform.position.x){
             GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * -5) -1, 2);          
             time = time + (forcaTiroAbs * 5);
             pushed = true;
@@ -102,7 +102,7 @@ public class Enemy : EnemyFather {
             PlayEnemyHitSound();
         }
 
-        if(WhatFollow.position.x <= transform.position.x && girl.transform.position.x <= transform.position.x){
+        if(decideWhatToFollow().position.x <= transform.position.x && girl.transform.position.x <= transform.position.x){
             GetComponent<Rigidbody2D>().velocity = new Vector2((forcaTiroAbs * +5) +1, 2);
             time = time + (forcaTiroAbs * 5);
             pushed = true;
