@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
 
-
-	private AudioManager instance;
+	public static AudioManager instance = null;
 
     public AudioSource audioSource;
     public AudioClip girlHitSound;
@@ -14,15 +11,18 @@ public class AudioManager : MonoBehaviour {
     public AudioClip girlJumpsound;
     public AudioClip[] girlFootSteps;
 
-    int footStepIndex = 0;
+    private int footStepIndex = 0;
 
     void Awake(){
-		if(instance == null){
+		if(instance == null)
+        {
 			instance = this;
-			DontDestroyOnLoad(this.gameObject);
-		} else {
-			Destroy(gameObject);
-		}
+		} 
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
 	}
 
     //futura verificação se esta no grass ou na madeira etc
@@ -62,6 +62,11 @@ public class AudioManager : MonoBehaviour {
     {
         audioSource.clip = girlJumpsound;
         audioSource.Play();
+    }
+
+    private AudioManager()
+    {
+        
     }
 
 }

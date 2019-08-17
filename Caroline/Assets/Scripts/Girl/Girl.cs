@@ -1,12 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System;
 
 public class Girl : MonoBehaviour
 {
-
     //MOVIMENTATION ATTRIBUTES    
     private Rigidbody2D rb;                             //aplicar forças
     private Vector3 ClimbPos;                       //localização de onde o personagem ficará apos o climb()
@@ -29,16 +26,14 @@ public class Girl : MonoBehaviour
 
     //UI ATTRIBUTES
     private GirlUI GirlUi;                         //script de controle de ui da menina
-    public AudioManager audioManager;
 
     //MISC ATTRIBUTES
     public GameObject interactBaloon;
     private GameObject interactiveObj;
 
-    public float radius;                         //tamanho do raycast
-    public bool touchEnemy2;                    //Se tocou o inimigo 2 ava
+    private bool touchEnemy2;                       //Se tocou o inimigo 2 ava    
 
-    void Awake()
+    private void Awake()
     {
         //inicializar ps componentes do jogo
         rb = GetComponent<Rigidbody2D>();
@@ -46,20 +41,11 @@ public class Girl : MonoBehaviour
         GirlUi = GetComponent<GirlUI>();
         cam = GetComponent<Change_camera_atributes>();
 
-        try
-        {
-            audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        }
-        catch (System.Exception)
-        {
-            print("não foi acahado o audio manager");
-        }
-
         //inicializar as variaveis do jogo
-        resetAtributtes();
+        GirlManager.instance.ResetAtributtes();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (GirlManager.instance.time <= Time.deltaTime && !GirlManager.instance.canUseSpell)
         {
@@ -76,25 +62,19 @@ public class Girl : MonoBehaviour
     }
 
     private void Update()
-    {
+    {                
         if (GirlManager.instance.canMove)
         {
-            Jump();
             WalkAnim();
         }
-        CheckFinishSpellInput();
-        InputShootRock();
-        CheckHeartSpellInput();
         CheckInteract();
-        checkInputCanBeAttackable();
-
-        //Checar se esta no chao 
-        if (touchEnemy2 == false)
+        ManageInputs();
+ 
+        if (!touchEnemy2)
         {
-            GirlManager.instance.inGround = Physics2D.OverlapCircle(check.position, radius, whatIsGround);
+            GirlManager.instance.inGround = Physics2D.OverlapCircle(check.position, GirlManager.instance.radius, whatIsGround);
         }
 
-        //movimentação
         if (!GirlManager.instance.invertDirection)
         {
             GirlManager.instance.verticalInput = Input.GetAxisRaw("Horizontal");
@@ -105,7 +85,7 @@ public class Girl : MonoBehaviour
         }
 
         //Se nochão for false inicia animação de pulo
-        if (GirlManager.instance.inGround == false && GirlManager.instance.canMove)
+        if (!GirlManager.instance.inGround && GirlManager.instance.canMove)
         {
             anim.SetBool("Idle", false);
             anim.SetBool("Andando", false);
@@ -116,10 +96,10 @@ public class Girl : MonoBehaviour
             anim.SetBool("Pulo", false);
         }
 
-        //Reset de Cena
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+            Scene scene = SceneManager.GetActiveScene(); 
+            SceneManager.LoadScene(scene.name);
         }
 
         if (GirlManager.instance.gravity == false)
@@ -133,138 +113,53 @@ public class Girl : MonoBehaviour
         }
     }
 
-    void resetAtributtes()
-    {
-        GirlManager.instance.shooting = false;
-        GirlManager.instance.jumpVelocity = 9f;
-        GirlManager.instance.runVelocity = 7.5f;
-        radius = 0.30f;
-        GirlManager.instance.canUseSpell = true;
-        GirlManager.instance.spawnJumpParticle = false;
-        GirlManager.instance.lowjumpmultiplayer = 4.3f;
-        GirlManager.instance.fallMultiplier = 5f;
-        GirlManager.instance.gravity = true;
-        GirlManager.instance.face = true;
-        GirlManager.instance.stopParallax = false;
-        GirlManager.instance.canMove = true;
-        GirlManager.instance.pressedSpace = false;
-        GirlManager.instance.interacting = false;
-        GirlManager.instance.canBeAttacked = true;
-        GirlManager.instance.hide = false;
-    }
-
     //*******************************************************************\\
-    //INTERACT METHODS
-    private void CheckInteract()
+    //INPUTS METHODS
+    private void ManageInputs()
     {
-        if (!GirlManager.instance.hide)
-        {
-            interactBaloon.SetActive(GirlManager.instance.interacting);
-        }
+        CheckFinishSpellInput();
 
-        if (Input.GetKeyDown(KeyCode.X) &&
-        GirlManager.instance.interacting &&
-        !GirlManager.instance.shooting &&
-        GirlManager.instance.canUseSpell && interactiveObj != null && !GirlManager.instance.hide)
+        if(!GirlManager.instance.canMove)
+            return; 
+
+        CheckInputCanBeAttackable();
+
+        if(GirlManager.instance.hide)
+            return;  
+
+        CheckJumpInput();
+
+        if(!GirlManager.instance.canUseSpell)
+            return;    
+        
+        CheckHeartSpellInput();        
+        CheckInputShootRock();        
+    }
+
+    private void CheckInputCanBeAttackable()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            GirlManager.instance.canMove = false;
-            interactiveObj.SendMessage("Interact");
-            anim.SetBool("Idle", true);
-            anim.SetBool("Andando", false);
+            ChangeCanBeAttackable();
         }
     }
 
-    //*******************************************************************\\
-    //FIGHT METHODS
-
-    private void checkInputCanBeAttackable()
+    private void CheckHeartSpellInput()
     {
-        if (Input.GetKeyDown(KeyCode.C) && GirlManager.instance.canMove)
-        {
-            changeCanBeAttackable();
-        }
-    }
+        if(GirlManager.instance.shooting)
+            return;
 
-    private void changeCanBeAttackable()
-    {
-        GirlManager.instance.canBeAttacked = !GirlManager.instance.canBeAttacked;
-        if (GirlManager.instance.canBeAttacked)
-        {
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-            GirlManager.instance.hide = false;
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
-            GirlManager.instance.hide = true;
-        }
-    }
+        if(GirlManager.instance.interacting)
+            return;
 
-    void CheckHeartSpellInput()
-    {
-        if (Input.GetKeyDown(KeyCode.X) &&
-        GirlManager.instance.canMove &&
-        GirlManager.instance.canUseSpell &&
-        !GirlManager.instance.shooting &&
-        !GirlManager.instance.interacting &&
-        !GirlManager.instance.hide)
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            knockBack();
+            KnockBackGirl();
             CastHeartSpell();
         }
     }
 
-    void CastHeartSpell()
-    {
-        GirlUi.AtivarEmpurrar();
-        transform.parent = null;
-        GirlManager.instance.time = 1.5f;
-        anim.SetBool("Idle", true);
-        anim.SetBool("Pulo", false);
-        anim.SetBool("Andando", false);
-        GirlManager.instance.canMove = false;
-        GirlManager.instance.canUseSpell = false;
-        anim.SetBool("StopHeartSpell", false);
-        anim.SetTrigger("HeartSpell");
-    }
-
-    private void knockBack()
-    {
-        if (GirlManager.instance.face)
-        {
-            rb.AddForce(new Vector2(-8, 2), ForceMode2D.Impulse);
-        }
-        else
-        {
-            rb.AddForce(new Vector2(8, 2), ForceMode2D.Impulse);
-        }
-    }
-
-    public void CreateHeartSpell()
-    {
-        Vector3 instanciador12 = rockInstancePosition.transform.position;
-        Instantiate(heartSpeel, instanciador12, rockInstancePosition.rotation);
-        Instantiate(heartSpellParticles, instanciador12, rockInstancePosition.rotation);
-        transform.parent = null;
-    }
-
-    IEnumerator FinishCastHeartSpell()
-    {
-        yield return new WaitForSeconds(0.1f);
-        GirlUi.DesativarUI();
-        anim.SetBool("Idle", true);
-        anim.SetBool("Pulo", false);
-        anim.SetBool("Andando", false);
-        anim.SetBool("StopHeartSpell", true);
-        rb.velocity = new Vector2(0, 0);
-        GirlManager.instance.time = 0.3f;
-        GirlManager.instance.pressedSpace = false;
-        GirlManager.instance.canMove = true;
-        GirlManager.instance.canUseSpell = true;
-        cam.NormalShake();
-    }
-
-    void CheckFinishSpellInput()
+    private void CheckFinishSpellInput()
     {
         //Right time
         if (GirlManager.instance.time >= 0.8f && GirlManager.instance.time <= 1f)
@@ -287,14 +182,20 @@ public class Girl : MonoBehaviour
         }
     }
 
-    void InputShootRock()
+    private void CheckInputShootRock()
     {
+        if(GirlManager.instance.ammunition < 1)
+            return;
+
+        //atirar pedra
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            ShootRock();
+            GirlManager.instance.shooting = false;
+        }
+
         //load strength of the stone if you have ammo and pressing the push key
-        if (Input.GetKey(KeyCode.Z) &&
-        GirlManager.instance.canMove &&
-        GirlManager.instance.ammunition >= 1 &&
-        GirlManager.instance.canUseSpell &&
-        !GirlManager.instance.hide)
+        if (Input.GetKey(KeyCode.Z))
         {
             GirlUi.AtivarAtirarPedra();
             GirlManager.instance.shooting = true;
@@ -302,17 +203,113 @@ public class Girl : MonoBehaviour
             {
                 GirlManager.instance.shootingForce = GirlManager.instance.shootingForce + Time.deltaTime;
             }
-        }
+        }        
+    }
 
-        //atirar pedra
-        if (Input.GetKeyUp(KeyCode.Z) && GirlManager.instance.ammunition >= 1 && GirlManager.instance.canUseSpell)
+    private void CheckJumpInput()
+    {   
+        if(!GirlManager.instance.inGround)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            ShootRock();
-            GirlManager.instance.shooting = false;
+            GirlManager.instance.inGround = false;
+            rb.AddForce(Vector2.up * GirlManager.instance.jumpVelocity, ForceMode2D.Impulse);
+            Instantiate(jumpParticle, check.position, Quaternion.identity);
+            AudioManager.instance.PlayGirlJumpSound();
         }
     }
 
-    void ShootRock()
+    //*******************************************************************\\
+    //INTERACT METHODS
+    private void CheckInteract()
+    {
+        if (!GirlManager.instance.hide)
+        {
+            interactBaloon.SetActive(GirlManager.instance.interacting);
+        }
+
+        if (Input.GetKeyDown(KeyCode.X) &&
+        GirlManager.instance.interacting &&
+        !GirlManager.instance.shooting &&
+        GirlManager.instance.canUseSpell && interactiveObj != null && !GirlManager.instance.hide)
+        {
+            GirlManager.instance.canMove = false;
+            interactiveObj.SendMessage("Interact");
+            anim.SetBool("Idle", true);
+            anim.SetBool("Andando", false);
+        }
+    }    
+
+    //*******************************************************************\\
+    //FIGHT METHODS 
+
+    private void ChangeCanBeAttackable()
+    {
+        GirlManager.instance.canBeAttacked = !GirlManager.instance.canBeAttacked;
+        if (GirlManager.instance.canBeAttacked)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GirlManager.instance.hide = false;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+            GirlManager.instance.hide = true;
+        }
+    }    
+
+    private void CastHeartSpell()
+    {
+        GirlUi.AtivarEmpurrar();
+        transform.parent = null;
+        GirlManager.instance.time = 1.5f;
+        anim.SetBool("Idle", true);
+        anim.SetBool("Pulo", false);
+        anim.SetBool("Andando", false);
+        GirlManager.instance.canMove = false;
+        GirlManager.instance.canUseSpell = false;
+        anim.SetBool("StopHeartSpell", false);
+        anim.SetTrigger("HeartSpell");
+    }
+
+    private void KnockBackGirl()
+    {
+        if (GirlManager.instance.face == Face.Right)
+        {
+            rb.AddForce(new Vector2(-8, 2), ForceMode2D.Impulse);
+        }
+        else
+        {
+            rb.AddForce(new Vector2(8, 2), ForceMode2D.Impulse);
+        }
+    }
+
+    private void CreateHeartSpell()
+    {
+        Vector3 instanciador12 = rockInstancePosition.transform.position;
+        Instantiate(heartSpeel, instanciador12, rockInstancePosition.rotation);
+        Instantiate(heartSpellParticles, instanciador12, rockInstancePosition.rotation);
+        transform.parent = null;
+    }
+
+    private IEnumerator FinishCastHeartSpell()
+    {
+        yield return new WaitForSeconds(0.1f);
+        GirlUi.DesativarUI();
+        anim.SetBool("Idle", true);
+        anim.SetBool("Pulo", false);
+        anim.SetBool("Andando", false);
+        anim.SetBool("StopHeartSpell", true);
+        rb.velocity = new Vector2(0, 0);
+        GirlManager.instance.time = 0.3f;
+        GirlManager.instance.pressedSpace = false;
+        GirlManager.instance.canMove = true;
+        GirlManager.instance.canUseSpell = true;
+        cam.NormalShake();
+    }    
+
+    private void ShootRock()
     {
         Vector3 instanciador12 = rockInstancePosition.transform.position;
         Instantiate(rock, instanciador12, rockInstancePosition.rotation);
@@ -323,62 +320,13 @@ public class Girl : MonoBehaviour
     }
 
     //*************************JUMP METHODS**********************************\\
-    void Jump()
-    {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && GirlManager.instance.inGround == true && !GirlManager.instance.hide)
-        {
-            GirlManager.instance.inGround = false;
-            rb.AddForce(Vector2.up * GirlManager.instance.jumpVelocity, ForceMode2D.Impulse);
-            Instantiate(jumpParticle, check.position, Quaternion.identity);
-            playJumpSound();
-        }
-    }
 
-    private void playGirlHitSound()
-    {
-        try
-        {
-            audioManager.PlayGirlHitSound();
-        }
-        catch (NullReferenceException e)
-        {
-            Debug.Log("Error " + e.Message);
-        }
-    }
-
-    public void PlayFootStepSound()
-    {
-        try
-        {
-            audioManager.PlayGirlFootSteps();
-        }
-        catch (NullReferenceException e)
-        {
-            Debug.Log("Error " + e.Message);
-        }
-    }
-
-    public void playJumpSound()
-    {
-        try
-        {
-            audioManager.PlayGirlJumpSound();
-        }
-        catch (NullReferenceException e)
-        {
-            Debug.Log("Error " + e.Message);
-        }
-    }
-
-    void SetSpawnJumpParticle()
+    private void SetSpawnJumpParticle()
     {
         GirlManager.instance.spawnJumpParticle = true;
     }
 
-    /// <summary>
-    /// spawn Jump Particle and disable variable spawnJumpParticle
-    /// </summary>
-    void SpawnGroundParticle()
+    private void SpawnGroundParticle()
     {
         if (GirlManager.instance.inGround && GirlManager.instance.spawnJumpParticle)
         {
@@ -388,7 +336,7 @@ public class Girl : MonoBehaviour
         }
     }
 
-    void JumpGravityControl()
+    private void JumpGravityControl()
     {
         if (rb.velocity.y < 0 && GirlManager.instance.gravity)
         {
@@ -405,7 +353,7 @@ public class Girl : MonoBehaviour
     }
 
     //*********************MOVIMENTATION METHODS*************************************\\
-    void Move()
+    private void Move()
     {
         transform.Translate(GirlManager.instance.verticalInput * Time.deltaTime * GirlManager.instance.runVelocity, 0, 0);
     }
@@ -447,49 +395,41 @@ public class Girl : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// changes the direction of the character according to the input
-    /// </summary>
-    void Flip()
+    private void Flip(Face direction)
     {
-        GirlManager.instance.face = !GirlManager.instance.face;
+        GirlManager.instance.face = direction;        
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
     }
 
-    /// <summary>
-    /// controls the character's direction and the location of the stone instancier
-    /// </summary>
-    void FlipControl()
+    private void FlipControl()
     {
-        if (Input.GetKey(KeyCode.RightArrow) && !GirlManager.instance.face)
+        if (Input.GetKey(KeyCode.RightArrow) && GirlManager.instance.face == Face.Left)
         {
-            Flip();
+            Flip(Face.Right);
             rockInstancePosition.Rotate(0, -180, 0);
         }
-        if (Input.GetKey(KeyCode.LeftArrow) && GirlManager.instance.face)
+        if (Input.GetKey(KeyCode.LeftArrow) && GirlManager.instance.face == Face.Right)
         {
-            Flip();
+            Flip(Face.Left);
             rockInstancePosition.Rotate(0, 180, 0);
         }
     }
 
-    /// <summary>
-    /// controls the direction of climb, right / left
-    /// </summary>
-    void Climb()
+    private void Climb()
     {
-        if (GirlManager.instance.ClimbRight)
+        if (GirlManager.instance.climbDirection == ClimbDirection.Rigth)
         {
             transform.position = new Vector3(ClimbPos.x + 1.3f, ClimbPos.y + 2.4f, transform.position.z);
-            GirlManager.instance.ClimbRight = false;
+            GirlManager.instance.climbDirection = ClimbDirection.None;
         }
-        else if (GirlManager.instance.ClimbLeft)
+        else if (GirlManager.instance.climbDirection == ClimbDirection.Left)
         {
             transform.position = new Vector3(ClimbPos.x - 1.3f, ClimbPos.y + 2.4f, transform.position.z);
-            GirlManager.instance.ClimbLeft = false;
+            GirlManager.instance.climbDirection = ClimbDirection.None;
         }
+
         GirlManager.instance.spawnJumpParticle = false;
         anim.SetBool("Idle", true);
         anim.SetBool("escalar", false);
@@ -542,13 +482,13 @@ public class Girl : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0);
-                radius = 0.3f;
+                GirlManager.instance.radius = 0.3f;
             }
-            radius = 0.7f;
+            GirlManager.instance.radius = 0.7f;
         }
         else
         {
-            radius = 0.3f;
+            GirlManager.instance.radius = 0.3f;
         }
     }
 
@@ -569,7 +509,7 @@ public class Girl : MonoBehaviour
 
         if (collision.gameObject.CompareTag("fallplataform"))
         {
-            radius = 0.3f;
+            GirlManager.instance.radius = 0.3f;
         }
     }
 
@@ -617,11 +557,11 @@ public class Girl : MonoBehaviour
             anim.SetBool("Idle", false);
             if (collision.transform.position.x >= transform.position.x)
             {
-                GirlManager.instance.ClimbRight = true;
+                GirlManager.instance.climbDirection = ClimbDirection.Rigth;
             }
             else
             {
-                GirlManager.instance.ClimbLeft = true;
+                GirlManager.instance.climbDirection = ClimbDirection.Left;
             }
         }
 
