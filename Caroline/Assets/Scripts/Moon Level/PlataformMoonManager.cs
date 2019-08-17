@@ -126,7 +126,7 @@ public class PlataformMoonManager : MonoBehaviour
 
     public void GirlCanMove()
     {
-        girl.canMove = true;
+        GirlManager.instance.canMove = true;
     }
 
     private void TransitionStopSpawn()
@@ -158,7 +158,7 @@ public class PlataformMoonManager : MonoBehaviour
             move = true;
             start = true;
             Destroy(this.GetComponent<Collider2D>());
-            collision.GetComponent<Girl>().canMove = false;
+            GirlManager.instance.canMove = false;
             this.GetComponent<Animator>().SetTrigger("ShakePlataform");
             girl.anim.SetBool("Idle", true);
             girl.anim.SetBool("Andando", false);

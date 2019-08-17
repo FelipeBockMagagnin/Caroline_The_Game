@@ -30,19 +30,19 @@ public class EnemyFather : MonoBehaviour {
     protected Transform decideWhatToFollow()
     {
         //Se apenas Girl
-        if(WhatFollow == girl.transform && girlScript.canBeAttacked == true)
+        if(WhatFollow == girl.transform && GirlManager.instance.canBeAttacked == true)
         {
             return girl.transform;
         }
-        else if(WhatFollow == girl.transform && girlScript.canBeAttacked == false)
+        else if(WhatFollow == girl.transform && GirlManager.instance.canBeAttacked == false)
         {
             return null;
         }
-        else if (WhatFollow != girl.transform && girlScript.canBeAttacked == false)
+        else if (WhatFollow != girl.transform && GirlManager.instance.canBeAttacked == false)
         {
             return WhatFollow;
         }
-        else if (WhatFollow != girl.transform && girlScript.canBeAttacked == true)
+        else if (WhatFollow != girl.transform && GirlManager.instance.canBeAttacked == true)
         {
             return girl.transform;
         }

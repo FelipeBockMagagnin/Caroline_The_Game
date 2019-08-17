@@ -13,12 +13,12 @@ public class NormalDialogue : MonoBehaviour
 
     public string archiveXMLName;
     public int sentenceID;
-    public int  dialogueID;    
-    public List<string> dialogueLines; 
+    public int dialogueID;
+    public List<string> dialogueLines;
     private bool dialogueOn;
     private Girl girl;
-    
-    public Dictionary<string, List<string>> dialogueLists = new Dictionary<string, List<string>>();    
+
+    public Dictionary<string, List<string>> dialogueLists = new Dictionary<string, List<string>>();
 
     private void Start()
     {
@@ -32,15 +32,15 @@ public class NormalDialogue : MonoBehaviour
 
     public void Interact()
     {
-        if(dialogueOn == false && !playingText)
+        if (dialogueOn == false && !playingText)
         {
-            sentenceID = 0;            
+            sentenceID = 0;
             ReadyDialogue();
             DisplayDialogue();
             dialogueCanvas.SetActive(true);
             dialogueOn = true;
         }
-        else if (dialogueOn == true && !playingText) 
+        else if (dialogueOn == true && !playingText)
         {
             sentenceID += 1;
             DisplayDialogue();
@@ -54,82 +54,82 @@ public class NormalDialogue : MonoBehaviour
         int totalVisibleChars = dialogueTxt.text.Length;
         int counter = 0;
         playingText = true;
-        foreach(char c in dialogueTxt.text)
+        foreach (char c in dialogueTxt.text)
         {
-            int visibleCounter = counter + 1;            
+            int visibleCounter = counter + 1;
             dialogueTxt.maxVisibleCharacters = visibleCounter;
-            counter += 1; 
-            yield return new WaitForSeconds (0.02f);            	            
+            counter += 1;
+            yield return new WaitForSeconds(0.02f);
         }
         playingText = false;
-        
+
     }
 
     public void DisplayDialogue()
     {
-        if(sentenceID < dialogueLines.Count)
+        if (sentenceID < dialogueLines.Count)
         {
             dialogueTxt.text = dialogueLines[sentenceID];
             StartCoroutine(PlayText());
         }
         else    //ends dialogue
         {
-            if(dialogueID >= dialogueLists.Count-1)
+            if (dialogueID >= dialogueLists.Count - 1)
             {
-                dialogueID = dialogueLists.Count-1;
+                dialogueID = dialogueLists.Count - 1;
                 ReadyDialogue();
                 Debug.Log("Final dialogue id : " + dialogueID);
             }
-            else 
+            else
             {
                 dialogueID += 1;
                 Debug.Log("Dialogue id : " + dialogueID);
-            }                       
+            }
             dialogueCanvas.SetActive(false);
             dialogueOn = false;
-            girl.canMove = true;
+            GirlManager.instance.canMove = true;
         }
     }
 
     public void ReadyDialogue()
     {
-        dialogueLines.Clear();     
-        for(int x = 0; x <= dialogueLists.Count; x++)
+        dialogueLines.Clear();
+        for (int x = 0; x <= dialogueLists.Count; x++)
         {
-            if(x == dialogueID)
+            if (x == dialogueID)
             {
                 dialogueLines = dialogueLists.ElementAt(x).Value;
                 Debug.Log("Escolhido dialogo numero: " + x);
             }
-        }       
-    }        
-    
+        }
+    }
+
     //Read XML archive
     private void LoadDialogueData()
     {
         TextAsset xmlData = (TextAsset)Resources.Load("pt-br/" + archiveXMLName);
         XmlDocument xmlDocument = new XmlDocument();
-        
+
         xmlDocument.LoadXml(xmlData.text);
-        
-        foreach(XmlNode dialogue in xmlDocument["dialogues"].ChildNodes)
+
+        foreach (XmlNode dialogue in xmlDocument["dialogues"].ChildNodes)
         {
-            string dialogueName = dialogue.Attributes["name"].Value; 
+            string dialogueName = dialogue.Attributes["name"].Value;
             List<string> currentList = new List<string>();
-            currentList.Clear(); 
-            foreach(XmlNode d in dialogue["sentences"].ChildNodes)
+            currentList.Clear();
+            foreach (XmlNode d in dialogue["sentences"].ChildNodes)
             {
                 currentList.Add(formatedText(d.InnerText));
-            }      
-            dialogueLists.Add(dialogueName, currentList);                              
-        } 
+            }
+            dialogueLists.Add(dialogueName, currentList);
+        }
     }
 
     public string formatedText(string sentence)
     {
         //cor = nomecor     <color = #corcorrespondente
         //fimcor            </color>
-        string  temp = sentence;
+        string temp = sentence;
 
         //colors
         temp = temp.Replace("(color=yellow)", "<color=#ffff00ff>");
@@ -140,14 +140,14 @@ public class NormalDialogue : MonoBehaviour
         temp = temp.Replace("(color=orange)", "<color=#ffa500ff>");
 
         //letter type
-        temp = temp.Replace("(bold)","<b>");
+        temp = temp.Replace("(bold)", "<b>");
         temp = temp.Replace("(endbold)", "</b>");
 
-        temp = temp.Replace("(italic)","<i>");
+        temp = temp.Replace("(italic)", "<i>");
         temp = temp.Replace("(enditalic)", "</i>");
 
         //end string
-        temp = temp.Replace("(endcolor)","</color>");
+        temp = temp.Replace("(endcolor)", "</color>");
 
         return temp;
     }

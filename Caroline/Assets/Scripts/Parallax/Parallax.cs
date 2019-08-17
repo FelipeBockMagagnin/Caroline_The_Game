@@ -18,12 +18,12 @@ public class Parallax : MonoBehaviour {
 
     void FixedUpdate () {
         Move_Parallax();    
-        offset = new Vector2 (velParallax * Time.deltaTime * Menina.verticalInput, 0);    
+        offset = new Vector2 (velParallax * Time.deltaTime * GirlManager.instance.verticalInput, 0);    
 	}
 
     void Move_Parallax(){
         //Somente se a menina puder andar acontece o parallax
-        if (Menina.canMove == true && Menina.stopParallax == false)
+        if (GirlManager.instance.canMove == true && GirlManager.instance.stopParallax == false)
         {
                 quad.material.mainTextureOffset += offset;
         }

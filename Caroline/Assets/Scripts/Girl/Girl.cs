@@ -4,83 +4,45 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 
-public class Girl : MonoBehaviour {    
-    //FIGHT ATTRIBUTES
-    [HideInInspector]
-    public  bool        pressedSpace;                   //saber se errou
-    [HideInInspector]
-    public  float       time;                           //tempo a ficar parado  
-    [HideInInspector]
-    public  bool        shooting;                       //define se esta no ato de atirar
+public class Girl : MonoBehaviour
+{
 
-    //MOVIMENTATION ATTRIBUTES
-    [HideInInspector]
-    public  bool        canMove;                        //movimentação precisa dessa var    
-    [HideInInspector]       
-    public  bool        stopParallax;                   //evitar paralax de andar enquanto menina trancada em parede
-    [HideInInspector]
-    public  bool        face;                           //define a movimentação dir/esq invertendo a escala quando chamado
-            bool        ClimbRight;                     //define a direção que ira se telopertar apos climb
-            bool        ClimbLeft;                      //define a direção que ira se teleprotar apos climb
-    [HideInInspector]
-    public  bool        gravity;                        //climb(), acaba com a movimentação do personagem                      
-            float       jumpVelocity;                   //padrão de altura possivel com pulo
-            float       runVelocity;                    //padrão de velocidade possivel com pulo
-    [HideInInspector]
-    public  float       verticalInput;                  //contem o input, 1 se dir/-1se esq/0 de parado
-            Rigidbody2D rb;                             //aplicar forças
-            Vector3     ClimbPos;                       //localização de onde o personagem ficará apos o climb()
-            bool        invertDirection = false;                //
-    
+    //MOVIMENTATION ATTRIBUTES    
+    private Rigidbody2D rb;                             //aplicar forças
+    private Vector3 ClimbPos;                       //localização de onde o personagem ficará apos o climb()
+
     //JUMO ATRRIBUTES          
-    public  Transform   check;                          //checar o chao
-    public  LayerMask   whatIsGround;                   //raycast check ground
-    public  LayerMask   enemy2LayerMask;
-    public  GameObject  jumpParticle;                   //contem a particula liberada ao pular
-    [HideInInspector]
-    public  bool        inGround;                       //ver se esta no chão por meio de raycast   
-            float       radius;                         //tamanho do raycast
-            float       fallMultiplier;                 //modificação da gravidade
-            float       lowjumpmultiplayer;             //modificação da gravidade
-            bool        spawnJumpParticle;              //define se ira spawnar particula durante o pulo
-       
+    public Transform check;                          //checar o chao
+    public LayerMask whatIsGround;                   //raycast check ground
+    public LayerMask enemy2LayerMask;
+    public GameObject jumpParticle;                   //contem a particula liberada ao pular7      
+
     //SHOOTING ATTRIBUTES    
-    public  GameObject  rock;                           //tiro prefab    
-    public  Transform   rockInstancePosition;           //onde o tiro sera iniciado
-    [HideInInspector]
-    public  int         ammunition;                     //quantidade de monição
-    [HideInInspector]
-    public  float       shootingForce;                  //aumenta quando pressionado control
-    [HideInInspector]
-    public  float       absoluteShootingForce;          //guarda força total do tiro
-    public  GameObject  heartSpeel;                   //spell lançado ao empurrar;
+    public GameObject rock;                           //tiro prefab    
+    public Transform rockInstancePosition;           //onde o tiro sera iniciado    
+    public GameObject heartSpeel;                     //spell lançado ao empurrar;
     public ParticleSystem heartSpellParticles;
-    [HideInInspector]
-    public  bool        canUseSpell;                    //define se o poder spell poderá se spawnado;
- 
+
     //ANIMATION ATTRIBUTES
-           Change_camera_atributes cam;
-    [HideInInspector]
-    public Animator    anim;                           //animações   
+    private Change_camera_atributes cam;
+    public Animator anim;                           //animações   
 
     //UI ATTRIBUTES
-            GirlUI      GirlUi;                         //script de controle de ui da menina
-    public  AudioManager audioManager;
-            bool        touchEnemy2;
+    private GirlUI GirlUi;                         //script de controle de ui da menina
+    public AudioManager audioManager;
 
     //MISC ATTRIBUTES
-    public  GameObject interactBaloon;
-    private GameObject interactiveObj; 
-    private bool interacting; 
-    private bool canBeChildOfEnemy = true;
-    private bool inDialogue;
-    public bool canBeAttacked;
-    public bool hide;
+    public GameObject interactBaloon;
+    private GameObject interactiveObj;
 
-    void Awake(){
+    public float radius;                         //tamanho do raycast
+    public bool touchEnemy2;                    //Se tocou o inimigo 2 ava
+
+    void Awake()
+    {
         //inicializar ps componentes do jogo
-        rb = GetComponent<Rigidbody2D> ();
-		anim = GetComponent<Animator> ();
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         GirlUi = GetComponent<GirlUI>();
         cam = GetComponent<Change_camera_atributes>();
 
@@ -96,22 +58,26 @@ public class Girl : MonoBehaviour {
         //inicializar as variaveis do jogo
         resetAtributtes();
     }
-   
-    void FixedUpdate ()
+
+    void FixedUpdate()
     {
-        if(canMove)
+        if (GirlManager.instance.time <= Time.deltaTime && !GirlManager.instance.canUseSpell)
+        {
+            StartCoroutine(FinishCastHeartSpell());
+        }
+
+        if (GirlManager.instance.canMove)
         {
             Move();
-            FlipControl(); 
+            FlipControl();
         }
-        SpawnGroundParticle();    
+        SpawnGroundParticle();
         JumpGravityControl();
-        CalcTime();                 
-    }  
+    }
 
     private void Update()
-    {       
-        if(canMove)
+    {
+        if (GirlManager.instance.canMove)
         {
             Jump();
             WalkAnim();
@@ -125,21 +91,21 @@ public class Girl : MonoBehaviour {
         //Checar se esta no chao 
         if (touchEnemy2 == false)
         {
-            inGround = Physics2D.OverlapCircle(check.position, radius, whatIsGround);
+            GirlManager.instance.inGround = Physics2D.OverlapCircle(check.position, radius, whatIsGround);
         }
 
         //movimentação
-        if (!invertDirection)
+        if (!GirlManager.instance.invertDirection)
         {
-            verticalInput = Input.GetAxisRaw("Horizontal");
+            GirlManager.instance.verticalInput = Input.GetAxisRaw("Horizontal");
         }
         else
         {
-            verticalInput = -Input.GetAxisRaw("Horizontal");
+            GirlManager.instance.verticalInput = -Input.GetAxisRaw("Horizontal");
         }
-        
+
         //Se nochão for false inicia animação de pulo
-        if (inGround == false && canMove)
+        if (GirlManager.instance.inGround == false && GirlManager.instance.canMove)
         {
             anim.SetBool("Idle", false);
             anim.SetBool("Andando", false);
@@ -148,7 +114,7 @@ public class Girl : MonoBehaviour {
         else
         {
             anim.SetBool("Pulo", false);
-        }        
+        }
 
         //Reset de Cena
         if (Input.GetKeyDown(KeyCode.R))
@@ -156,55 +122,55 @@ public class Girl : MonoBehaviour {
             Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
         }
 
-        if(gravity == false)
+        if (GirlManager.instance.gravity == false)
         {
             rb.isKinematic = true;
             rb.velocity = new Vector2(0, 0);
-        } 
+        }
         else
         {
             rb.isKinematic = false;
         }
     }
 
-    /// <summary>
-    /// restart all atributtes of the girl
-    /// </summary>
     void resetAtributtes()
     {
-        shooting = false;
-        jumpVelocity = 9f;
-        runVelocity = 7.5f;
+        GirlManager.instance.shooting = false;
+        GirlManager.instance.jumpVelocity = 9f;
+        GirlManager.instance.runVelocity = 7.5f;
         radius = 0.30f;
-        canUseSpell = true;
-        spawnJumpParticle = false;
-        lowjumpmultiplayer = 4.3f;
-        fallMultiplier = 5f;
-        gravity = true;
-        face = true;
-        stopParallax = false;
-        canMove = true;
-        pressedSpace = false;
-        interacting = false;
-        canBeAttacked = true;
-        hide = false;
+        GirlManager.instance.canUseSpell = true;
+        GirlManager.instance.spawnJumpParticle = false;
+        GirlManager.instance.lowjumpmultiplayer = 4.3f;
+        GirlManager.instance.fallMultiplier = 5f;
+        GirlManager.instance.gravity = true;
+        GirlManager.instance.face = true;
+        GirlManager.instance.stopParallax = false;
+        GirlManager.instance.canMove = true;
+        GirlManager.instance.pressedSpace = false;
+        GirlManager.instance.interacting = false;
+        GirlManager.instance.canBeAttacked = true;
+        GirlManager.instance.hide = false;
     }
 
     //*******************************************************************\\
     //INTERACT METHODS
     private void CheckInteract()
     {
-        if(!hide)
+        if (!GirlManager.instance.hide)
         {
-            interactBaloon.SetActive(interacting);
+            interactBaloon.SetActive(GirlManager.instance.interacting);
         }
 
-        if(Input.GetKeyDown(KeyCode.X) && interacting && !shooting && canUseSpell && interactiveObj != null && !hide)
+        if (Input.GetKeyDown(KeyCode.X) &&
+        GirlManager.instance.interacting &&
+        !GirlManager.instance.shooting &&
+        GirlManager.instance.canUseSpell && interactiveObj != null && !GirlManager.instance.hide)
         {
-            canMove = false;
-            interactiveObj.SendMessage("Interact"); 
-            anim.SetBool("Idle", true);   
-            anim.SetBool("Andando", false);        
+            GirlManager.instance.canMove = false;
+            interactiveObj.SendMessage("Interact");
+            anim.SetBool("Idle", true);
+            anim.SetBool("Andando", false);
         }
     }
 
@@ -213,64 +179,64 @@ public class Girl : MonoBehaviour {
 
     private void checkInputCanBeAttackable()
     {
-        if(Input.GetKeyDown(KeyCode.C) && canMove)
+        if (Input.GetKeyDown(KeyCode.C) && GirlManager.instance.canMove)
         {
             changeCanBeAttackable();
-        }        
+        }
     }
 
     private void changeCanBeAttackable()
     {
-        canBeAttacked = !canBeAttacked;  
-        if(canBeAttacked)
+        GirlManager.instance.canBeAttacked = !GirlManager.instance.canBeAttacked;
+        if (GirlManager.instance.canBeAttacked)
         {
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1,1); 
-            hide = false;
-        }      
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GirlManager.instance.hide = false;
+        }
         else
         {
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1,0.5f);
-            hide = true;
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+            GirlManager.instance.hide = true;
         }
     }
 
-    /// <summary>
-    /// check if the input for pushing is presionated, if true: call Push() method 
-    /// </summary>
-    void CheckHeartSpellInput(){
-        if (Input.GetKeyDown(KeyCode.X) && canMove && canUseSpell && !shooting && !interacting && !hide)
+    void CheckHeartSpellInput()
+    {
+        if (Input.GetKeyDown(KeyCode.X) &&
+        GirlManager.instance.canMove &&
+        GirlManager.instance.canUseSpell &&
+        !GirlManager.instance.shooting &&
+        !GirlManager.instance.interacting &&
+        !GirlManager.instance.hide)
         {
             knockBack();
             CastHeartSpell();
         }
     }
 
-    /// <summary>
-    /// cast a heart spell that kill enemys
-    /// </summary>
     void CastHeartSpell()
-    {                
+    {
         GirlUi.AtivarEmpurrar();
         transform.parent = null;
-        time = 1.5f;
+        GirlManager.instance.time = 1.5f;
         anim.SetBool("Idle", true);
         anim.SetBool("Pulo", false);
         anim.SetBool("Andando", false);
-        canMove = false;
-        canUseSpell = false;
+        GirlManager.instance.canMove = false;
+        GirlManager.instance.canUseSpell = false;
         anim.SetBool("StopHeartSpell", false);
-        anim.SetTrigger("HeartSpell");               
+        anim.SetTrigger("HeartSpell");
     }
 
     private void knockBack()
     {
-        if(face)
+        if (GirlManager.instance.face)
         {
-            rb.AddForce(new Vector2(-8,2),ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(-8, 2), ForceMode2D.Impulse);
         }
-        else 
+        else
         {
-            rb.AddForce(new Vector2(8,2),ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(8, 2), ForceMode2D.Impulse);
         }
     }
 
@@ -278,14 +244,10 @@ public class Girl : MonoBehaviour {
     {
         Vector3 instanciador12 = rockInstancePosition.transform.position;
         Instantiate(heartSpeel, instanciador12, rockInstancePosition.rotation);
-        Instantiate(heartSpellParticles, instanciador12, rockInstancePosition.rotation);     
-        transform.parent = null;   
+        Instantiate(heartSpellParticles, instanciador12, rockInstancePosition.rotation);
+        transform.parent = null;
     }
 
-    /// <summary>
-    /// make the girl move again and can shoot again too
-    /// </summary>
-    /// <returns></returns>
     IEnumerator FinishCastHeartSpell()
     {
         yield return new WaitForSeconds(0.1f);
@@ -294,95 +256,80 @@ public class Girl : MonoBehaviour {
         anim.SetBool("Pulo", false);
         anim.SetBool("Andando", false);
         anim.SetBool("StopHeartSpell", true);
-        rb.velocity = new Vector2(0,0);
-        time = 0.3f;
-        pressedSpace = false;
-        canMove = true;
-        //gravity = true;
-        canUseSpell = true;
+        rb.velocity = new Vector2(0, 0);
+        GirlManager.instance.time = 0.3f;
+        GirlManager.instance.pressedSpace = false;
+        GirlManager.instance.canMove = true;
+        GirlManager.instance.canUseSpell = true;
         cam.NormalShake();
     }
 
-    /// <summary>
-    /// Check if the finish spell input was pressed in the right time
-    /// </summary>
-    void CheckFinishSpellInput(){
+    void CheckFinishSpellInput()
+    {
         //Right time
-        if (time >= 0.8f && time <= 1f){           
-            if (Input.GetKeyDown(KeyCode.X) && !pressedSpace){
+        if (GirlManager.instance.time >= 0.8f && GirlManager.instance.time <= 1f)
+        {
+            if (Input.GetKeyDown(KeyCode.X) && !GirlManager.instance.pressedSpace)
+            {
                 StartCoroutine(FinishCastHeartSpell());
             }
-        
-        //wrong time
-        } else if (time <= 1.4f && time >= 1f || time >= 0.2f && time <= 0.8f){            
-            if(Input.GetKeyDown(KeyCode.X)){
-                pressedSpace = true;
+
+            //wrong time
+        }
+        else if (GirlManager.instance.time <= 1.4f && GirlManager.instance.time >= 1f
+              || GirlManager.instance.time >= 0.2f && GirlManager.instance.time <= 0.8f)
+        {
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                GirlManager.instance.pressedSpace = true;
                 GirlUi.DesativarUI();
             }
         }
     }
 
-    /// <summary>
-    /// ensure there are no bugs in the character's stoppage
-    /// </summary>
-    void CalcTime(){        
-        if (time <= 5 && time > Time.deltaTime)
-        {              
-            time -= Time.deltaTime;               
-            if(time <= Time.deltaTime && !canUseSpell)
-            {
-                StartCoroutine(FinishCastHeartSpell());                       
-            }
-        }
-    }
-
-    /// <summary>
-    /// check if the shoot input was pressed
-    /// </summary>
     void InputShootRock()
     {
         //load strength of the stone if you have ammo and pressing the push key
-        if (Input.GetKey(KeyCode.Z) && canMove && ammunition >= 1 && canUseSpell && !hide)
+        if (Input.GetKey(KeyCode.Z) &&
+        GirlManager.instance.canMove &&
+        GirlManager.instance.ammunition >= 1 &&
+        GirlManager.instance.canUseSpell &&
+        !GirlManager.instance.hide)
         {
             GirlUi.AtivarAtirarPedra();
-            shooting = true;
-            if (shootingForce <= 1)
+            GirlManager.instance.shooting = true;
+            if (GirlManager.instance.shootingForce <= 1)
             {
-                shootingForce = shootingForce + Time.deltaTime;
+                GirlManager.instance.shootingForce = GirlManager.instance.shootingForce + Time.deltaTime;
             }
         }
 
         //atirar pedra
-        if (Input.GetKeyUp(KeyCode.Z) && ammunition >= 1 && canUseSpell)
+        if (Input.GetKeyUp(KeyCode.Z) && GirlManager.instance.ammunition >= 1 && GirlManager.instance.canUseSpell)
         {
             ShootRock();
-            shooting = false;
+            GirlManager.instance.shooting = false;
         }
     }
-    
-    /// <summary>
-    /// triggers the act of throwing the stone
-    /// </summary>
+
     void ShootRock()
     {
         Vector3 instanciador12 = rockInstancePosition.transform.position;
         Instantiate(rock, instanciador12, rockInstancePosition.rotation);
         GirlUi.DesativarUI();
-        absoluteShootingForce = shootingForce;
-        shootingForce = 0;
-        ammunition--;
-    }  
+        GirlManager.instance.absoluteShootingForce = GirlManager.instance.shootingForce;
+        GirlManager.instance.shootingForce = 0;
+        GirlManager.instance.ammunition -= 1;
+    }
 
     //*************************JUMP METHODS**********************************\\
-    /// <summary>
-    /// add strength up and check if 2 jumps are done
-    /// </summary>
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && inGround == true && !hide){
-            inGround = false;
-            rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse); 
-            Instantiate(jumpParticle, check.position,Quaternion.identity);
+        if (Input.GetKeyDown(KeyCode.UpArrow) && GirlManager.instance.inGround == true && !GirlManager.instance.hide)
+        {
+            GirlManager.instance.inGround = false;
+            rb.AddForce(Vector2.up * GirlManager.instance.jumpVelocity, ForceMode2D.Impulse);
+            Instantiate(jumpParticle, check.position, Quaternion.identity);
             playJumpSound();
         }
     }
@@ -391,8 +338,8 @@ public class Girl : MonoBehaviour {
     {
         try
         {
-            audioManager.PlayGirlHitSound(); 
-        } 
+            audioManager.PlayGirlHitSound();
+        }
         catch (NullReferenceException e)
         {
             Debug.Log("Error " + e.Message);
@@ -405,30 +352,27 @@ public class Girl : MonoBehaviour {
         {
             audioManager.PlayGirlFootSteps();
         }
-        catch(NullReferenceException e)
+        catch (NullReferenceException e)
         {
             Debug.Log("Error " + e.Message);
         }
-    } 
+    }
 
     public void playJumpSound()
     {
         try
         {
             audioManager.PlayGirlJumpSound();
-        } 
+        }
         catch (NullReferenceException e)
         {
             Debug.Log("Error " + e.Message);
         }
     }
-   
-    /// <summary>
-    ///  set variable "spawnJumoParticle", activated/called in animation
-    /// </summary>
+
     void SetSpawnJumpParticle()
     {
-        spawnJumpParticle = true;
+        GirlManager.instance.spawnJumpParticle = true;
     }
 
     /// <summary>
@@ -436,41 +380,34 @@ public class Girl : MonoBehaviour {
     /// </summary>
     void SpawnGroundParticle()
     {
-        if(inGround && spawnJumpParticle)
+        if (GirlManager.instance.inGround && GirlManager.instance.spawnJumpParticle)
         {
-            spawnJumpParticle = false;
-            Instantiate(jumpParticle, check.position,Quaternion.identity);
-            cam.NormalShake();        
-        } 
+            GirlManager.instance.spawnJumpParticle = false;
+            Instantiate(jumpParticle, check.position, Quaternion.identity);
+            cam.NormalShake();
+        }
     }
 
-    /// <summary>
-    /// Gravity change in the jump according to how much the user pressed the jump button
-    /// </summary>
     void JumpGravityControl()
     {
-        if (rb.velocity.y < 0 && gravity)
-        { 
-            rb.gravityScale = fallMultiplier;
-        }
-        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow) && gravity)
+        if (rb.velocity.y < 0 && GirlManager.instance.gravity)
         {
-            rb.gravityScale = lowjumpmultiplayer;
+            rb.gravityScale = GirlManager.instance.fallMultiplier;
+        }
+        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow) && GirlManager.instance.gravity)
+        {
+            rb.gravityScale = GirlManager.instance.lowjumpmultiplayer;
         }
         else
         {
             rb.gravityScale = 2f;
-        }      
+        }
     }
 
     //*********************MOVIMENTATION METHODS*************************************\\
-
-    /// <summary>
-    /// moves in the direction of the input, positive or negative
-    /// </summary>
     void Move()
     {
-        transform.Translate(verticalInput * Time.deltaTime * runVelocity, 0,0);
+        transform.Translate(GirlManager.instance.verticalInput * Time.deltaTime * GirlManager.instance.runVelocity, 0, 0);
     }
 
     //seta anim de andar, dir esquera 
@@ -478,7 +415,7 @@ public class Girl : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
         {
-            if (inGround)
+            if (GirlManager.instance.inGround)
             {
                 anim.SetBool("Idle", false);
                 anim.SetBool("Andando", true);
@@ -486,7 +423,7 @@ public class Girl : MonoBehaviour {
         }
         else if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
         {
-            if (inGround)
+            if (GirlManager.instance.inGround)
             {
                 anim.SetBool("Idle", false);
                 anim.SetBool("Andando", true);
@@ -494,7 +431,7 @@ public class Girl : MonoBehaviour {
         }
         else if (!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
         {
-            if (inGround)
+            if (GirlManager.instance.inGround)
             {
                 anim.SetBool("Idle", true);
                 anim.SetBool("Andando", false);
@@ -502,7 +439,7 @@ public class Girl : MonoBehaviour {
         }
         else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))
         {
-            if (inGround)
+            if (GirlManager.instance.inGround)
             {
                 anim.SetBool("Idle", true);
                 anim.SetBool("Andando", false);
@@ -513,27 +450,29 @@ public class Girl : MonoBehaviour {
     /// <summary>
     /// changes the direction of the character according to the input
     /// </summary>
-    void Flip ()
+    void Flip()
     {
-		face = !face;
-		Vector3 scale = transform.localScale;
-		scale.x *= -1;
-		transform.localScale = scale;
-	}
+        GirlManager.instance.face = !GirlManager.instance.face;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+    }
 
     /// <summary>
     /// controls the character's direction and the location of the stone instancier
     /// </summary>
     void FlipControl()
     {
-        if (Input.GetKey(KeyCode.RightArrow) && !face){
+        if (Input.GetKey(KeyCode.RightArrow) && !GirlManager.instance.face)
+        {
             Flip();
             rockInstancePosition.Rotate(0, -180, 0);
         }
-        if (Input.GetKey(KeyCode.LeftArrow) && face){
+        if (Input.GetKey(KeyCode.LeftArrow) && GirlManager.instance.face)
+        {
             Flip();
-            rockInstancePosition.Rotate(0, 180, 0);               
-        }        
+            rockInstancePosition.Rotate(0, 180, 0);
+        }
     }
 
     /// <summary>
@@ -541,28 +480,25 @@ public class Girl : MonoBehaviour {
     /// </summary>
     void Climb()
     {
-        if (ClimbRight)
+        if (GirlManager.instance.ClimbRight)
         {
             transform.position = new Vector3(ClimbPos.x + 1.3f, ClimbPos.y + 2.4f, transform.position.z);
-            ClimbRight = false;
+            GirlManager.instance.ClimbRight = false;
         }
-        else if (ClimbLeft)
+        else if (GirlManager.instance.ClimbLeft)
         {
             transform.position = new Vector3(ClimbPos.x - 1.3f, ClimbPos.y + 2.4f, transform.position.z);
-            ClimbLeft = false;
+            GirlManager.instance.ClimbLeft = false;
         }
-        spawnJumpParticle = false;
+        GirlManager.instance.spawnJumpParticle = false;
         anim.SetBool("Idle", true);
         anim.SetBool("escalar", false);
-        canMove = true;
-        gravity = true;    
-        rb.isKinematic = false; 
-        GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
+        GirlManager.instance.canMove = true;
+        GirlManager.instance.gravity = true;
+        rb.isKinematic = false;
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
     }
 
-    /// <summary>
-    /// simple test reload level function
-    /// </summary>
     static public void Reload()
     {
         Scene scene = SceneManager.GetActiveScene();
@@ -573,44 +509,44 @@ public class Girl : MonoBehaviour {
     public void DetachCarolineChildren()
     {
         transform.parent = null;
-        canBeChildOfEnemy = true;
-        inGround = false;
+        GirlManager.instance.canBeChildOfEnemy = true;
+        GirlManager.instance.inGround = false;
         touchEnemy2 = false;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         //the girl turns into a child of the enemy2 while under the enemy2
-        if (collision.gameObject.tag == "enemy2" && canBeChildOfEnemy)
+        if (collision.gameObject.tag == "enemy2" && GirlManager.instance.canBeChildOfEnemy)
         {
             //se o inimigo estiver indo para esquerda, tornar a menina um filho dele faria com ela invertesse a direção
             if (!collision.gameObject.GetComponent<Enemy2>().faceRight)
             {
-                invertDirection = true;
+                GirlManager.instance.invertDirection = true;
             }
-            else 
+            else
             {
-                invertDirection = false;
+                GirlManager.instance.invertDirection = false;
             }
-            inGround = true;            
-            transform.parent = collision.transform;            
+            GirlManager.instance.inGround = true;
+            transform.parent = collision.transform;
         }
         else
         {
             //transform.parent = null;
-            invertDirection = false;
+            GirlManager.instance.invertDirection = false;
         }
 
-        if(collision.gameObject.CompareTag("fallplataform"))
+        if (collision.gameObject.CompareTag("fallplataform"))
         {
-            if(Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                rb.velocity = new Vector2 (rb.velocity.x,0);
+                rb.velocity = new Vector2(rb.velocity.x, 0);
                 radius = 0.3f;
             }
             radius = 0.7f;
         }
-        else 
+        else
         {
             radius = 0.3f;
         }
@@ -618,7 +554,7 @@ public class Girl : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("enemy2") & canBeChildOfEnemy)
+        if (collision.gameObject.CompareTag("enemy2") & GirlManager.instance.canBeChildOfEnemy)
         {
             touchEnemy2 = true;
         }
@@ -631,19 +567,19 @@ public class Girl : MonoBehaviour {
             DetachCarolineChildren();
         }
 
-        if(collision.gameObject.CompareTag("fallplataform"))
+        if (collision.gameObject.CompareTag("fallplataform"))
         {
             radius = 0.3f;
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
-    {   
+    {
         //interract
-        if(collision.CompareTag("Interactive"))
+        if (collision.CompareTag("Interactive"))
         {
             interactiveObj = collision.gameObject;
-            interacting = true;
+            GirlManager.instance.interacting = true;
         }
 
         //dead
@@ -655,37 +591,37 @@ public class Girl : MonoBehaviour {
         if (collision.CompareTag("municao"))
         {
             Destroy(collision.gameObject);
-            ammunition++;
+            GirlManager.instance.ammunition++;
         }
         //stop parallax
-        if(collision.CompareTag("parallax"))
+        if (collision.CompareTag("parallax"))
         {
-            stopParallax = true;
+            GirlManager.instance.stopParallax = true;
         }
         //can't use spell in this area
-        if(collision.CompareTag("no_speel_area"))
+        if (collision.CompareTag("no_speel_area"))
         {
-            canUseSpell = false;
+            GirlManager.instance.canUseSpell = false;
         }
 
         //starts the Climb()
-        if (collision.CompareTag("escalar") && canMove)
+        if (collision.CompareTag("escalar") && GirlManager.instance.canMove)
         {
-            GetComponent<SpriteRenderer>().color = new Color(0.83f, 0.83f, 0.83f,1);
-            gravity = false;
-            canMove = false; 
+            GetComponent<SpriteRenderer>().color = new Color(0.83f, 0.83f, 0.83f, 1);
+            GirlManager.instance.gravity = false;
+            GirlManager.instance.canMove = false;
             rb.isKinematic = true;
             ClimbPos = GetComponent<Transform>().position;
-            anim.SetBool("escalar", true);         
+            anim.SetBool("escalar", true);
             anim.SetBool("Pulo", false);
-            anim.SetBool("Idle", false);   
-            if(collision.transform.position.x >= transform.position.x)
+            anim.SetBool("Idle", false);
+            if (collision.transform.position.x >= transform.position.x)
             {
-                ClimbRight = true;
+                GirlManager.instance.ClimbRight = true;
             }
             else
             {
-                ClimbLeft = true;
+                GirlManager.instance.ClimbLeft = true;
             }
         }
 
@@ -698,22 +634,22 @@ public class Girl : MonoBehaviour {
     void OnTriggerExit2D(Collider2D collision)
     {
         //interract
-        if(collision.CompareTag("Interactive"))
+        if (collision.CompareTag("Interactive"))
         {
             interactiveObj = null;
-            interacting = false;
+            GirlManager.instance.interacting = false;
         }
 
         //can use spell out of this area
         if (collision.CompareTag("no_speel_area"))
         {
-            canUseSpell = true;
+            GirlManager.instance.canUseSpell = true;
             cam.shake();
         }
         //ao sair pode continuar tendo parallax
         if (collision.CompareTag("parallax"))
         {
-            stopParallax = false;
+            GirlManager.instance.stopParallax = false;
         }
     }
 }
