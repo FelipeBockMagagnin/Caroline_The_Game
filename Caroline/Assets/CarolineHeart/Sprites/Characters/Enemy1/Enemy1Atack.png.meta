@@ -1,0 +1,427 @@
+fileFormatVersion: 2
+guid: 8ed37a1d2f67dd24189d180a59b841ef
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Inimigo_ataque1_0
+  - first:
+      213: 21300002
+    second: Inimigo_ataque1_1
+  - first:
+      213: 21300004
+    second: Inimigo_ataque1_2
+  - first:
+      213: 21300006
+    second: Inimigo_ataque1_3
+  - first:
+      213: 21300008
+    second: Inimigo_ataque1_4
+  - first:
+      213: 21300010
+    second: Inimigo_ataque1_5
+  - first:
+      213: 21300012
+    second: Inimigo_ataque1_6
+  - first:
+      213: 21300014
+    second: Inimigo_ataque1_10
+  - first:
+      213: 21300016
+    second: Inimigo_ataque1_7
+  - first:
+      213: 21300018
+    second: Inimigo_ataque1_8
+  - first:
+      213: 21300020
+    second: Inimigo_ataque1_9
+  - first:
+      213: 21300022
+    second: Inimigo_ataque1_11
+  - first:
+      213: 21300024
+    second: Inimigo_ataque1_12
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Inimigo_ataque1_0
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 192
+        width: 516
+        height: 387
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57924d3159ac8ee45b37212ba42f22d1
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inimigo_ataque1_1
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 185
+        width: 510
+        height: 399
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a7e508e46bd737478b220ae3a41c64f
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inimigo_ataque1_2
+      rect:
+        serializedVersion: 2
+        x: 1696
+        y: 196
+        width: 391
+        height: 384
+      alignment: 9
+      pivot: {x: 0.38381967, y: 0.5071967}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b77fe8b4f5bb4544945be81ebebcbbd
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inimigo_ataque1_3
+      rect:
+        serializedVersion: 2
+        x: 2424
+        y: 201
+        width: 381
+        height: 374
+      alignment: 9
+      pivot: {x: 0.39392507, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26e10d491e3830847810a180553bb5ab
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inimigo_ataque1_4
+      rect:
+        serializedVersion: 2
+        x: 3150
+        y: 201
+        width: 375
+        height: 374
+      alignment: 9
+      pivot: {x: 0.40569922, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43e2c6d7e33b0ad47b2f5decdce668a4
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inimigo_ataque1_5
+      rect:
+        serializedVersion: 2
+        x: 3885
+        y: 203
+        width: 364
+        height: 372
+      alignment: 9
+      pivot: {x: 0.41151243, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0750fcdf2bdeaf44bb52fbd9c8874fb7
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inimigo_ataque1_6
+      rect:
+        serializedVersion: 2
+        x: 4618
+        y: 202
+        width: 362
+        height: 377
+      alignment: 9
+      pivot: {x: 0.4011379, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca8e2fa66a065a2468612984a70e4468
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inimigo_ataque1_10
+      rect:
+        serializedVersion: 2
+        x: 7542
+        y: 0
+        width: 334
+        height: 665
+      alignment: 9
+      pivot: {x: 0.43018162, y: 0.61642706}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0d2904a75e21af448e373ceae1f5c2d
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inimigo_ataque1_7
+      rect:
+        serializedVersion: 2
+        x: 5342
+        y: 215
+        width: 359
+        height: 449
+      alignment: 9
+      pivot: {x: 0.4014964, y: 0.39774027}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf3c2af35680bc54f97b947aed979cbe
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inimigo_ataque1_8
+      rect:
+        serializedVersion: 2
+        x: 6076
+        y: 215
+        width: 370
+        height: 450
+      alignment: 9
+      pivot: {x: 0.3958232, y: 0.38987052}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 227720bfc56bf4743a5f351dc2e7fdfc
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inimigo_ataque1_9
+      rect:
+        serializedVersion: 2
+        x: 6647
+        y: 197
+        width: 539
+        height: 468
+      alignment: 9
+      pivot: {x: 0.5484105, y: 0.43932793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 836a172609662884881656506655ce47
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inimigo_ataque1_11
+      rect:
+        serializedVersion: 2
+        x: 8377
+        y: 146
+        width: 387
+        height: 415
+      alignment: 9
+      pivot: {x: 0.13770793, y: 0.5561891}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c4dc75342bfe15489a650eb8866bec2
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inimigo_ataque1_12
+      rect:
+        serializedVersion: 2
+        x: 8875
+        y: 81
+        width: 441
+        height: 466
+      alignment: 9
+      pivot: {x: 0.5014438, y: 0.6181646}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebbe595ba1cd2e54db83d718915421b2
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 6eed42802d28f3c498e20c6049bf86df
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

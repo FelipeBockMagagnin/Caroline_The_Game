@@ -1,0 +1,331 @@
+fileFormatVersion: 2
+guid: 4de757c28e1fff24d92f54129314ef10
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Andar_2.0_0
+  - first:
+      213: 21300002
+    second: Andar_2.0_1
+  - first:
+      213: 21300004
+    second: Andar_2.0_2
+  - first:
+      213: 21300006
+    second: Andar_2.0_3
+  - first:
+      213: 21300008
+    second: Andar_2.0_4
+  - first:
+      213: 21300010
+    second: Andar_2.0_6
+  - first:
+      213: 21300012
+    second: Andar_2.0_7
+  - first:
+      213: 21300014
+    second: Andar_2.0_8
+  - first:
+      213: 21300016
+    second: Andar_2.0_9
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Andar_2.0_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 10
+        width: 402
+        height: 765
+      alignment: 9
+      pivot: {x: 0.35435417, y: 0.5208733}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 639eeb769ccd0fb49b6e077365454ce0
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Andar_2.0_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 14
+        width: 401
+        height: 754
+      alignment: 9
+      pivot: {x: 0.36762738, y: 0.5208733}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cfb2719d335fbb4597ddd76e89ed920
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Andar_2.0_2
+      rect:
+        serializedVersion: 2
+        x: 991
+        y: 14
+        width: 397
+        height: 752
+      alignment: 9
+      pivot: {x: 0.3543542, y: 0.5208733}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cb7a799bd3eda74197bec21cd9b5ebd
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Andar_2.0_3
+      rect:
+        serializedVersion: 2
+        x: 1415
+        y: 12
+        width: 383
+        height: 758
+      alignment: 9
+      pivot: {x: 0.45163465, y: 0.5208733}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e85e73f8ea15746459bb46226dc4ee0f
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Andar_2.0_4
+      rect:
+        serializedVersion: 2
+        x: 1865
+        y: 10
+        width: 389
+        height: 765
+      alignment: 9
+      pivot: {x: 0.4589505, y: 0.5278311}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 173cf5f8c1b97194a81a27b9ad0ba0b7
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Andar_2.0_6
+      rect:
+        serializedVersion: 2
+        x: 2352
+        y: 10
+        width: 394
+        height: 755
+      alignment: 9
+      pivot: {x: 0.41894406, y: 0.53524965}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d333a3d44e4a8945a51a6de5cbd105b
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Andar_2.0_7
+      rect:
+        serializedVersion: 2
+        x: 2813
+        y: 15
+        width: 397
+        height: 775
+      alignment: 9
+      pivot: {x: 0.39273986, y: 0.527472}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbd9a2f3ed07ee24f90a48fc9d428713
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Andar_2.0_8
+      rect:
+        serializedVersion: 2
+        x: 3253
+        y: 7
+        width: 387
+        height: 768
+      alignment: 9
+      pivot: {x: 0.38997018, y: 0.5277224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 829fdfa971d855f4f8bef36968381b63
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Andar_2.0_9
+      rect:
+        serializedVersion: 2
+        x: 2865
+        y: 7
+        width: 54
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9c9049815744374d8168fe407182330
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 07fe92959f3428b4d8718b43cf17dd25
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

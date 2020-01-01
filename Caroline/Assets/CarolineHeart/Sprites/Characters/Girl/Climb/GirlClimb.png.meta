@@ -1,0 +1,331 @@
+fileFormatVersion: 2
+guid: 192acb11c11f3dd4a9d32084c34fe252
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Escalar_spritesheet_9
+  - first:
+      213: 21300002
+    second: Escalar_spritesheet_6
+  - first:
+      213: 21300004
+    second: Escalar_spritesheet_8
+  - first:
+      213: 21300006
+    second: Escalar_spritesheet_7
+  - first:
+      213: 21300008
+    second: Escalar_spritesheet_1
+  - first:
+      213: 21300010
+    second: Escalar_spritesheet_5
+  - first:
+      213: 21300012
+    second: Escalar_spritesheet_2
+  - first:
+      213: 21300014
+    second: Escalar_spritesheet_4
+  - first:
+      213: 21300016
+    second: Escalar_spritesheet_3
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Escalar_spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 6135
+        y: 414
+        width: 516
+        height: 775
+      alignment: 9
+      pivot: {x: -0.058622137, y: 0.18083094}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44fc2a1cd35f3894b88a49b547ea4bb7
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Escalar_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 3908
+        y: 352
+        width: 400
+        height: 712
+      alignment: 9
+      pivot: {x: 0.14071839, y: 0.27572906}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49f45fbd5b25e004fba8784550c5d5f5
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Escalar_spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 5488
+        y: 461
+        width: 452
+        height: 587
+      alignment: 9
+      pivot: {x: -0.18888815, y: 0.15996441}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89e2497d1aba10f409090d2766913db2
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Escalar_spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 4731
+        y: 402
+        width: 474
+        height: 623
+      alignment: 9
+      pivot: {x: -0.0895378, y: 0.24369055}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07afcaefedaa69942be94026a0617789
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Escalar_spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 120
+        width: 400
+        height: 823
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74be15828b278594981adac500463512
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Escalar_spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 3069
+        y: 206
+        width: 374
+        height: 737
+      alignment: 9
+      pivot: {x: 0.39326093, y: 0.46750048}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ae3f70669f8cbe4f856eabeb8bfb4e5
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Escalar_spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 51
+        width: 372
+        height: 813
+      alignment: 9
+      pivot: {x: 0.4719015, y: 0.59229594}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11d5bdebef0eaea44ad93945c7f4359a
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Escalar_spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 2293
+        y: 64
+        width: 367
+        height: 803
+      alignment: 9
+      pivot: {x: 0.43473595, y: 0.5795418}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2518320c9933dd499260cbb0b38872a
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Escalar_spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 18
+        width: 361
+        height: 793
+      alignment: 9
+      pivot: {x: 0.41153452, y: 0.651022}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04789d0ce67198e41ac04c8a40951413
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 16e0231ad9b992840aa8fe318a8e950f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
