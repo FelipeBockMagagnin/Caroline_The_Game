@@ -6,39 +6,39 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Lvl_1.unity
+    path: Assets/CarolineHeart/Scenes/Lvl_1.unity
     guid: eb2cd05f1630d434d9d18eaf2b756b27
   - enabled: 1
-    path: Assets/Scenes/Lvl_2.unity
+    path: Assets/CarolineHeart/Scenes/Lvl_2.unity
     guid: 9cfbd8eeba0a73d43a204fa00c622895
   - enabled: 1
-    path: Assets/Scenes/Lvl_3.unity
+    path: Assets/CarolineHeart/Scenes/Lvl_3.unity
     guid: 213e6dd387f41204d8ef1d4640c40e5f
   - enabled: 1
-    path: Assets/Scenes/Lvl_4.unity
+    path: Assets/CarolineHeart/Scenes/Lvl_4.unity
     guid: 91e590f65e36a9c4caef71fca91b5dce
   - enabled: 1
-    path: Assets/Scenes/Lvl_5.unity
+    path: Assets/CarolineHeart/Scenes/Lvl_5.unity
     guid: 24bc7bee6de112d41a6433ce7da13175
   - enabled: 1
-    path: Assets/Scenes/Lvl_6.unity
+    path: Assets/CarolineHeart/Scenes/Lvl_6.unity
     guid: 1c70d1b971fd2754cb61ddaeb58e024c
   - enabled: 1
-    path: Assets/Scenes/Lvl_7.unity
+    path: Assets/CarolineHeart/Scenes/Lvl_7.unity
     guid: a89e04ee26bf25c49abe27463796bf58
   - enabled: 1
-    path: Assets/Scenes/Lvl_8.unity
+    path: Assets/CarolineHeart/Scenes/Lvl_8.unity
     guid: e8ce748dd53a2884299463b867432651
   - enabled: 1
-    path: Assets/Scenes/Lvl_9.unity
+    path: Assets/CarolineHeart/Scenes/Lvl_9.unity
     guid: a34537e8daf9fd8468e1e7087d559a74
   - enabled: 1
-    path: Assets/Scenes/Lvl_10.unity
+    path: Assets/CarolineHeart/Scenes/Lvl_10.unity
     guid: f2191590c69f4e34a8a417515847b557
   - enabled: 1
-    path: Assets/Scenes/Lvl_11.unity
+    path: Assets/CarolineHeart/Scenes/Lvl_11.unity
     guid: 341ae0ab707707b4e87fb4fbe7915631
   - enabled: 1
-    path: Assets/Scenes/MiniGame.unity
+    path: Assets/CarolineHeart/Scenes/MiniGame.unity
     guid: 15c044063de19f8408cc9ce9889595e4
   m_configObjects: {}
